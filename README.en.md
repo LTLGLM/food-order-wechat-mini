@@ -1,36 +1,10 @@
-# 河马微信第三方系统
+# Food Ordering System
 
-#### Description
-完全开源的微信第三方管理系统
+This repository is prepared for local deployment and secondary development.
 
-#### Software Architecture
-Software architecture description
+## Notes
 
-#### Installation
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### Instructions
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### Contribution
-
-1.  Fork the repository
-2.  Create Feat_xxx branch
-3.  Commit your code
-4.  Create Pull Request
-
-
-#### Gitee Feature
-
-1.  You can use Readme\_XXX.md to support different languages, such as Readme\_en.md, Readme\_zh.md
-2.  Gitee blog [blog.gitee.com](https://blog.gitee.com)
-3.  Explore open source project [https://gitee.com/explore](https://gitee.com/explore)
-4.  The most valuable open source project [GVP](https://gitee.com/gvp)
-5.  The manual of Gitee [https://gitee.com/help](https://gitee.com/help)
-6.  The most popular members  [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+- The backend project is located in `TP8服务端`.
+- The packaged WeChat mini program project is located in `微信小程序`.
+- Replace the default `appid`, domain, project name, and branding before release.
+- Original upstream demo links and branding references are being removed from the public-facing experience.

@@ -29,7 +29,7 @@ define('INSTALL_PATH', str_replace('\\', '/', dirname(__FILE__)));
 define('ROOT_PATH', dirname(INSTALL_PATH, 2));
 
 // 版权信息设置
-$cfg_copyright = '© 2017-'.date("Y", time()).' www.hemaPHP.com';
+$cfg_copyright = '© 2017-'.date("Y", time()).' 本地部署版';
 
 // 获取当前步骤
 $s = getStep();
@@ -173,7 +173,6 @@ if ($s == 3) {
             ':password' => installHash($adminPassword),
             ':update_time' => time(),
         ]);
-        $pdo->exec("UPDATE `hema_page` SET `page_data` = REPLACE(`page_data`, 'https://single.hemaphp.com/assets/img/diy/', '/assets/img/diy/')");
 
         insInfo("默认数据导入完成！");
         ob_flush();

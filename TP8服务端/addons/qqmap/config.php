@@ -1,1 +1,16 @@
-<?phpreturn [	[	    'name' => 'key',//参数名称	    'title' => '地图KEY：', //显示标题	    'type' => 'text', //表单元素类型 - 文本框	    //属性	    'attribute' => [ 	        'placeholder' => '请输入腾讯地图KEY',	        'maxlength' => '',//可输入最大长度	        'required' => true,//是否必填	        'disabled' => false,//是否禁用	    ],	    'msg' => '我还没有KEY，看教程：https://www.kancloud.cn/he_ma/hema_wechat/2589795',//提示内容	    'value' => '',//初始值	],];
+<?php
+return [
+    [
+        'name' => 'key',
+        'title' => '地图 KEY：',
+        'type' => 'text',
+        'attribute' => [
+            'placeholder' => '请输入腾讯地图 KEY',
+            'maxlength' => '',
+            'required' => true,
+            'disabled' => false,
+        ],
+        'msg' => '请填写你自己的地图服务密钥，相关申请说明请参考所选地图平台官方文档。',
+        'value' => '',
+    ],
+];

@@ -14,7 +14,7 @@
   "compileType": "miniprogram",
   "libVersion": "",
   "appid": "wx28fdf235ea5782f2",
-  "projectname": "河马点餐",
+  "projectname": "餐饮点单系统",
   "condition": {
     "search": {
       "current": -1,

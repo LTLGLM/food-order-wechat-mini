@@ -508,7 +508,7 @@ class Setting extends BaseModel
                 'key' => 'base',
                 'describe' => '基本设置',
                 'values' => [
-                    'name' => '河马点单',//网站名称
+                    'name' => '餐饮点单系统',//网站名称
                     'company' => '',//公司名称
                     'phone' => '',//联系电话
                     'icp' => '',    //备案号

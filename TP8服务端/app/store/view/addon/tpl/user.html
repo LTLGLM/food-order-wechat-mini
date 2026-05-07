@@ -1,21 +1,21 @@
-<!-- 模板：登录 -->
+<!-- 模板：用户信息 -->
 <script id="tpl-user" type="text/template">
     <div class="am-padding-xs am-padding-top-sm">
         <div class="am-alert am-alert-success" data-am-alert>
             <button type="button" class="am-close">&times;</button>
-            <p><b>温馨提示</b></p>
-            <p>你好！{{user.user_name}}</P>
-            <p>当前你已经登录，将同步保存你的购买记录</P>
+            <p><b>提示</b></p>
+            <p>你好，{{user.user_name}}</p>
+            <p>当前仅保留本地插件能力，在线购买与同步服务已停用。</p>
         </div>
     </div>
     <div style="padding:20px;">
-    <div class="am-padding-xs am-padding-top-sm">
-        <div class="am-alert am-alert-secondary">
-            <p style="color:#fa3534;">
-                <i class="am-icon-archive"></i> 
-                <a style="color:#fa3534;" href="https://www.hemaphp.com/api/user/tokenLogin?token={{user.token}}" target="_blank">我购买的插件</a>
-            </p>
+        <div class="am-padding-xs am-padding-top-sm">
+            <div class="am-alert am-alert-secondary">
+                <p style="color:#666;">
+                    <i class="am-icon-archive"></i>
+                    在线插件中心已停用
+                </p>
+            </div>
         </div>
-    </div>
     </div>
 </script>

@@ -10,6 +10,7 @@ use hema\Http;
  **/
 class Addon
 {
+    private const REMOTE_DISABLED_MESSAGE = '远程插件市场和在线升级已禁用';
     private $api_url;
     private $token = '';
     private $error;
@@ -29,6 +30,15 @@ class Addon
      */
     public function getAddonList($page = 1)
     {
+        if (!$this->remoteEnabled()) {
+            return [
+                'list' => [
+                    'data' => [],
+                    'total' => 0,
+                ],
+                'page' => null,
+            ];
+        }
         $url = $this->api_url . '/api/addon/lists';
         $queryarr = [
             'page' => $page,
@@ -49,6 +59,9 @@ class Addon
      */
     public function getAddonDetail($name)
     {
+        if (!$this->remoteEnabled()) {
+            return false;
+        }
         $url = $this->api_url . '/api/addon/detail';
         $queryarr['name'] = $name;
         return $this->result(json_decode(Http::post($url, $queryarr),true)); 
@@ -59,6 +72,9 @@ class Addon
      */
     public function checkLogin()
     {
+        if (!$this->remoteEnabled()) {
+            return false;
+        }
         if($this->token){
             $url = $this->api_url . '/api/user/checkAddonLogin';
             $queryarr['token'] = $this->token;
@@ -73,6 +89,9 @@ class Addon
      */
     public function logout()
     {
+        if (!$this->remoteEnabled()) {
+            return false;
+        }
         $url = $this->api_url . '/api/user/addonLogout';
         $queryarr['token'] = $this->token;
         $result = json_decode(Http::post($url, $queryarr),true); 
@@ -90,6 +109,9 @@ class Addon
      */
     public function login($queryarr)
     {
+        if (!$this->remoteEnabled()) {
+            return false;
+        }
         $url = $this->api_url . '/api/user/addonLogin';
         $result = json_decode(Http::post($url, $queryarr),true);
         if($result['code']!=0){
@@ -105,6 +127,9 @@ class Addon
      */
     public function news()
     {
+        if (!$this->remoteEnabled()) {
+            return false;
+        }
         $url = $this->api_url . '/api/hema/news';
         $queryarr = [
             'domain' => domain(),
@@ -138,6 +163,15 @@ class Addon
     public function getError()
     {
         return $this->error;
+    }
+
+    private function remoteEnabled()
+    {
+        if (!Config::get('app.hemaphp.remote_enabled')) {
+            $this->error = self::REMOTE_DISABLED_MESSAGE;
+            return false;
+        }
+        return true;
     }
 
 }

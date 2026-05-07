@@ -80,8 +80,11 @@ class Controller extends \app\BaseController
      */
     private function layout()
     {  
-        $addon = new Addon;
-        $is_new = $addon->news();
+        $is_new = false;
+        if (Config::get('app.hemaphp.remote_enabled')) {
+            $addon = new Addon;
+            $is_new = $addon->news();
+        }
         // 输出到view
         View::assign([
             'base_url' => base_url(),            // 当前站点域名
@@ -100,7 +103,14 @@ class Controller extends \app\BaseController
      */
     private function menus()
     {
-        foreach ($data = Config('menus') as $group => $first) {
+        $data = Config('menus');
+        if (!Config::get('app.hemaphp.remote_enabled') && isset($data['addon']['submenu'])) {
+            $data['addon']['submenu'] = array_values(array_filter($data['addon']['submenu'], function ($item) {
+                return ($item['index'] ?? '') !== 'addon/index';
+            }));
+        }
+
+        foreach ($data as $group => $first) {
             $data[$group]['active'] = $group === $this->group;
             //$data[0]['active']
             // 遍历：二级菜单

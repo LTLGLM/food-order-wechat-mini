@@ -290,7 +290,9 @@
     
     $(function() {
         var is_new = <?=json_encode($is_new)?>;
-        is_new = JSON.parse(is_new);
+        if (typeof is_new === 'string' && is_new) {
+            is_new = JSON.parse(is_new);
+        }
 		if(is_new){
 		    layer.open({
                 title: 'V' + is_new.version + ' 升级提醒',

@@ -1,9 +1,9 @@
 <?php if(!defined('IN_INSTALL')) exit('Request Error!'); ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>河马点餐系统 安装向导 - 程序已安装</title>
+<title>餐饮点单系统 安装向导 - 程序已安装</title>
 <link href="/install/templates/style/install.css" type="text/css" rel="stylesheet" />
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <script type="text/javascript" src="../assets/plugins/jquery/jquery.min.js"></script>
@@ -13,18 +13,16 @@
 <div class="mainBody">
 	<div class="note">
         <div class="complete">
-            <strong>现在您可以：</strong><br />
+            <strong>程序已经安装完成。</strong><br />
             <a href="../">访问首页</a><span>或</span>
-            <a href="../admin/">登录后台</a><br /><br />
-            <span>重新安装请删除"/public/install/install.lock"文件</span>
-			<br /><br />
-            您可以访问 <a href="https://www.hemaphp.com/" target="_blank" class="link">www.hemaphp.com</a> 获取更多帮助 
+            <a href="../store/">登录后台</a><br /><br />
+            <span>如需重新安装，请先手动删除 /public/install/install.lock 文件。</span>
         </div>
     </div>
 </div>
-<div class="footer"> 
-    <span class="step4"></span> 
-    <span class="copyright"><?php echo $cfg_copyright; ?></span>
+<div class="footer">
+    <span class="step4"></span>
+    <span class="copyright">© 2017-<?php echo date('Y'); ?> 餐饮点单系统</span>
 </div>
 </body>
 </html>

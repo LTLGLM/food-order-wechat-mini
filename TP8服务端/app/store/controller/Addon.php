@@ -1,1 +1,181 @@
-<?phpnamespace app\store\controller;use hema\Addon as AddonModel;use think\addons\Service;use think\facade\Cache;use think\facade\Config;use think\facade\View;/** * 插件控制器 */class Addon extends Controller{    /**     * 获取列表     */    public function my()    {           $addonuser = Cache::get('hemaphp',[]);        $addon_list = get_addons_list();        $model = new AddonModel;        $list = [];        foreach ($addon_list as $key=>$item){            if($addon = $model->getAddonDetail($key)){                $item['addon'] = $addon;            }            $list[] = $item;        }        return View::fetch('my', compact('list','addonuser'));    }        /**     * 获取列表     */    public function index(int $page = 1)    {           $addonuser = Cache::get('hemaphp',[]);        $model = new AddonModel;        $result = $model->getAddonList($page);        $list = $result['list'];        $page = $result['page'];        if(!is_null($page)){            $page = str_replace("/api/addon/lists","/store/addon/index",$result['page']);        }        return View::fetch('index', compact('list','page','addonuser'));    }        /**     * 验证是否登录     */    public function checkLogin()    {        $model = new AddonModel;        if($model->checkLogin()){            return $this->renderSuccess('已经登录');        }        return $this->renderError($model->getError());    }        /**     * 登录     */    public function login()    {        $model = new AddonModel;        if($model->login($this->request->post('data'))){            return $this->renderSuccess('登录成功');        }        return $this->renderError($model->getError());    }        /**     * 退出登录     */    public function logout()    {        $model = new AddonModel;        if($model->logout()){            return $this->renderSuccess('退出成功');        }        return $this->renderError($model->getError());    }    /**     * 安装     */    public function install()    {        $data = $this->request->post();        $extend = [            'type' => 'install',            'token' => '',        ];        if($addonuser = Cache::get('hemaphp')){            $extend['token'] = $addonuser['token'];        }        $result = Service::install($data['name'], $extend);        if(is_array($result)){            $code = 0;            $data = [];            if(isset($result['data'])){                $data = $result['data'];            }            if(isset($result['code'])){                $result['code'] < 0 && $code = $result['code'];            }            return $this->renderError($result['msg'],'',$data,$code);        }        return $this->renderSuccess('安装成功');    }        /**     * 离线安装     */    public function local()    {        $file = request()->file('local_package');        //$file_name = \think\facade\Filesystem::putFile( 'addons', $file,'uniqid');        // 文件扩展名        $fileExt = strtolower($file->extension());        if($fileExt != 'zip'){            return $this->renderError('上传文件类型只能为zip格式');        }        // 文件大小(字节)不能大于30M（1024*1024*30）        $fileSize = $file->getSize();         if($fileSize > 31457280){            return $this->renderError('上传文件大于30M');        }        $fileInfo = pathinfo($file);        $savePath = root_path() . 'runtime/storage';        $info = $file->move($savePath);        $file_name = $file->hashName(function () {            return md5(uniqid((string)mt_rand(), true));        });        rename($savePath . DIRECTORY_SEPARATOR . $fileInfo['basename'],$savePath . DIRECTORY_SEPARATOR . $file_name);        $file_path = $savePath . DIRECTORY_SEPARATOR . $file_name;        $extend = [            'type' => 'local',            'token' => '',        ];        if($addonuser = Cache::get('hemaphp')){            $extend['token'] = $addonuser['token'];        }        $result = Service::local($file_path, $extend);        if(is_array($result)){            $code = 0;            $data = [];            if(isset($result['data'])){                $data = $result['data'];            }            if(isset($result['code'])){                $result['code'] < 0 && $code = $result['code'];            }            return $this->renderError($result['msg'],'',$data,$code);        }        return $this->renderSuccess('安装成功');    }    /**     * 升级     */    public function upgrade()    {        $data = $this->request->post();        $info = get_addons_info($data['name']);        if($info['status'] == 1){            return $this->renderError('禁用插件后才能操作！');         }        $extend = [            'version' => $info['version'],            'type' => 'upgrade',            'token' => '',        ];        if($addonuser = Cache::get('hemaphp')){            $extend['token'] = $addonuser['token'];        }        $result = Service::upgrade($data['name'], $extend);        if(is_array($result)){            $code = 0;            $data = [];            if(isset($result['data'])){                $data = $result['data'];            }            if(isset($result['code'])){                $result['code'] < 0 && $code = $result['code'];            }            return $this->renderError($result['msg'],'',$data,$code);        }        return $this->renderSuccess('升级成功');    }    /**     * 卸载     */    public function uninstall()    {        $data = $this->request->post();        $addon = get_addons_info($data['name']);        if($addon['status'] == 1){            return $this->renderError('禁用插件后才能操作！');         }        $result = Service::uninstall($data['name']);        if(is_array($result)){            $code = 0;            $data = [];            if(isset($result['data'])){                $data = $result['data'];            }            if(isset($result['code'])){                $result['code'] < 0 && $code = $result['code'];            }            return $this->renderError($result['msg'],'',$data,$code);        }        return $this->renderSuccess('卸载成功');    }    /**     * 状态     */    public function status()    {        $data = $this->request->post();        if($data['status'] == 1){            $action = 'disable';        }else{            $action = 'enable';        }        $result = Service::$action($data['name']);        if(is_array($result)){            $code = 0;            $data = [];            if(isset($result['data'])){                $data = $result['data'];            }            if(isset($result['code'])){                $result['code'] < 0 && $code = $result['code'];            }            return $this->renderError($result['msg'],'',$data,$code);        }        return $this->renderSuccess('操作成功');    }    /**     * 配置     */    public function config(string $name)    {        if ($this->request->isGet()) {            if($config = get_addons_config($name,true)){               return $this->renderSuccess('','',$config);             }            return $this->renderError('获取失败');        }        $data = $this->request->post('data');        if(set_addons_config($name,$data)){            /*            if($name == 'shansong' AND empty($data['refresh_token'])){                return $this->renderJson(-1,'需要进行授权登录','/addons/shansong/index/login');            }            */            return $this->renderSuccess('配置成功');        }        return $this->renderError('配置失败');    }    /**     * 购买插件     */    public function pay(int $addon_id)    {        $user = Cache::get('hemaphp',[]);        $domain = $this->request->host();        $url = Config::get('app.hemaphp.api_url') . '/user/order/pay?addon_id=' . $addon_id . '&user_id=' . $user['user_id'] . '&domain=' . $domain;        return redirect($url);    }    /**     * 框架升级     */    public function hemaphpUpgrade()    {        $result = Service::hemaphp();        if(is_array($result)){            $code = 0;            $data = [];            if(isset($result['data'])){                $data = $result['data'];            }            if(isset($result['code'])){                $result['code'] < 0 && $code = $result['code'];            }            return $this->renderError($result['msg'],'',$data,$code);        }        if(!Hemaphp::upgrade()){            return $this->renderError('升级方法执行失败');        }        return $this->renderSuccess('升级成功');    }}
+<?php
+namespace app\store\controller;
+
+use hema\Addon as AddonModel;
+use think\addons\Service;
+use think\facade\Cache;
+use think\facade\Config;
+use think\facade\View;
+
+/**
+ * 插件控制器
+ */
+class Addon extends Controller
+{
+    private const REMOTE_DISABLED_MESSAGE = '远程插件市场、在线安装和在线升级已禁用';
+
+    /**
+     * 我的插件
+     */
+    public function my()
+    {
+        $addonuser = Cache::get('hemaphp', []);
+        $addonList = get_addons_list();
+        $list = [];
+        $model = $this->remoteEnabled() ? new AddonModel : null;
+
+        foreach ($addonList as $key => $item) {
+            if ($model && ($addon = $model->getAddonDetail($key))) {
+                $item['addon'] = $addon;
+            }
+            $list[] = $item;
+        }
+
+        return View::fetch('my', compact('list', 'addonuser'));
+    }
+
+    /**
+     * 插件市场
+     */
+    public function index(int $page = 1)
+    {
+        if (!$this->remoteEnabled()) {
+            return $this->renderError(self::REMOTE_DISABLED_MESSAGE);
+        }
+
+        $addonuser = Cache::get('hemaphp', []);
+        $model = new AddonModel;
+        $result = $model->getAddonList($page);
+        $list = $result['list'];
+        $page = $result['page'];
+        if (!is_null($page)) {
+            $page = str_replace("/api/addon/lists", "/store/addon/index", $result['page']);
+        }
+        return View::fetch('index', compact('list', 'page', 'addonuser'));
+    }
+
+    public function checkLogin()
+    {
+        return $this->renderError(self::REMOTE_DISABLED_MESSAGE);
+    }
+
+    public function login()
+    {
+        return $this->renderError(self::REMOTE_DISABLED_MESSAGE);
+    }
+
+    public function logout()
+    {
+        return $this->renderError(self::REMOTE_DISABLED_MESSAGE);
+    }
+
+    /**
+     * 在线安装
+     */
+    public function install()
+    {
+        return $this->renderError(self::REMOTE_DISABLED_MESSAGE);
+    }
+
+    /**
+     * 离线安装
+     */
+    public function local()
+    {
+        return $this->renderError(self::REMOTE_DISABLED_MESSAGE);
+    }
+
+    /**
+     * 在线升级
+     */
+    public function upgrade()
+    {
+        return $this->renderError(self::REMOTE_DISABLED_MESSAGE);
+    }
+
+    /**
+     * 卸载
+     */
+    public function uninstall()
+    {
+        $data = $this->request->post();
+        $addon = get_addons_info($data['name']);
+        if ($addon['status'] == 1) {
+            return $this->renderError('禁用插件后才能操作');
+        }
+        $result = Service::uninstall($data['name']);
+        if (is_array($result)) {
+            $code = 0;
+            $payload = [];
+            if (isset($result['data'])) {
+                $payload = $result['data'];
+            }
+            if (isset($result['code'])) {
+                $result['code'] < 0 && $code = $result['code'];
+            }
+            return $this->renderError($result['msg'], '', $payload, $code);
+        }
+        return $this->renderSuccess('卸载成功');
+    }
+
+    /**
+     * 启用/禁用
+     */
+    public function status()
+    {
+        $data = $this->request->post();
+        $action = $data['status'] == 1 ? 'disable' : 'enable';
+        $result = Service::$action($data['name']);
+        if (is_array($result)) {
+            $code = 0;
+            $payload = [];
+            if (isset($result['data'])) {
+                $payload = $result['data'];
+            }
+            if (isset($result['code'])) {
+                $result['code'] < 0 && $code = $result['code'];
+            }
+            return $this->renderError($result['msg'], '', $payload, $code);
+        }
+        return $this->renderSuccess('操作成功');
+    }
+
+    /**
+     * 配置
+     */
+    public function config(string $name)
+    {
+        if ($this->request->isGet()) {
+            if ($config = get_addons_config($name, true)) {
+                return $this->renderSuccess('', '', $config);
+            }
+            return $this->renderError('获取失败');
+        }
+        $data = $this->request->post('data');
+        if (set_addons_config($name, $data)) {
+            return $this->renderSuccess('配置成功');
+        }
+        return $this->renderError('配置失败');
+    }
+
+    /**
+     * 购买插件
+     */
+    public function pay(int $addon_id)
+    {
+        return $this->renderError(self::REMOTE_DISABLED_MESSAGE);
+    }
+
+    /**
+     * 框架升级
+     */
+    public function hemaphpUpgrade()
+    {
+        return $this->renderError(self::REMOTE_DISABLED_MESSAGE);
+    }
+
+    private function remoteEnabled(): bool
+    {
+        return (bool) Config::get('app.hemaphp.remote_enabled');
+    }
+}

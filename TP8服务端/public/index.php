@@ -21,7 +21,9 @@ if (phpversion() < '7.4') {
 define('INSTALL_URL', str_replace('\\', '/', dirname(__FILE__) . '/install/'));
 // 判断是否安装
 if (!is_file(INSTALL_URL . 'install.lock')) {
-    header("location:/install");
+    http_response_code(503);
+    header('Content-Type: text/plain; charset=utf-8');
+    echo '系统尚未完成初始化。请先手动访问 /install 完成安装，安装完成后将自动关闭安装入口。';
     exit;
 }
 

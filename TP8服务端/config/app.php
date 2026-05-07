@@ -24,6 +24,7 @@ return [
     'error_message'             => '页面错误！请稍后再试～',
     'show_error_msg'            => true,// 显示错误信息
     'hemaphp' => [
+        'remote_enabled'        => false,
         'system'                => 'single',//系统类型
         'version'               => '1.0.5',//版本号
         'api_url'               => 'https://www.hemaphp.com',//API接口地址

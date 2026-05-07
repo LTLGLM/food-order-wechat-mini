@@ -3,26 +3,9 @@
         <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
             <div class="widget am-cf">
                 <div class="widget-head am-cf">
-                    <div class="widget-title am-cf fl">我的插件 </div>
-                    <div class="fr">
-                        <a href="javascript:void(0);" class="hema-login am-btn am-btn-secondary am-radius am-btn-sm">
-                            <i class="am-icon-user"></i> 用户信息
-                        </a>
-                    </div>
+                    <div class="widget-title am-cf fl">我的插件</div>
                 </div>
                 <div class="widget-body am-fr">
-                    <div class="page_toolbar am-margin-bottom am-cf">
-                        <div class="am-u-sm-12 am-u-md-3">
-                            <div class="am-form-group">
-                                <div class="am-btn-group am-btn-group-xs">
-                                    <a class="item-local am-btn am-btn-default am-btn-success"
-                                       href="javascript:;">
-                                        <span class="am-icon-plus"></span> 离线安装
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="am-scrollable-horizontal am-u-sm-12">
                         <table width="100%" class="am-table am-table-hover tpl-table-black">
                             <thead>
@@ -33,8 +16,8 @@
                                 <th>介绍</th>
                                 <th>作者</th>
                                 <th>版本</th>
-								<th>状态</th>
-								<th>操作</th>
+                                <th>状态</th>
+                                <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -42,9 +25,7 @@
                                 {foreach $list as $item}
                                 <tr>
                                     <td class="am-text-middle">
-                                        <a href="https://www.hemaphp.com/{:isset($item['addon'])?'index/addon/detail?id=' . $item['addon']['addon_id']:''}" target="_blank">
                                         <img src="{$item['addon']['logo']['url']|default='/assets/img/no.png'}" width="75" height="50" />
-                                        </a>
                                     </td>
                                     <td class="am-text-middle">{$item['title']}</td>
                                     <td class="am-text-middle">{$item['name']}</td>
@@ -53,37 +34,30 @@
                                     </td>
                                     <td class="am-text-middle">{$item['author']}</td>
                                     <td class="am-text-middle">V{$item['version']}</td>
-									<td class="am-text-middle">
-									        {if isset($item['status'])}
-                                            <span class="item-status am-badge x-cur-p {$item['status'] ? ' am-badge-success' : ' am-badge-warning'}"
-                                                 data-status="{$item['status']}"
-                                                 data-name="{$item['name']}">
+                                    <td class="am-text-middle">
+                                        {if isset($item['status'])}
+                                        <span class="item-status am-badge x-cur-p {$item['status'] ? ' am-badge-success' : ' am-badge-warning'}"
+                                              data-status="{$item['status']}"
+                                              data-name="{$item['name']}">
                                             {$item['status'] == 1 ? '启用' : '禁用'}
-                                            </span>
-                                            {/if}
+                                        </span>
+                                        {/if}
                                     </td>
                                     <td class="am-text-middle">
                                         <div class="tpl-table-black-operation">
                                             {if isset($item['config']) AND $item['config'] == 1}
                                             <a class="item-config tpl-table-black-operation-default"
-                                                href="javascript:void(0);"
-                                                data-name="{$item['name']}"
-                                                data-title="{$item['title']}">
-												<i class="am-icon-pencil"></i> 配置
+                                               href="javascript:void(0);"
+                                               data-name="{$item['name']}"
+                                               data-title="{$item['title']}">
+                                                <i class="am-icon-pencil"></i> 配置
                                             </a>
                                             {/if}
                                             <a class="item-uninstall tpl-table-black-operation-del"
-                                                href="javascript:void(0);"
-                                                data-name="{$item['name']}">
-        										<i class="am-icon-trash"></i> 卸载
+                                               href="javascript:void(0);"
+                                               data-name="{$item['name']}">
+                                                <i class="am-icon-trash"></i> 卸载
                                             </a>
-                                            {if isset($item['addon']['version'][0]['version']) AND $item['addon']['version'][0]['version'] != $item['version']}
-                                            <a class="item-upgrade tpl-table-black-operation-primary"
-                                                href="javascript:void(0);"
-                                                data-name="{$item['name']}">
-        										<i class="am-icon-cloud-upload"></i> 升级
-                                            </a>
-                                            {/if}
                                         </div>
                                     </td>
                                 </tr>
@@ -102,42 +76,20 @@
     </div>
 </div>
 {include file="addon/tpl/config" /}
-{include file="addon/tpl/login" /}
-{include file="addon/tpl/user" /}
-{include file="addon/tpl/local" /}
 <script>
     $(function () {
-        var user = <?= json_encode($addonuser)?>;
-        //离线安装
-        $('.item-local').on('click', function () {
-            $.showAction({
-                title: '离线安装插件', 
-                area: '450px', 
-                content: template('tpl-local', {}), 
-                uCheck: true, 
-                success: function ($content) {
-                    $('#my-form').formPost({
-                        url: "{:url('addon/local')}"
-                    });
-                }, 
-                btn2: function ($content) {
-                    return true;
-                }
-            });
-        });
-        //插件配置
         $('.item-config').on('click', function () {
             var data = $(this).data();
             $.get("{:url('addon/config')}?name=" + data.name, function (result) {
-				if(result.code == 0){
-				    $.show_error(result.msg);
-				    return false;
-				}
+                if (result.code == 0) {
+                    $.show_error(result.msg);
+                    return false;
+                }
                 $.showAction({
-                    title: '插件配置 《' + data.title + '》', 
-                    area: '750px', 
-                    content: template('tpl-config', {config:result.data}), 
-                    uCheck: true, 
+                    title: '插件配置 - ' + data.title,
+                    area: '750px',
+                    content: template('tpl-config', {config: result.data}),
+                    uCheck: true,
                     success: function ($content) {
                         $('.upload-file').selectImages({
                             name: 'data[logo]'
@@ -145,204 +97,60 @@
                         $('#my-form').formPost({
                             url: "{:url('addon/config')}?name=" + data.name
                         });
-                    }, 
+                    },
                     btn2: function ($content) {
                         return true;
                     }
                 });
             });
         });
-        
-        // 安装操作
-        $('.item-install').click(function () {
-            var data = $(this).data();
-            layer.confirm('您确定要安装该插件？', {
-				title: '友情提示',
-				icon: 0,
-				btn:['取消','确定'],
-				skin: 'layui-layer-hema',
-				cancel : function(){
-					// 你点击右上角 X 回调
-				},
-				btn1:function(index,layero){
-					layer.close(index);
-				},
-				btn2:function(index){
-                    $("#addons-loading").html('<div class="am-modal-dialog"><div class="am-modal-hd">插件安装中，请等待...</div><div class="am-modal-bd"><span class="am-icon-spinner am-icon-spin"></span></div></div>');
-					$("#addons-loading").modal('open');
-					$.post("{:url('addon/install')}", data, function (result) {
-                        $("#addons-loading").modal('close');
-                        if(typeof(result) == 'string'){
-							result = JSON.parse(result);
-						}
-						if(result.code == 1){
-						    $.show_success(result.msg, result.url);
-						}
-						if(result.code == 0){
-						   $.show_error(result.msg);
-						}
-						if(result.code == -1){
-						   userLogin();
-						}
-						if(result.code == -10){
-						    layer.open({
-                                type: 2,
-                                title: '立即支付',
-                                shadeClose: true,
-                                shade: false,
-                                maxmin: true, //开启最大化最小化按钮
-                                area: ['450px', '620px'],
-                                content: "{:url('addon/pay')}?addon_id=" + result.data.addon_id
-                            });
-						}
-					});
-					layer.close(index);
-				},
-				end:function() {
-					//所有操作都会执行
-				}
-            });
-        });
-        
-        //升级操作 
-        $('.item-upgrade').click(function () {
-            var data = $(this).data();
-            layer.confirm('您确定要进行升级操作？', {
-				title: '友情提示',
-				icon: 0,
-				btn:['取消','确定'],
-				skin: 'layui-layer-hema',
-				cancel : function(){
-					// 你点击右上角 X 回调
-				},
-				btn1:function(index,layero){
-					layer.close(index);
-				},
-				btn2:function(index){
-                    $("#addons-loading").html('<div class="am-modal-dialog"><div class="am-modal-hd">插件升级中，请等待...</div><div class="am-modal-bd"><span class="am-icon-spinner am-icon-spin"></span></div></div>');
-					$("#addons-loading").modal('open');
-					$.post("{:url('addon/upgrade')}", data, function (result) {
-                        $("#addons-loading").modal('close');
-                        if(typeof(result) == 'string'){
-							result = JSON.parse(result);
-						}
-						result.code === 1 ? $.show_success(result.msg, result.url) : $.show_error(result.msg);
-					});
-					layer.close(index);
-				},
-				end:function() {
-					//所有操作都会执行
-				}
-            });
-        });
-        
-        // 卸载操作
+
         $('.item-uninstall').click(function () {
             var data = $(this).data();
-            layer.confirm('您确定要卸载该插件？卸载后将清楚与该插件相关的所有数据！', {
-				title: '友情提示',
-				icon: 0,
-				btn:['取消','确定'],
-				skin: 'layui-layer-hema',
-				cancel : function(){
-					// 你点击右上角 X 回调
-				},
-				btn1:function(index,layero){
-					layer.close(index);
-				},
-				btn2:function(index){
-                    $("#addons-loading").html('<div class="am-modal-dialog"><div class="am-modal-hd">插件卸载中，请等待...</div><div class="am-modal-bd"><span class="am-icon-spinner am-icon-spin"></span></div></div>');
-					$("#addons-loading").modal('open');
-					$.post("{:url('addon/uninstall')}", data, function (result) {
+            layer.confirm('确定要卸载该插件吗？卸载后将清理与该插件相关的数据。', {
+                title: '友情提示',
+                icon: 0,
+                btn: ['取消', '确定'],
+                skin: 'layui-layer-hema',
+                btn1: function (index) {
+                    layer.close(index);
+                },
+                btn2: function (index) {
+                    $("#addons-loading").html('<div class="am-modal-dialog"><div class="am-modal-hd">插件卸载中，请稍候...</div><div class="am-modal-bd"><span class="am-icon-spinner am-icon-spin"></span></div></div>');
+                    $("#addons-loading").modal('open');
+                    $.post("{:url('addon/uninstall')}", data, function (result) {
                         $("#addons-loading").modal('close');
-                        if(typeof(result) == 'string'){
-							result = JSON.parse(result);
-						}
-						result.code === 1 ? $.show_success(result.msg, result.url) : $.show_error(result.msg);
-					});
-					layer.close(index);
-				},
-				end:function() {
-					//所有操作都会执行
-				}
+                        if (typeof(result) == 'string') {
+                            result = JSON.parse(result);
+                        }
+                        result.code === 1 ? $.show_success(result.msg, result.url) : $.show_error(result.msg);
+                    });
+                    layer.close(index);
+                }
             });
         });
-        
-        // 状态操作
+
         $('.item-status').click(function () {
             var data = $(this).data();
-            var msg = '禁用';
-            if(parseInt(data.status) === 0){
-                msg = '启用';
-            }
-            layer.confirm('您确定要' + msg + '该插件？', {
-				title: '友情提示',
-				icon: 0,
-				btn:['取消','确定'],
-				skin: 'layui-layer-hema',
-				cancel : function(){
-					// 你点击右上角 X 回调
-				},
-				btn1:function(index,layero){
-					layer.close(index);
-				},
-				btn2:function(index){
-					$.post("{:url('addon/status')}", data, function (result) {
-                        if(typeof(result) == 'string'){
-							result = JSON.parse(result);
-						}
-						result.code === 1 ? $.show_success(result.msg, result.url) : $.show_error(result.msg);
-					});
-					layer.close(index);
-				},
-				end:function() {
-					//所有操作都会执行
-				}
-            });
-        });
-        // 检测是否登录
-        $('.hema-login').click(function () {
-            $.post("{:url('addon/checkLogin')}", {}, function (result) {
-				if(result.code === 1){
-				    userDetail();
-				}else{
-				    userLogin();
-				}
-            });
-        });
-        function userDetail(){
-            $.showAction({
-                title: '会员信息', 
-                area: '460px', 
-                content: template('tpl-user', {user: user}), 
-                btn: ['关闭', '退出'],
-                uCheck: true, 
-                success: function ($content) {
-                    $('#my-form').formPost({
-                        url: "{:url('addon/logout')}"
+            var msg = parseInt(data.status) === 0 ? '启用' : '禁用';
+            layer.confirm('确定要' + msg + '该插件吗？', {
+                title: '友情提示',
+                icon: 0,
+                btn: ['取消', '确定'],
+                skin: 'layui-layer-hema',
+                btn1: function (index) {
+                    layer.close(index);
+                },
+                btn2: function (index) {
+                    $.post("{:url('addon/status')}", data, function (result) {
+                        if (typeof(result) == 'string') {
+                            result = JSON.parse(result);
+                        }
+                        result.code === 1 ? $.show_success(result.msg, result.url) : $.show_error(result.msg);
                     });
-                }, 
-                btn2: function ($content) {
-                    return true;
+                    layer.close(index);
                 }
             });
-        }
-        function userLogin(){
-            $.showAction({
-                title: '用户登录', 
-                area: '460px', 
-                content: template('tpl-login', {}), 
-                btn: ['关闭', '登录'],
-                uCheck: true, 
-                success: function ($content) {
-                    $('#my-form').formPost({
-                        url: "{:url('addon/login')}"
-                    });
-                }, 
-                btn2: function ($content) {
-                    return true;
-                }
-            });
-        }
+        });
     });
 </script>

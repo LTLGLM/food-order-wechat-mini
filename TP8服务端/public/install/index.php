@@ -31,8 +31,9 @@ $cfg_copyright = '© 2017-'.date("Y", time()).' www.hemaPHP.com';
 // 获取当前步骤
 $s = getStep();
 // 提示已经安装
-if (is_file(INSTALL_PATH . '/install.lock') && $s != md5('done')) {
-    require_once(INSTALL_PATH . '/templates/step_5.php');
+if (is_file(INSTALL_PATH . '/install.lock')) {
+    http_response_code(403);
+    echo '安装向导已禁用。如需重新安装，请先手动删除 install.lock。';
     exit();
 }
 
@@ -86,8 +87,14 @@ if ($s == 3) {
         $dbuser = $_POST['dbuser'] ?? '';
         $dbpwd = $_POST['dbpwd'] ?? '';
         $dbport = $_POST['dbport'] ?? '';
+        $adminAccount = trim($_POST['admin_account'] ?? '');
+        $adminPassword = trim($_POST['admin_password'] ?? '');
 
         $testdata = $_POST['testdata'] ?? '';
+
+        if ($adminAccount === '' || $adminPassword === '') {
+            insError('请填写后台管理员账号和密码');
+        }
 
         // 连接证数据库
         try {
@@ -156,6 +163,14 @@ if ($s == 3) {
         if($data_str){
             $pdo->exec($data_str);
         }
+
+        $stmt = $pdo->prepare("UPDATE `hema_shop_clerk` SET `phone` = :phone, `password` = :password, `update_time` = :update_time WHERE `shop_clerk_id` = 10001");
+        $stmt->execute([
+            ':phone' => $adminAccount,
+            ':password' => installHash($adminPassword),
+            ':update_time' => time(),
+        ]);
+        $pdo->exec("UPDATE `hema_page` SET `page_data` = REPLACE(`page_data`, 'https://single.hemaphp.com/assets/img/diy/', '/assets/img/diy/')");
 
         insInfo("默认数据导入完成！");
         ob_flush();
@@ -321,6 +336,11 @@ function setIsNext(bool $bool)
 function readDataFile(string $file)
 {
     return file_get_contents(INSTALL_PATH . '/data/' . $file);
+}
+
+function installHash(string $password)
+{
+    return md5(md5($password) . 'hema_salt_SmTRx');
 }
 
 function insInfo($str)

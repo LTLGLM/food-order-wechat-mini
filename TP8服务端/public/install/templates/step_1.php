@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>河马点餐系统 安装向导 - 检测安装环境</title>
+    <title>餐饮点单系统 安装向导 - 检测安装环境</title>
     <link href="/install/templates/style/install.css" type="text/css" rel="stylesheet"/>
     <link rel="icon" href="/favicon.png" type="image/x-icon">
     <script type="text/javascript" src="../assets/plugins/jquery/jquery.min.js"></script>
@@ -132,7 +132,7 @@
 </div>
 <div class="footer">
     <span class="step2"></span>
-    <span class="copyright"><?= $cfg_copyright; ?></span>
+    <span class="copyright">© 2017-<?php echo date('Y'); ?> 餐饮点单系统</span>
     <span class="formSubBtn">
         <form class="j-form" method="post" action="/install/index.php">
             <a href="javascript:void(0);" onclick="history.go(-1);return false;" class="back">返 回</a>

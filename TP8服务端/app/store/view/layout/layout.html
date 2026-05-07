@@ -1,1 +1,132 @@
-<!DOCTYPE html><html lang="en">	<head>		<meta charset="utf-8" />		<meta http-equiv="X-UA-Compatible" content="IE=edge" />		<title>{$base['name']}</title>		<meta name="author" content="{$base['name']}">		<meta name="viewport" content="width=device-width, initial-scale=1" />		<meta name="referrer" content="no-referrer-when-downgrade">		<meta http-equiv="Cache-Control" content="no-siteapp" />		<link rel="icon" type="image/png" href="/favicon.png" />		<link rel="stylesheet" href="/assets/plugins/amazeui/amazeui.css?v={$version}" />		<link rel="stylesheet" href="/assets/css/hema.app.css?v={$version}" />		<link rel="stylesheet" href="/assets/plugins/iconfont/iconfont.css?v={$version}">		<link rel="stylesheet" href="/addons/upload/css/file.library.css?v={$version}" />		<script src="/assets/plugins/jquery/jquery.min.js?v={$version}"></script>		<script src="/assets/plugins/iconfont/iconfont.js?v={$version}"></script>		<script>			BASE_URL = '{:isset($base_url) ? $base_url : ''}';			STORE_URL = '{:isset($store_url) ? $store_url : ''}';		</script>	</head>	<body>		<div class="am-g tpl-g">			<!-- 头部 -->			<header class="tpl-header">				<!-- 右侧内容 -->				<div class="tpl-header-fluid">					<!-- 侧边切换 -->					<div class="am-fl tpl-header-button switch-button"> <i class="iconfont iconzhedie"></i> </div>					<!-- 刷新页面 -->					<div class="am-fl tpl-header-button refresh-button"> <i class="iconfont iconshuaxin"></i> </div>					<!-- 其它功能-->					<div class="am-fr tpl-header-navbar">						<ul>						    <!-- 当前版本 -->							<li class="am-text-sm"> 							    <a href="javascript:void(0);" class="hemaphp-upgrade"> 							        <small style="color:#ccc;">版本：V{$version}</small> 							        {if $is_new} 							            <div class="news"></div>									{/if} 								</a> 							</li>							<!-- 欢迎语 -->							<li class="am-text-sm"> 							    <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">        							<div class="am-topbar-btn am-dropdown-toggle" data-am-dropdown-toggle>        								<img src="/assets/img/avatar.png" />         								{$user['user']['phone']|default=''}        								<span class="am-icon-caret-down"></span>         							</div>        							<ul class="am-dropdown-content">        								<li><a href="javascript:;" class="hema-renew">修改密码</a></li>        								<li><a href="javascript:;" class="hema-logout">安全退出</a></li>        							</ul>        						</div>							</li>						</ul>					</div>				</div>			</header> 			<!-- 侧边导航栏 -->			<div class="left-sidebar dis-flex"> 			{assign name="menus" value="$menus ?: []" /} 			{assign name="group" value="$group ?: 0" /}				<?php $second = isset($menus[$group]['submenu']) ? $menus[$group]['submenu'] : []?>				<!-- 一级菜单 -->				<ul class="sidebar-nav">					<li class="sidebar-nav-heading">管理后台</li> {foreach $menus as $key=>$item } <li						class="sidebar-nav-link"> <a							href="{:isset($item.index) ? url($item.index) : 'javascript:void(0);'}"							class="{$item.active ? 'active' : ''}"> {if (isset($item.is_svg) && ($item.is_svg == true))}							<svg class="icon sidebar-nav-link-logo" aria-hidden="true">								<use xlink:href="#{$item.icon}"></use>							</svg> {else /} <i class="iconfont sidebar-nav-link-logo {$item.icon}"								style="{isset($item.color) ? 'color:'.$item.color.';' : '' }"></i> {/if} {$item.name}						</a> </li> {/foreach}				</ul> <!-- 子级菜单--> {if (sizeof($second) > 0)} <ul class="left-sidebar-second">					<li class="sidebar-second-title">{$menus[$group]['name']}</li>					<li class="sidebar-second-item"> {foreach $second as $key=>$item} {if(!isset($item['submenu']))}						<!-- 二级菜单--> <a href="{:url($item['index'])}" class="{$item['active'] ? 'active' : ''}">							{$item.name} </a> {else /}						<!-- 三级菜单-->						<div class="sidebar-third-item"> <a href="javascript:void(0);"								class="sidebar-nav-sub-title {$item['active'] ? 'active' : ''}"> <i									class="iconfont icongengduo"></i> {$item['name']} </a>							<ul class="sidebar-third-nav-sub"> {foreach $item['submenu'] as $third } <li> <a										class="{$third['active'] ? 'active' : ''}" href="{:url($third['index'])}">										{$third['name']} </a> </li> {/foreach} </ul>						</div> {/if} {/foreach}					</li>				</ul> {/if}			</div> <!-- 内容区域 start -->			<div class="tpl-content-wrapper {:sizeof($second) == 0 ? 'no-sidebar-second' : ''}"> {__CONTENT__} </div>			<!-- 内容区域 end -->            <div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="addons-loading"></div>		</div>        {include file="layout/renew" /}		<script src="/assets/plugins/layer/layer.js?v={$version}"></script>		<script src="/assets/plugins/jquery/jquery.form.min.js?v={$version}"></script>		<script src="/assets/plugins/amazeui/amazeui.min.js?v={$version}"></script>		<script src="/assets/js/hema.app.js?v={$version}"></script>		<script src="/assets/js/webuploader.html5only.js?v={$version}"></script>		<script src="/assets/js/art-template.js?v={$version}"></script>		<script src="/addons/upload/js/file.library.js?v={$version}"></script>        <script>            $(function () {                // 框架更新 				$('.hemaphp-upgrade').click(function () { 					var is_new = '{$is_new}'; 					if(is_new){						layer.confirm('您确定要进行升级？', {            				title: '友情提示',            				icon: 0,            				btn:['取消','确定'],            				skin: 'layui-layer-hema',            				cancel : function(){            					// 你点击右上角 X 回调            				},            				btn1:function(index,layero){            					layer.close(index);            				},            				btn2:function(index){								$("#addons-loading").html('<div class="am-modal-dialog"><div class="am-modal-hd">系统升级中，请等待...</div><div class="am-modal-bd"><span class="am-icon-spinner am-icon-spin"></span></div></div>');								$("#addons-loading").modal('open');            					$.post('/store/addon/hemaphpUpgrade', {}, function (result) {                                     $("#addons-loading").modal('close');                                    if(typeof(result) == 'string'){            							result = JSON.parse(result);            						}									result.code === 1 ? $.show_success(result.msg, result.url) : $.show_error(result.msg); 								});            					layer.close(index);            				},            				end:function() {            					//所有操作都会执行            				}                        });						return true; 					} 					$.show_error('已是最新版本'); 				});                  //修改密码                $('.hema-renew').on('click', function () {                    $.showAction({                        title: '修改密码',                         area: '500px',                         content: template('tpl-renew', {phone:'{$user.user.phone|default=''}'}),                         uCheck: true,                         success: function ($content) {                            $('#my-form').formPost({                                url: "{:url('passport/renew')}"                            });                        },                         btn2: function ($content) {                            return true;                        }                    });                });            });            // 安全退出            $('.hema-logout').del('id', "{:url('passport/logout')}",'确定要退出登录');        </script>	</body></html>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>{$base['name']}</title>
+		<meta name="author" content="{$base['name']}">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="referrer" content="no-referrer-when-downgrade">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="stylesheet" href="/assets/plugins/amazeui/amazeui.css?v={$version}" />
+		<link rel="stylesheet" href="/assets/css/hema.app.css?v={$version}" />
+		<link rel="stylesheet" href="/assets/plugins/iconfont/iconfont.css?v={$version}">
+		<link rel="stylesheet" href="/addons/upload/css/file.library.css?v={$version}" />
+		<script src="/assets/plugins/jquery/jquery.min.js?v={$version}"></script>
+		<script src="/assets/plugins/iconfont/iconfont.js?v={$version}"></script>
+		<script>
+			BASE_URL = '{:isset($base_url) ? $base_url : ''}';
+			STORE_URL = '{:isset($store_url) ? $store_url : ''}';
+		</script>
+	</head>
+	<body>
+		<div class="am-g tpl-g">
+			<header class="tpl-header">
+				<div class="tpl-header-fluid">
+					<div class="am-fl tpl-header-button switch-button"> <i class="iconfont iconzhedie"></i> </div>
+					<div class="am-fl tpl-header-button refresh-button"> <i class="iconfont iconshuaxin"></i> </div>
+					<div class="am-fr tpl-header-navbar">
+						<ul>
+							<li class="am-text-sm">
+								<span class="am-topbar-btn">
+									<small style="color:#ccc;">版本：V{$version}</small>
+								</span>
+							</li>
+							<li class="am-text-sm">
+								<div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
+									<div class="am-topbar-btn am-dropdown-toggle" data-am-dropdown-toggle>
+										<img src="/assets/img/avatar.png" />
+										{$user['user']['phone']|default=''}
+										<span class="am-icon-caret-down"></span>
+									</div>
+									<ul class="am-dropdown-content">
+										<li><a href="javascript:;" class="hema-renew">修改密码</a></li>
+										<li><a href="javascript:;" class="hema-logout">安全退出</a></li>
+									</ul>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</header>
+			<div class="left-sidebar dis-flex">
+			{assign name="menus" value="$menus ?: []" /}
+			{assign name="group" value="$group ?: 0" /}
+				<?php $second = isset($menus[$group]['submenu']) ? $menus[$group]['submenu'] : []?>
+				<ul class="sidebar-nav">
+					<li class="sidebar-nav-heading">管理后台</li>
+					{foreach $menus as $key=>$item}
+					<li class="sidebar-nav-link">
+						<a href="{:isset($item.index) ? url($item.index) : 'javascript:void(0);'}" class="{$item.active ? 'active' : ''}">
+							{if (isset($item.is_svg) && ($item.is_svg == true))}
+							<svg class="icon sidebar-nav-link-logo" aria-hidden="true">
+								<use xlink:href="#{$item.icon}"></use>
+							</svg>
+							{else /}
+							<i class="iconfont sidebar-nav-link-logo {$item.icon}" style="{isset($item.color) ? 'color:'.$item.color.';' : '' }"></i>
+							{/if}
+							{$item.name}
+						</a>
+					</li>
+					{/foreach}
+				</ul>
+				{if (sizeof($second) > 0)}
+				<ul class="left-sidebar-second">
+					<li class="sidebar-second-title">{$menus[$group]['name']}</li>
+					<li class="sidebar-second-item">
+						{foreach $second as $key=>$item}
+						{if(!isset($item['submenu']))}
+						<a href="{:url($item['index'])}" class="{$item['active'] ? 'active' : ''}">{$item.name}</a>
+						{else /}
+						<div class="sidebar-third-item">
+							<a href="javascript:void(0);" class="sidebar-nav-sub-title {$item['active'] ? 'active' : ''}">
+								<i class="iconfont icongengduo"></i> {$item['name']}
+							</a>
+							<ul class="sidebar-third-nav-sub">
+								{foreach $item['submenu'] as $third}
+								<li><a class="{$third['active'] ? 'active' : ''}" href="{:url($third['index'])}">{$third['name']}</a></li>
+								{/foreach}
+							</ul>
+						</div>
+						{/if}
+						{/foreach}
+					</li>
+				</ul>
+				{/if}
+			</div>
+			<div class="tpl-content-wrapper {:sizeof($second) == 0 ? 'no-sidebar-second' : ''}"> {__CONTENT__} </div>
+			<div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="addons-loading"></div>
+		</div>
+        {include file="layout/renew" /}
+		<script src="/assets/plugins/layer/layer.js?v={$version}"></script>
+		<script src="/assets/plugins/jquery/jquery.form.min.js?v={$version}"></script>
+		<script src="/assets/plugins/amazeui/amazeui.min.js?v={$version}"></script>
+		<script src="/assets/js/hema.app.js?v={$version}"></script>
+		<script src="/assets/js/webuploader.html5only.js?v={$version}"></script>
+		<script src="/assets/js/art-template.js?v={$version}"></script>
+		<script src="/addons/upload/js/file.library.js?v={$version}"></script>
+        <script>
+            $(function () {
+                $('.hema-renew').on('click', function () {
+                    $.showAction({
+                        title: '修改密码',
+                        area: '500px',
+                        content: template('tpl-renew', {phone:'{$user.user.phone|default=''}'}),
+                        uCheck: true,
+                        success: function ($content) {
+                            $('#my-form').formPost({
+                                url: "{:url('passport/renew')}"
+                            });
+                        },
+                        btn2: function ($content) {
+                            return true;
+                        }
+                    });
+                });
+            });
+            $('.hema-logout').del('id', "{:url('passport/logout')}", '确定要退出登录？');
+        </script>
+	</body>
+
+</html>

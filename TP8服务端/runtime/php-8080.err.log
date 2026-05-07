@@ -895,3 +895,6 @@
 [Thu May  7 10:55:53 2026] 127.0.0.1:62670 Accepted
 [Thu May  7 10:55:53 2026] 127.0.0.1:62670 [200]: GET /install/index.php?s=63832&dbhost=localhost&dbuser=root&dbpwd=123456
 [Thu May  7 10:55:53 2026] 127.0.0.1:62670 Closing
+[Thu May  7 11:06:31 2026] 127.0.0.1:50568 Accepted
+[Thu May  7 11:06:31 2026] 127.0.0.1:50568 [200]: GET /install/index.php?s=63832&dbhost=localhost&dbuser=root&dbpwd=123456
+[Thu May  7 11:06:31 2026] 127.0.0.1:50568 Closing

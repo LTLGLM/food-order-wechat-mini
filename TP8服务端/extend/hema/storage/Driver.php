@@ -38,7 +38,7 @@ class Driver
         if($name != 'local'){
            if(isset($this->addons[$name])){
                 // 实例化当前引擎
-                if(!$config = get_addons_config($name)){
+                if(!$config = \get_addons_config($name)){
                     die(json_encode(['code' => 0, 'msg' => '未安装《' . $this->addons[$name] .'》插件'],JSON_UNESCAPED_UNICODE));
                 }
             }else{

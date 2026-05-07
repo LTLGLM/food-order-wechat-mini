@@ -11,6 +11,9 @@
 
 header('Content-Type:text/html; charset=utf-8');
 
+ini_set('display_errors', '0');
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED);
+
 // 检测php版本号
 if (phpversion() < '7.4') {
     exit('很抱歉，由于您的PHP版本过低，不能安装本软件，为了系统功能全面可用，请升级到PHP7.4或更高版本再安装，谢谢！');

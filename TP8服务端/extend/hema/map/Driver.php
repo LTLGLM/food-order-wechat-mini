@@ -35,7 +35,7 @@ class Driver
         $this->gateway = Setting::getItem('map')['gateway'];
         if(isset($this->addons[$this->gateway])){
             // 实例化当前引擎
-            if(!$config = get_addons_config($this->gateway)){
+            if(!$config = \get_addons_config($this->gateway)){
                 die(json_encode(['code' => 0, 'msg' => '未安装《' . $this->addons[$this->gateway] .'》插件'],JSON_UNESCAPED_UNICODE));
             }
             $class = self::ENGINE_CLASS_LIST[$this->gateway];
@@ -50,9 +50,9 @@ class Driver
     {
         $company = [];
         foreach ($this->addons as $key=>$item) {
-            if($info = get_addons_info($key)){
+            if($info = \get_addons_info($key)){
                 if($info['status'] == 1){
-                    $info['config'] = get_addons_config($key);
+                    $info['config'] = \get_addons_config($key);
                     $company[] = $info;
                 }
             }

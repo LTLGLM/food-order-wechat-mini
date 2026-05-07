@@ -35,7 +35,7 @@ class Error
     public function init(App $app)
     {
         $this->app = $app;
-        error_reporting(E_ALL);
+        error_reporting(E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED);
         set_error_handler([$this, 'appError']);
         set_exception_handler([$this, 'appException']);
         register_shutdown_function([$this, 'appShutdown']);
@@ -70,6 +70,10 @@ class Error
      */
     public function appError(int $errno, string $errstr, string $errfile = '', int $errline = 0): void
     {
+        if ($errno === E_DEPRECATED || $errno === E_USER_DEPRECATED) {
+            return;
+        }
+
         $exception = new ErrorException($errno, $errstr, $errfile, $errline);
 
         if (error_reporting() & $errno) {

@@ -30,7 +30,7 @@ class Delivery
     {
         $data = file_get_contents('php://input');
         $sign = $_GET['sign'];
-        $config = get_addons_config('sf');
+        $config = \get_addons_config('sf');
         if($sign && $sign == base64_encode(MD5("{$data}&{$config['app_key']}&{$config['app_secret']}"))){
             $data = json_decode($data,true);
             $model = (new OrderModel)->where('order_no',$data['shop_order_id'])->find();

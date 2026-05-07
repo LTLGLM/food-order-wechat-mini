@@ -12,6 +12,9 @@
 // [ 应用入口文件 ]
 namespace think;
 
+ini_set('display_errors', '0');
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED);
+
 // 检测PHP环境
 //if (version_compare(PHP_VERSION, '7.4.0', '<')) die('require PHP > 7.1.0 !');
 // 检测php版本号
@@ -28,7 +31,10 @@ if (!is_file(INSTALL_URL . 'install.lock')) {
 }
 
 // 加载核心文件
-require __DIR__ . '/../vendor/autoload.php';
+$loader = require __DIR__ . '/../vendor/autoload.php';
+$loader->addPsr4('think\\addons\\', __DIR__ . '/../vendor/hemaphp/think-addons/src/addons');
+require_once __DIR__ . '/../vendor/hemaphp/think-addons/src/Addons.php';
+require_once __DIR__ . '/../vendor/hemaphp/think-addons/src/helper.php';
 
 // 执行HTTP应用并响应
 $http = (new App())->http;

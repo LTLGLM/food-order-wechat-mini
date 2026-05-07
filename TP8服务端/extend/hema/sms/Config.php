@@ -28,7 +28,7 @@ class Config
             ],
         ];
         // 可用的网关配置
-        $config['gateways'][$gateway] = get_addons_config('sms' . $gateway);
+        $config['gateways'][$gateway] = \get_addons_config('sms' . $gateway);
         return $config;
     }
 }

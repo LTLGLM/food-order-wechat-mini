@@ -14,7 +14,7 @@ class Local extends Basics
     {
         // 验证文件类型
         $saveFileInfo = $this->getSaveFileInfo();
-        $value = get_addons_config('upload');
+        $value = \get_addons_config('upload');
         if($value['file_ext']){
             $file_ext = explode(',',$value['file_ext']);
         }else{

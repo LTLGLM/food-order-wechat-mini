@@ -20,7 +20,7 @@ class Addon extends Controller
     public function my()
     {
         $addonuser = Cache::get('hemaphp', []);
-        $addonList = get_addons_list();
+        $addonList = \get_addons_list();
         $list = [];
         $model = $this->remoteEnabled() ? new AddonModel : null;
 
@@ -99,7 +99,7 @@ class Addon extends Controller
     public function uninstall()
     {
         $data = $this->request->post();
-        $addon = get_addons_info($data['name']);
+        $addon = \get_addons_info($data['name']);
         if ($addon['status'] == 1) {
             return $this->renderError('禁用插件后才能操作');
         }
@@ -146,13 +146,13 @@ class Addon extends Controller
     public function config(string $name)
     {
         if ($this->request->isGet()) {
-            if ($config = get_addons_config($name, true)) {
+            if ($config = \get_addons_config($name, true)) {
                 return $this->renderSuccess('', '', $config);
             }
             return $this->renderError('获取失败');
         }
         $data = $this->request->post('data');
-        if (set_addons_config($name, $data)) {
+        if (\set_addons_config($name, $data)) {
             return $this->renderSuccess('配置成功');
         }
         return $this->renderError('配置失败');

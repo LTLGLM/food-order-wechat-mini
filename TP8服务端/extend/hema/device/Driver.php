@@ -38,7 +38,7 @@ class Driver
         $this->name = $name;
         if(isset($this->addons[$name])){
             // 实例化当前引擎
-            if(!$config = get_addons_config($name)){
+            if(!$config = \get_addons_config($name)){
                 die(json_encode(['code' => 0, 'msg' => '未安装《' . $this->addons[$name] .'》插件'],JSON_UNESCAPED_UNICODE));
             }
             $class = self::ENGINE_CLASS_LIST[$name];
@@ -53,9 +53,9 @@ class Driver
     {
         $company = [];
         foreach ($this->addons as $key=>$item) {
-            if($info = get_addons_info($key)){
+            if($info = \get_addons_info($key)){
                 if($info['status'] == 1){
-                    $info['config'] = get_addons_config($key);
+                    $info['config'] = \get_addons_config($key);
                     $company[] = $info;
                 }
             }

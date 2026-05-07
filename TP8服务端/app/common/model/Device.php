@@ -21,7 +21,7 @@ class Device extends BaseModel
      */
     public function getDevTypeAttr($value)
     {
-        if($addons = get_addons_info($value)){
+        if($addons = \get_addons_info($value)){
             $title = $addons['title'];
         }else{
             $title = '未知设备';

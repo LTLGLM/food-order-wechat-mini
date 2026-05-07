@@ -45,7 +45,7 @@ class Addon
             'system' => Config::get('app.hemaphp.system'),
         ];
         $result = json_decode(Http::post($url, $queryarr),true);
-        $addons = get_addons_list();
+        $addons = \get_addons_list();
         for($n=0;$n<sizeof($result['data']['list']['data']);$n++){
             if(isset($addons[$result['data']['list']['data'][$n]['name']])){
                 $result['data']['list']['data'][$n]['addon'] = $addons[$result['data']['list']['data'][$n]['name']];

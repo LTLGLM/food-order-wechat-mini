@@ -4,7 +4,10 @@ namespace think;
 
 // 命令行入口文件
 // 加载基础文件
-require __DIR__ . '/vendor/autoload.php';
+$loader = require __DIR__ . '/vendor/autoload.php';
+$loader->addPsr4('think\\addons\\', __DIR__ . '/vendor/hemaphp/think-addons/src/addons');
+require_once __DIR__ . '/vendor/hemaphp/think-addons/src/Addons.php';
+require_once __DIR__ . '/vendor/hemaphp/think-addons/src/helper.php';
 
 // 应用初始化
 (new App())->console->run();

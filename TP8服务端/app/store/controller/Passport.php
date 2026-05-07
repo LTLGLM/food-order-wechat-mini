@@ -81,7 +81,7 @@ class Passport extends Controller
             return $this->renderError('未开启短信验证码');
         }
 
-        if($error = get_addons_status('sms'.$values['gateway'])){
+        if($error = \get_addons_status('sms'.$values['gateway'])){
             return $this->renderError($error);
         }
         $sms = new Sms($values['gateway']);

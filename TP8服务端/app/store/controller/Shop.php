@@ -38,7 +38,7 @@ class Shop extends Controller
             ];
         }
         $key = '';
-    	$config = get_addons_config('qqmap');
+    	$config = \get_addons_config('qqmap');
     	if(isset($config['key'])){
     	    $key = $config['key'];
     	}

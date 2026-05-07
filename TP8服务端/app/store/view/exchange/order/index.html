@@ -1,0 +1,130 @@
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <div class="widget-head am-cf">
+                    <div class="widget-title am-cf">{$title}</div>
+                </div>
+				<div class="widget-body am-fr">
+                    <!-- 工具栏 -->
+                    <div class="page_toolbar am-margin-bottom-xs am-fr">
+                        <form class="toolbar-form" action="{:url('order/all_list')}">
+                            <div class="am-u-sm-12">
+                                <div class="am-fr">
+                                    <div class="am-form-group am-fl">
+                                        <div class="am-input-group am-input-group-sm tpl-form-border-form">
+                                            <input type="text" class="am-form-field" name="search"
+                                                   placeholder="请输入订单号" value="{$search}">
+                                            <div class="am-input-group-btn">
+                                                <button class="am-btn am-btn-default am-icon-search" type="submit"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="order-list am-scrollable-horizontal am-u-sm-12 am-margin-top-xs">
+                        <table width="100%" class="am-table am-table-hover tpl-table-black am-table-centered am-text-nowrap am-margin-bottom-xs">
+                            <thead>
+                            <tr>
+                                <th class="goods-detail">商品信息</th>
+                                <th width="100px">单价/数量</th>
+                                <th>买家</th>
+                                <th>交易状态</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {if !$list->isEmpty()}
+                                {foreach $list as $order}
+                                <tr class="order-empty">
+                                    <td colspan="5"></td>
+                                </tr>
+                                <tr>
+                                    <td class="am-text-middle am-text-left" colspan="5">
+                                        <span class="am-margin-right-lg">订单号：{$order['order_no']}</span>
+                                        <span class="am-margin-right-lg">下单时间：{$order['create_time']}</span>
+                                    </td>
+                                </tr>
+                                 <tr>
+                                    <td class="goods-detail am-text-middle">
+                                        <div class="goods-image">
+                                            <img src="{$order['goods']['image']['url']}" alt="">
+                                        </div>
+                                        <div class="goods-info">
+                                            <p class="goods-title"># {$order['goods']['goods_type']['text']} #</p>
+                                            <p class="goods-title">{$order['goods']['goods_name']}</p>
+                                            <p class="goods-spec am-link-muted">
+                                                {$order['goods']['selling_point']|default='--'}
+                                            </p>
+                                        </div>
+                                    </td>
+                                    <td class="am-text-middle">
+                                        <p>{$order['goods']['goods_price']} × {$order['total_num']}</p>
+                                    </td>
+                                    <td class="am-text-middle">
+                                        <p>{$order['user']['nickname']|default="--"}</p>
+                                        <p class="am-link-muted">用户ID：{$order['user']['user_id']|default="--"}</p>
+                                    </td>
+                                    <td class="am-text-middle">
+                                        <p>领取状态：
+                                            <span class="am-badge
+                                        {$order['receipt_status']['value'] == 20 ? 'am-badge-success' : ''}">
+                                                {$order['receipt_status']['text']}
+                                            </span>
+                                        </p>
+										<p>订单状态：
+										    <span class="am-badge
+                                        {$order['order_status']['value'] == 10 ? 'am-badge-warning' : ''}
+										{$order['order_status']['value'] == 20 ? 'am-badge-danger' : ''}
+										{$order['order_status']['value'] == 30 ? 'am-badge-success' : ''}">
+										{$order['order_status']['text']}
+											</span>
+                                        </p>
+                                    </td>
+                                    <td class="am-text-middle">
+                                        <div class="tpl-table-black-operation">
+                                            {if $order['order_status']['value'] == 10 AND $order['receipt_status']['value'] == 10}
+                                            {if $order['goods']['goods_type']['value'] == 10}
+                                                <a class="hema-cancel tpl-table-black-operation-warning"
+                                                   href="javascript:;"
+                                                   data-id="{$order['order_id']}">
+                                                    取消订单
+                                                </a>
+                                            {/if}
+                                            <a class="hema-receipt tpl-table-black-operation-del"
+                                                   href="javascript:;"
+                                                   data-id="{$order['order_id']}">
+                                                    确认完成
+                                                </a>
+                                            {/if}
+                                        </div>
+                                    </td>
+                                </tr>
+                            {/foreach}
+                            {else /}
+                                <tr>
+                                    <td colspan="5" class="am-text-center">暂无记录</td>
+                                </tr>
+                            {/if}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="am-u-lg-12 am-cf">
+                        <div class="am-fr">{:$list->render()} </div>
+                        <div class="am-fr pagination-total am-margin-right">
+                            <div class="am-vertical-align-middle">总记录：{:$list->total()}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('.hema-cancel').del('id', "{:url('exchange.order/cancel')}",'确定取消该订单');
+        $('.hema-receipt').del('id', "{:url('exchange.order/receipt')}",'确认要完成订单');
+    });
+</script>

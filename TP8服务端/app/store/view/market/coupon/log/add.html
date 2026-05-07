@@ -1,0 +1,32 @@
+<!-- 添加 -->
+<script id="tpl-add" type="text/template">
+    <div class="am-padding-xs am-padding-top-sm">
+        <div class="am-form-group">
+            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">选择优惠券 </label>
+            <div class="am-u-sm-9 am-u-end">
+                <select name="data[coupon_id]" required style="width:200px;">
+                    <option value="">请选择优惠券</option>
+                    {{ each list }}
+                    <option value="{{ $value.coupon_id }}">{{ $value.name }}</option>
+                    {{ /each }}
+                </select>
+            </div>
+        </div>
+        <div class="am-form-group">
+            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">起始日期</label>
+            <div class="am-u-sm-9 am-u-end">
+                <input type="text" name="data[expire_star]" placeholder="请输入起始日期" required />
+                <small>发券后什么时候可以使用。可设置数字，或日期（日期格式：2023-10-01）</small>
+                <small>设置0=今天即可使用，设置5=为5天后可以使用，或者也可指定固定的起始日期</small>
+            </div>
+        </div>
+        <div class="am-form-group">
+            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">结束日期</label>
+            <div class="am-u-sm-9 am-u-end">
+                <input type="text" name="data[expire_end]" placeholder="请输入结束日期" required />
+                <small>优惠券启用后什么时候失效。可设置数字，或日期（日期格式：2023-10-01）</small>
+                <small>设置0=启用后当天有效，设置5=启用后5天内有效，设置日期=到达指定日期后失效</small>
+            </div>
+        </div>
+    </div>  
+</script>

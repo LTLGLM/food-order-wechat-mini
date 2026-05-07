@@ -1,0 +1,200 @@
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div id="my-form" class="widget am-cf">
+                    <div class="widget-body am-form tpl-form-line-form">
+                        <fieldset>
+                            <div class="widget-head am-cf">
+                                <div class="widget-title am-fl">会员卡设置</div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">会员卡 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                	<label class="am-radio-inline">
+                                        <input type="radio" v-model="model.is_open" value="1" data-am-ucheck>
+                                        开启
+                                    </label>
+                                    <label class="am-radio-inline">
+                                        <input type="radio" v-model="model.is_open" value="0" data-am-ucheck>
+                                        关闭
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">付费开通</label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <input type="number" min="0" class="tpl-form-input" v-model="model.buy_price" required>
+                                    <small>开通会员卡是否要购买，单位元，设置0则不需要支付费用。</small>
+                                </div>
+                            </div>
+                            <!--
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">到期规则 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                	<label class="am-radio-inline">
+                                        <input type="radio" v-model="model.expire_time" value="1" data-am-ucheck>
+                                        一年
+                                    </label>
+                                    <label class="am-radio-inline">
+                                        <input type="radio" v-model="model.expire_time" value="0" data-am-ucheck>
+                                        终身
+                                    </label>
+                                </div>
+                            </div>
+                            -->
+                            <section data-am-widget="accordion" class="am-accordion am-accordion-basic">
+                            <dl v-for="(item,index) in model.vip" class="am-accordion-item am-active">
+                            <dt class="am-accordion-title" style="padding-bottom:20px;">
+                                {{model.vip[index].name}}设置
+                            </dt>
+                            <dd class="am-accordion-bd am-collapse am-in">
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">
+                                    会员卡封面
+                                </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <div class="am-form-file">
+                                        <button type="button" class="upload-file am-btn am-btn-secondary am-radius" @click.stop="selectImages(index)">
+                                            <i class="am-icon-cloud-upload"></i> 选择图片
+                                        </button>
+                                        <div class="uploader-list am-cf">
+                                            <div class="file-item">
+                                                <img :src="model.vip[index].card_cover">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="help-block am-margin-top-sm">
+                                        <small>尺寸650x300像素以上，大小2M以下</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">等级名称</label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <input type="text" class="tpl-form-input" v-model="model.vip[index].name" required>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">成长积分</label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <input type="number" min="0" class="tpl-form-input" v-model="model.vip[index].score" :disabled="index==0?true:false" required>
+                                    <small>设置该等级所需要的成长值，消费1元=1积分</small>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">免配送费</label>
+                                <div class="am-u-sm-9 am-u-end">
+                                	<label class="am-radio-inline">
+                                        <input type="radio" v-model="model.vip[index].free_delivery" value="1" data-am-ucheck>
+                                        开启
+                                    </label>
+                                    <label class="am-radio-inline">
+                                        <input type="radio" v-model="model.vip[index].free_delivery" value="0" data-am-ucheck>
+                                        关闭
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">等级折扣</label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <input type="number" min="0" max="100" class="tpl-form-input" v-model="model.vip[index].discount" required>
+                                    <small>取值0-100,设置0关闭折扣，设置85为85折</small>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label">升级赠券</label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <div class="widget-become-goods am-form-file am-margin-top-xs">
+                                        <button type="button" class="upload-file am-btn am-btn-secondary am-radius" @click.stop="onSelect(index)">
+                                            <i class="am-icon-cloud-upload"></i> 选择优惠券
+                                        </button>
+                                        <div class="coupon-list uploader-list am-cf">
+                                            <div v-for="(item,index2) in model.vip[index].gift" class="file-item">
+                                                <i class="iconfont iconshanchu item-delete am-fr"  @click="onDelete(index2,index)"></i>
+                                                <div><img :src="item.image"></div>
+                                                <div style="text-align: center;"><small>{{item.name}}</small></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </dd>
+                            </dl>
+                            </section>
+                            <div class="am-form-group">
+                                <div class="am-u-sm-9 am-u-sm-push-2 am-margin-top-lg">
+                                    <button @click.stop="onSubmit" type="button" class="am-btn am-btn-secondary">
+                                        提交保存
+                                    </button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 文件库弹窗 -->
+{include file="../addons/upload/view/template/file_library.html" /}
+<script src="/assets/plugins/vue/vue.min.js?v={$version}"></script>
+<script src="/assets/js/select.data.js?v={$version}"></script>
+<script>
+    $(function () {
+        const vue = new Vue({
+            el: '#my-form',
+            data: {
+                model: <?= json_encode($model) ?>
+            },
+            methods: {
+                setGift:function(data,index){
+                    let model = this.model;
+                    if(!model.vip[index].gift){
+                        newGift = [];
+                    }else{
+                       newGift = model.vip[index].gift;
+                    }
+                    data.forEach(function(item) {
+                        newGift.push(item)
+                    });
+                    Vue.set(this.model.vip[index],'gift',newGift);
+                },
+                //删除组件数据项目
+                onDelete: function(index2, index) {
+                    let model = this.model;
+                    model.vip[index].gift.splice(index2, 1);
+                    this.model = model;
+                },
+                //获取优惠券列表
+                onSelect: function(index) {
+                    $.selectData({
+                        title: '选择优惠券',
+                        uri: 'coupon/lists',
+                        duplicate: false,
+                        dataIndex: 'id',
+                        done: function(data) {
+                            vue.setGift(data,index);
+                        }
+                    });
+                },
+                //选择图片
+                selectImages:function(index){
+                    // 显示文件库 选择文件
+                    $.fileLibrary({
+                        type: 'image'
+                        , done: function (data, $touch) {
+                            vue.model.vip[index].card_cover = data[0].url;
+                        }
+                    });
+                },
+                //提交保存
+                onSubmit: function() {
+                    $.post('', {
+                        data: this.model
+                    }, function(result) {
+                        result.code === 1 ? $.show_success(result.msg, result.url) : $.show_error(result.msg)
+                    })
+                }
+            }
+        });
+    });
+</script>

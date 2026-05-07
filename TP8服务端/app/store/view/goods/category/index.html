@@ -1,0 +1,133 @@
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <div class="widget-head am-cf">
+                    <div class="widget-title am-cf">商品分类</div>
+                </div>
+                <div class="widget-body am-fr">
+                    <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
+                        <div class="am-form-group">
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-sm">
+                                    <a href="javascript:void(0);" class="hema-add am-btn am-btn-primary am-radius">
+                                        <span class="am-icon-plus"></span> 添加
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-12">
+                        <table width="100%" class="am-table am-table-hover tpl-table-black">
+                            <thead>
+                            <tr>
+                                <th>分类ID</th>
+                                <th>分类名称</th>
+                                <th>显示排序</th>
+                                <th>添加时间</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {if !$list->isEmpty()}
+                                {foreach $list as $item}
+                                <tr>
+                                    <td class="am-text-middle">{$item['category_id']}</td>
+                                    <td class="am-text-middle">{$item['name']}</td>
+                                    <td class="am-text-middle">{$item['sort']}</td>
+                                    <td class="am-text-middle">{$item['create_time']}</td>
+                                    <td class="am-text-middle">
+                                        <div class="tpl-table-black-operation">
+                                            <a href="javascript:;" class="hema-edit" data-id="{$item['category_id']}">
+                                                <i class="am-icon-pencil"></i> 编辑
+                                            </a>
+                                            <a href="javascript:;" class="hema-del tpl-table-black-operation-del"
+                                               data-id="{$item['category_id']}">
+                                                <i class="am-icon-trash"></i> 删除
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {/foreach}
+                            {else /}
+                                <tr>
+                                    <td colspan="6" class="am-text-center">暂无记录</td>
+                                </tr>
+                            {/if}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="am-u-lg-12 am-cf">
+                        <div class="am-fr">{:$list->render()} </div>
+                        <div class="am-fr pagination-total am-margin-right">
+                            <div class="am-vertical-align-middle">总记录：{:$list->total()}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="goods/category/add" /}
+{include file="goods/category/edit" /}
+<script>
+    $(function () {
+         //添加
+        $('.hema-add').on('click', function () {
+            $.get("{:url('goods.category/add')}", function (result) {
+				if(result.code == 0){
+				    $.show_error(result.msg);
+				    return false;
+				}
+				console.log(result.data.part);
+				$.showAction({
+                    title: '添加', 
+                    area: '750px', 
+                    content: template('tpl-add', {part:result.data.part}), 
+                    uCheck: true, 
+                    success: function ($content) {
+                        $('#my-form').formPost({
+                            url: "{:url('goods.category/add')}"
+                        });
+                    }, 
+                    btn2: function ($content) {
+                        return true;
+                    }
+                });
+            });
+        });
+        //编辑
+        $('.hema-edit').on('click', function () {
+            var data = $(this).data();
+            $.get("{:url('goods.category/edit')}?id=" + data.id, function (result) {
+				if(result.code == 0){
+				    $.show_error(result.msg);
+				    return false;
+				}
+				let model = {
+				    model:result.data.model,
+				    part:result.data.part
+				};
+				$.showAction({
+                    title: '编辑', 
+                    area: '750px', 
+                    content: template('tpl-edit', model), 
+                    uCheck: true, 
+                    success: function ($content) {
+                        $('#my-form').formPost({
+                            url: "{:url('goods.category/edit')}?id=" + data.id
+                        });
+                    }, 
+                    btn2: function ($content) {
+                        return true;
+                    }
+                });
+            });
+        });
+        // 删除元素
+        var url = "{:url('goods.category/delete')}";
+        $('.hema-del').del('id', url);
+
+    });
+</script>
+

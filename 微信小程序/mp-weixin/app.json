@@ -1,0 +1,70 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/user/index",
+    "pages/shop/index",
+    "pages/order/index",
+    "pages/exchange/index",
+    "pages/shop/wifi",
+    "pages/shop/checkout",
+    "pages/index/package",
+    "pages/login/index",
+    "pages/order/detail",
+    "pages/order/comment",
+    "pages/order/refund",
+    "pages/order/pay_bill",
+    "pages/user/detail/index",
+    "pages/user/address/index",
+    "pages/user/address/add",
+    "pages/user/address/edit",
+    "pages/user/sign/index",
+    "pages/user/sign/logs",
+    "pages/user/vip/index",
+    "pages/cropper/cropper",
+    "pages/user/vip/open",
+    "pages/user/wallet/index",
+    "pages/user/wallet/logs",
+    "pages/user/coupon/index",
+    "pages/user/comment/index",
+    "pages/user/pact/index",
+    "pages/user/pact/add",
+    "pages/exchange/list",
+    "pages/exchange/order"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index"
+      },
+      {
+        "pagePath": "pages/shop/index"
+      },
+      {
+        "pagePath": "pages/order/index"
+      },
+      {
+        "pagePath": "pages/exchange/index"
+      },
+      {
+        "pagePath": "pages/user/index"
+      }
+    ],
+    "position": "bottom"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于计算到店距离"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getLocation",
+    "chooseLocation"
+  ],
+  "plugins": {},
+  "usingComponents": {}
+}

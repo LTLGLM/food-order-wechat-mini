@@ -1,0 +1,192 @@
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div id="myform" class="widget am-cf">
+                    <div class="widget-body am-form tpl-form-line-form">
+                        <fieldset>
+                            <div class="widget-head am-cf">
+                                <div class="widget-title am-fl">签到设置</div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">奖励类型 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                	<label class="am-radio-inline">
+                                        <input type="radio" v-model="model.type" value="score" data-am-ucheck>
+                                        积分
+                                    </label>
+                                    <label class="am-radio-inline">
+                                        <input type="radio" v-model="model.type" value="money" data-am-ucheck>
+                                        余额
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">奖励模式 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                	<label class="am-radio-inline">
+                                        <input type="radio" v-model="model.mode" value="fixed" data-am-ucheck>
+                                        固定
+                                    </label>
+                                    <label class="am-radio-inline">
+                                        <input type="radio" v-model="model.mode" value="random" data-am-ucheck>
+                                        随机
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">奖励数额</label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <input type="number" min="1" class="tpl-form-input" v-model="model.number" required>
+                                    <small>{{model.mode=='fixed'?'设置固定奖励数额':'设置随机奖励最大数额'}}</small>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label">签到任务</label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <div style="padding-bottom:20px">
+                                        <button type="button" class="am-btn am-btn-primary am-radius am-btn-xs" @click.stop="add">
+                                            <i class="am-icon-plus"></i> 添加任务
+                                        </button>
+                                    </div>
+                                    <div v-if="model.plan.length > 0">
+                                        <table width="100%" class="am-table am-table-hover tpl-table-black">
+                                            <thead>
+                                            <tr>
+                                                <th>编号ID</th>
+                                                <th>连续天数</th>
+                                                <th>额外奖励</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="(item,index) in model.plan">
+                                                    <td class="am-text-middle">{{index+1}}</td>
+                									<td class="am-text-middle">{{item.days}}</td>
+                                                    <td class="am-text-middle">
+                                                        {{item.number}}{{item.type=='score'?'积分':'元'}}
+                                                    </td>
+                                                    <td class="am-text-middle">
+                                                        <div class="tpl-table-black-operation">
+                                                            <a @click="edit(index)" href="javascript:;">
+                                                                <i class="am-icon-pencil"></i> 编辑
+                                                            </a>
+                                                            <a @click="onDelete(index)" href="javascript:;" class="item-del tpl-table-black-operation-del">
+                                                                <i class="am-icon-trash"></i> 删除
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3  am-u-lg-2 am-form-label"> 签到说明 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <textarea  v-model="model.describe" rows="5" placeholder="请输入签到说明"></textarea>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <div class="am-u-sm-9 am-u-sm-push-2 am-margin-top-lg">
+                                    <button @click.stop="onSubmit" type="button" class="am-btn am-btn-secondary">
+                                        提交保存
+                                    </button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="market/sign/add" /}
+{include file="market/sign/edit" /}
+<script src="/assets/plugins/vue/vue.min.js?v={$version}"></script>
+<script>
+    $(function () {
+        const vue = new Vue({
+            el: '#myform',
+            data: {
+                model: <?= json_encode($model) ?>
+            },
+            methods: {
+                add:function(){
+                    $.showAction({
+                        title: '添加签到任务', 
+                        area: '750px', 
+                        content: template('tpl-add', {}), 
+                        uCheck: true, 
+                        success: function ($content) {
+                            $('#my-form').formPost({
+                                url: "{:url('market.sign/add')}"
+                            });
+                        }, 
+                        btn2: function ($content) {
+                            return true;
+                        }
+                    });
+                },
+                //编辑
+                edit:function(index){
+                    $.showAction({
+                        title: '编辑签到任务', 
+                        area: '750px', 
+                        content: template('tpl-edit', {model:this.model.plan[index]}), 
+                        uCheck: true, 
+                        success: function ($content) {
+                            $('#my-form').formPost({
+                                url: "{:url('market.sign/edit')}?id=" + index
+                            });
+                        }, 
+                        btn2: function ($content) {
+                            return true;
+                        }
+                    }); 
+                },
+                //删除
+                onDelete: function(index) {
+                    let model = this.model,
+                    msg = '确定要删除连续签到'+ model.plan[index].days +'天的任务？',
+                    url = "{:url('market.sign/delete')}?id=" + index;
+                    layer.confirm(msg,{
+                        icon: 0,
+                        btn:['取消','确定'],
+                        title: '友情提示',
+                        skin: 'layui-layer-hema',
+                        cancel : function(){
+                            // 你点击右上角 X 回调
+                        },
+                        btn1:function(item,layero){
+    						layer.close(item);
+                        },
+                        btn2:function(item){
+                            $.post(url, {id:index}, function (result) {
+    							if(typeof(result) == 'string'){
+    								result = JSON.parse(result);
+    							}
+    							result.code === 1 ? $.show_success(result.msg, result.url) : $.show_error(result.msg);
+    						});
+                            layer.close(item);
+                        },
+                        end:function() {
+                            //所有操作都会执行
+    					}
+    				});
+                },
+                //提交保存
+                onSubmit: function() {
+                    if(this.model.number=='' || this.model.number<1){
+                        $.show_error('奖励数额必须大于1');
+                        return false;
+                    }
+                    $.post('', {
+                        data: this.model
+                    }, function(result) {
+                        result.code === 1 ? $.show_success(result.msg, result.url) : $.show_error(result.msg)
+                    })
+                }
+            }
+        });
+    });
+</script>

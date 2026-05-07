@@ -1,0 +1,116 @@
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <div class="widget-head am-cf">
+                    <div class="widget-title am-cf">订单评价列表</div>
+                </div>
+                <div class="widget-body am-fr">
+                    <div class="am-scrollable-horizontal am-u-sm-12">
+                        <table width="100%" class="am-table am-table-hover tpl-table-black">
+                            <thead>
+                            <tr>
+                                <th>编号ID</th>
+								<th>头像</th>
+								<th>昵称</th>
+                                <th>服务</th>
+                                <th>速度</th>
+                                <th>口味</th>
+                                <th>环境</th>
+                                <th>评论</th>
+                                <th>状态</th>
+                                <th>时间</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {if !$list->isEmpty()}
+                                {foreach $list as $item}
+                                <tr>
+                                    <td class="am-text-middle">
+                                        <p class="item-title">{$item['comment_id']}</p>
+                                    </td>
+									 <td class="am-text-middle">
+                                        <img src="{$item['user']['avatar']['url']|default='/assets/img/avatar.png'}" width="50" height="50" alt="">
+                                    </td>
+                                    <td class="am-text-middle">{$item['user']['nickname']|default='--'}</td>
+                                    <td class="am-text-middle">{$item['serve']}</td>
+                                    <td class="am-text-middle">{$item['speed']}</td>
+                                    <td class="am-text-middle">{$item['flavor']}</td>
+									<td class="am-text-middle">{$item['ambient']}</td>
+									<td class="am-text-middle">{$item['content']|default='--'}</td>
+                                    <td class="am-text-middle">
+										<span class="hema-status am-badge x-cur-p {$item['is_show']['value'] ? ' am-badge-success' : ' am-badge-warning'}" 
+											 data-id="{$item['comment_id']}"
+											 data-status="{$item['is_show']['value']}">
+										{$item['is_show']['text']}
+										</span>
+                                    </td>
+                                    <td class="am-text-middle">{$item['create_time']}</td>
+                                    <td class="am-text-middle">
+                                        <div class="tpl-table-black-operation">
+                                            <a href="javascript:;" class="hema-edit" data-id="{$item['comment_id']}">
+                                                <i class="am-icon-pencil"></i> 编辑
+                                            </a>
+											<a class="tpl-table-black-operation-green" href="{:url('order/detail', ['id' => $item['order_id']])}">
+                                                <i class="am-icon-file-text"></i> 订单
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {/foreach}
+                            {else /}
+                                <tr>
+                                    <td colspan="12" class="am-text-center">暂无记录</td>
+                                </tr>
+                            {/if}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="am-u-lg-12 am-cf">
+                        <div class="am-fr">{:$list->render()} </div>
+                        <div class="am-fr pagination-total am-margin-right">
+                            <div class="am-vertical-align-middle">总记录：{:$list->total()}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="order/comment/edit" /}
+<script>
+    $(function () {
+		//编辑
+        $('.hema-edit').on('click', function () {
+            var data = $(this).data();
+            $.get("{:url('order.comment/edit')}?id=" + data.id, function (result) {
+				if(result.code == 0){
+				    $.show_error(result.msg);
+				    return false;
+				}
+				$.showAction({
+                    title: '编辑', 
+                    area: '750px', 
+                    content: template('tpl-edit', {model:result.data.model}), 
+                    uCheck: true, 
+                    success: function ($content) {
+                        $('#my-form').formPost({
+                            url: "{:url('order.comment/edit')}?id=" + data.id
+                        });
+                    }, 
+                    btn2: function ($content) {
+                        return true;
+                    }
+                });
+            });
+        });
+		// 切换显示状态
+        $('.hema-status').click(function () {
+            var data = $(this).data();
+			var msg = '确定要'+(parseInt(data.status) === 1 ? '隐藏' : '显示')+'该评论？';
+            var url = "{:url('order.comment/status')}";
+			$('.hema-status').del('id', url,msg);
+        });
+    });
+</script>

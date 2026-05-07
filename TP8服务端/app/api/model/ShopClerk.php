@@ -1,0 +1,1 @@
+<?phpnamespace app\api\model;use app\common\model\ShopClerk as ShopClerkModel;/** * 店员模型 */class ShopClerk extends ShopClerkModel{    /**     * 隐藏字段     */    protected $hidden = [];}

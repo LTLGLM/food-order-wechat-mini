@@ -1,0 +1,17 @@
+{
+  "usingComponents": {
+    "u-icon": "/uni_modules/uview-ui/components/u-icon/u-icon",
+    "u-food": "/uni_modules/uview-ui/components/u-food/u-food",
+    "u-tabs": "/uni_modules/uview-ui/components/u-tabs/u-tabs",
+    "u-sticky": "/uni_modules/uview-ui/components/u-sticky/u-sticky",
+    "u--input": "/uni_modules/uview-ui/components/u--input/u--input",
+    "u-popup": "/uni_modules/uview-ui/components/u-popup/u-popup",
+    "u-button": "/uni_modules/uview-ui/components/u-button/u-button",
+    "u-badge": "/uni_modules/uview-ui/components/u-badge/u-badge",
+    "u-rate": "/uni_modules/uview-ui/components/u-rate/u-rate",
+    "u-loadmore": "/uni_modules/uview-ui/components/u-loadmore/u-loadmore",
+    "u-cell-group": "/uni_modules/uview-ui/components/u-cell-group/u-cell-group",
+    "u-cell": "/uni_modules/uview-ui/components/u-cell/u-cell",
+    "u-modal": "/uni_modules/uview-ui/components/u-modal/u-modal"
+  }
+}

@@ -1,0 +1,141 @@
+<!-- 模板：插件配置 -->
+<script id="tpl-config" type="text/template">
+    <div class="am-padding-xs am-padding-top-sm">
+        {{ each config }}
+        {{ if($value.type == 'text') }}
+        <div class="am-form-group">
+			<label class="am-u-sm-3 am-form-label {{ $value.attribute.required ? 'form-require' : '' }}">{{ $value.title }}</label>
+			<div class="am-u-sm-8 am-u-end">
+				<input class="tpl-form-input" name="data[{{ $value.name }}]" type="{{ $value.type }}" placeholder="{{ $value.attribute.placeholder }}" value="{{ $value.value }}" maxlength="{{ $value.attribute.maxlength }}" {{ $value.attribute.required ? 'required' : '' }} {{ $value.attribute.disabled ? 'disabled' : '' }}>
+				{{ if($value.msg.length > 0) }}
+				<small>{{ $value.msg }}</small>
+				{{ /if }}
+			</div>
+		</div>
+        {{ /if }}
+        {{ if($value.type == 'number') }}
+        <div class="am-form-group">
+			<label class="am-u-sm-3 am-form-label {{ $value.attribute.required ? 'form-require' : '' }}">{{ $value.title }}</label>
+			<div class="am-u-sm-8 am-u-end">
+				<input class="tpl-form-input" name="data[{{ $value.name }}]" type="{{ $value.type }}" placeholder="{{ $value.attribute.placeholder }}" value="{{ $value.value }}" max="{{ $value.attribute.max }}" min="{{ $value.attribute.min }}" maxlength="{{ $value.attribute.maxlength }}" {{ $value.attribute.required ? 'required' : '' }} {{ $value.attribute.disabled ? 'disabled' : '' }}>
+				{{ if($value.msg.length > 0) }}
+				<small>{{ $value.msg }}</small>
+				{{ /if }}
+			</div>
+		</div>
+        {{ /if }}
+        {{ if($value.type == 'password') }}
+        <div class="am-form-group">
+			<label class="am-u-sm-3 am-form-label {{ $value.attribute.required ? 'form-require' : '' }}">{{ $value.title }}</label>
+			<div class="am-u-sm-8 am-u-end">
+				<input class="tpl-form-input" name="data[{{ $value.name }}]" type="{{ $value.type }}" placeholder="{{ $value.attribute.placeholder }}" value="{{ $value.value }}" maxlength="{{ $value.attribute.maxlength }}" {{ $value.attribute.required ? 'required' : '' }} {{ $value.attribute.disabled ? 'disabled' : '' }}>
+				{{ if($value.msg.length > 0) }}
+				<small>{{ $value.msg }}</small>
+				{{ /if }}
+			</div>
+		</div>
+        {{ /if }}
+        {{ if($value.type == 'radio') }}
+        <div class="am-form-group">
+			<label class="am-u-sm-3 am-form-label {{ $value.attribute.required ? 'form-require' : '' }}">{{ $value.title }}</label>
+			<div class="am-u-sm-8 am-u-end">
+			    {{ each $value.options vo key }}
+				<label class="am-radio-inline">
+					<input type="radio" name="data[{{ $value.name }}]"
+						   value="{{ key }}" {{ $value.attribute.required ? 'required' : '' }} 
+						   {{ $value.value == key ? 'checked' : '' }}
+						   {{ $value.attribute.disabled ? 'disabled' : '' }} data-am-ucheck> {{ vo }}
+				</label>
+				{{ /each }}
+				{{ if($value.msg.length > 0) }}
+				<div class="help-block am-margin-top-sm">
+					<small>{{ $value.msg }}</small>
+				</div>
+				{{ /if }}
+			</div>
+		</div>
+        {{ /if }}
+        {{ if($value.type == 'checkbox') }}
+        <div class="am-form-group">
+			<label class="am-u-sm-3 am-form-label {{ $value.attribute.required ? 'form-require' : '' }}">{{ $value.title }}</label>
+			<div class="am-u-sm-8 am-u-end">
+			    {{ each $value.options vo key }}
+				<label class="am-checkbox-inline">
+					<input type="checkbox" name="data[{{ $value.name }}][]"
+						   value="{{ key }}" {{ $value.attribute.required ? 'required' : '' }} 
+						   {{ $value.value.indexOf(key) > -1 ? 'checked' : '' }}
+						   {{ $value.attribute.disabled ? 'disabled' : '' }} data-am-ucheck> {{ vo }}
+				</label>
+				{{ /each }}
+				{{ if($value.msg.length > 0) }}
+				<div class="help-block am-margin-top-sm">
+					<small>{{ $value.msg }}</small>
+				</div>
+				{{ /if }}
+			</div>
+		</div>
+        {{ /if }}
+        {{ if($value.type == 'select') }}
+        <div class="am-form-group">
+			<label class="am-u-sm-3 am-form-label {{ $value.attribute.required ? 'form-require' : '' }}">{{ $value.title }}</label>
+			<div class="am-u-sm-8 am-u-end">
+			    <select name="data[{{ $value.name }}]" {{ $value.attribute.required ? 'required' : '' }} 
+			        {{ $value.attribute.disabled ? 'disabled' : '' }}
+                        data-am-selected="{searchBox: 1, btnSize: 'sm'}">
+                    <option value="">请选择</option>
+                    {{ each $value.options vo key }}
+                    <option value="{{ key }}" {{ $value.value == key ? 'selected' : '' }}>{{ vo }}</option>
+                    {{ /each }}
+                </select>
+				{{ if($value.msg.length > 0) }}
+				<small>{{ $value.msg }}</small>
+				{{ /if }}
+			</div>
+		</div>
+        {{ /if }}
+        {{ if($value.type == 'textarea') }}
+        <div class="am-form-group">
+			<label class="am-u-sm-3 am-form-label {{ $value.attribute.required ? 'form-require' : '' }}">{{ $value.title }}</label>
+			<div class="am-u-sm-8 am-u-end">
+			    <textarea type="text/plain" name="data[{{ $value.name }}]" placeholder="{{ $value.attribute.placeholder }}" 
+			    maxlength="{{ $value.attribute.maxlength }}" cols="{{ $value.attribute.cols }}" rows="{{ $value.attribute.rows }}" 
+			    {{ $value.attribute.required ? 'required' : '' }} {{ $value.attribute.disabled ? 'disabled' : '' }} 
+			    {{ $value.attribute.editor ? 'id="container"' : '' }}>{{ $value.value }}</textarea>
+				{{ if($value.msg.length > 0) }}
+				<small>{{ $value.msg }}</small>
+				{{ /if }}
+			</div>
+		</div>
+        {{ /if }}
+        {{ if($value.type == 'image') }}
+        <div class="am-form-group">
+            <label class="am-u-sm-3 am-form-label  {{ $value.attribute.required ? 'form-require' : '' }}">{{ $value.title }} </label>
+            <div class="am-u-sm-9 am-u-end">
+                <div class="am-form-file">
+                    <div class="am-form-file">
+                        <button type="button"
+                                class="upload-file am-btn am-btn-secondary am-radius">
+                            <i class="am-icon-cloud-upload"></i> 选择图片
+                        </button>
+                        <div class="uploader-list am-cf">
+                            {{ if $value.value !== ''}}
+                            <div class="file-item">
+                                <img src="{{ $value.value }}">
+                                <input type="hidden" name="data[{{ $value.name }}]"
+                                       value="{{ $value.value }}">
+                            </div>
+                            {{ /if }}
+                        </div>
+                    </div>
+                    {{ if($value.msg.length > 0) }}
+                    <div class="help-block am-margin-top-sm">
+        				<small>{{ $value.msg }}</small>
+                    </div>
+        			{{ /if }}
+                </div>
+            </div>
+        </div>
+        {{ /if }}
+        {{ /each }}
+    </div>
+</script>

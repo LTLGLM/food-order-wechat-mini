@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="renderer" content="webkit"/>
+    <link rel="stylesheet" href="/assets/plugins/amazeui/amazeui.css?v={$version}"/>
+    <link rel="stylesheet" href="/assets/css/hema.app.css?v={$version}"/>
+    <script src="/assets/plugins/jquery/jquery.min.js?v={$version}"></script>
+    <title>商品列表</title>
+</head>
+<body class="select-data">
+<div class="am-scrollable-horizontal am-u-sm-12">
+    <table width="100%" class="am-table am-table-hover tpl-table-black">
+        <thead>
+			<tr>
+				<th>
+					<label class="am-checkbox">
+						<input data-am-ucheck data-check="all" type="checkbox">
+					</label>
+				</th>
+				<th>编号</th>
+				<th>图片</th>
+                <th>名称</th>
+                <th>分类</th>
+                <th>规格</th>
+				<th>状态</th>
+			</tr>
+        </thead>
+        <tbody>
+        {if $list}
+            {foreach $list as $item}
+            <tr>
+                <td class="am-text-middle">
+                    <label class="am-checkbox">
+                        <input data-am-ucheck data-check="item" data-params="{$item['params']}" type="checkbox">
+                    </label>
+                </td>
+				<td class="am-text-middle">{$item['goods_id']}</td>
+				<td class="am-text-middle">
+					<img src="{$item['image']}" width="50" height="50" alt="商品图片">
+				</td>
+                <td class="am-text-middle">
+					<p>{$item['name']}</p>
+				</td>
+				<td class="am-text-middle">{$item['category']['name']}</td>
+                <td class="am-text-middle">
+                        <span class="{$item['spec_type'] == 10 ? 'x-color-green' : 'x-color-red'}">
+                        {$item['spec_type'] == 10 ? '单规格':'多规格'}
+                        </span>
+                </td>
+				<td class="am-text-middle">
+					<span class="hema-status am-badge x-cur-p {$item['goods_status']['value'] == 10 ? ' am-badge-success' : ' am-badge-warning'}" 
+						 data-id="{$item['goods_id']}"
+						 data-status="{$item['goods_status']['value']}">
+					      {$item['goods_status']['text']}
+					</span>
+                </td>
+            </tr>
+            {/foreach}
+        {else /}
+            <tr>
+                <td colspan="6" class="am-text-center">暂无记录</td>
+            </tr>
+        {/if}  
+        </tbody>
+    </table>
+</div>
+<script src="/assets/plugins/amazeui/amazeui.js?v={$version}"></script>
+<script>
+    /**
+     * 获取已选择的数据
+     */
+    function getSelectedData() {
+        var data = [];
+        $('input[data-check=item]:checked').each(function () {
+            data.push($(this).data('params'));
+        });
+        return data;
+    }
+    $(function () {
+        // 全选框元素
+        var $checkAll = $('input[data-check=all]')
+            , $checkItem = $('input[data-check=item]')
+            , itemCount = $checkItem.length;
+        // 复选框: 全选和反选
+        $checkAll.change(function () {
+            $checkItem.prop('checked', this.checked);
+        });
+        // 复选框: 子元素
+        $checkItem.change(function () {
+            if (!this.checked) {
+                $checkAll.prop('checked', false);
+            } else {
+                var checkedItemNum = $checkItem.filter(':checked').length;
+                checkedItemNum === itemCount && $checkAll.prop('checked', true);
+            }
+        });
+    });
+</script>
+</body>
+</html>

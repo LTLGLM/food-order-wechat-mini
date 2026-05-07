@@ -1,0 +1,512 @@
+<div class="diy-phone" v-cloak>
+	<!-- 手机顶部标题 -->
+	<div id="diy-page11" class="phone-top optional" @click.stop="onEditer('page')"
+		:class="{selected: 'page' === selectedIndex}"
+		:style="{background: diyData.page.style.titleBackgroundColor + ' url(/assets/img/diy/phone-top-' + diyData.page.style.titleTextColor + '.png) no-repeat center / contain'}">
+		<h4 :style="{color: diyData.page.style.titleTextColor}">{{ diyData.page.params.title }}</h4>
+	</div> 
+	<!-- 小程序内容区域 -->
+	<div id="phone-main" class="phone-main" v-cloak>
+		<draggable :list="diyData.items" class="dragArea" @update="onDragItemEnd" :options="{animation: 120,filter: '.drag__nomove'}"> 
+    		<template v-for="(item, index) in diyData.items">
+    			<!-- diy元素: 图片轮播 --> 
+    			<template v-if="item.type == 'banner'">
+    				<div class="drag optional bg-f7" @click.stop="onEditer(index)"
+    					:class="{selected: index === selectedIndex}">
+    					<div class="diy-banner" :style="{padding:'0px ' + item.style.marginLr/2 + 'px'}"> 
+    					    <img v-for="(banner, index) in item.data" :style="{borderRadius:item.style.radius + 'px'}" v-if="index <= 1"
+    							:src="banner.type == 'image'?banner.image:banner.poster">
+    						<div class="dots center" :class="item.style.btnShape"> 
+    						    <span v-for="banner in item.data"
+    								:style="{background:item.style.btnColor}"></span> 
+    						</div>
+    					</div>
+    					<div class="btn-edit-del">
+    						<div class="btn-del" @click.stop="onDeleleItem(index)">删除</div>
+    					</div>
+    				</div>
+    			</template> 
+    			<!-- diy元素: 单图组 --> 
+    			<template v-else-if="item.type == 'imageSingle'">
+    				<div @click.stop="onEditer(index)" class="bg-f7">
+    					<div class="drag optional" :class="{selected:index === selectedIndex}">
+							<div class="diy-imageSingle">
+    							<div class="item-image" v-for="(imageSingle, index2) in item.data"
+    								:style="{background: item.style.bgColor}">
+    							    <div :style="index2>0?'marginTop: '+item.style.marginT/2+'px;':''">
+    								<img :src="imageSingle.image" :style="{borderRadius: item.style.radius + 'px'}"> 
+    								</div>
+    							</div>
+    						</div>
+    						<div class="btn-edit-del">
+    							<div class="btn-del" @click.stop="onDeleleItem(index)">删除</div>
+    						</div>
+    					</div>
+    				</div>
+    			</template> 
+    			<!-- diy元素: 图片橱窗 --> 
+    			<template v-else-if="item.type == 'window'">
+    				<div @click.stop="onEditer(index)" class="bg-f7">
+    					<div class="drag optional" :class="{selected:index === selectedIndex}">
+    						<div class="diy-window"
+        							:style="{ background: item.style.bgColor}">
+    							<ul class="data-list" v-if="item.style.layout > 1"
+    								:class="'am-avg-sm-' + item.style.layout">
+    								<li v-for="(window,index2) in item.data">
+    									<div class="item-image" :style="{marginTop:index2>=item.style.layout?item.style.marginT/2+'px':''}"> 
+    									    <img :src="window.image" :style="{borderRadius: item.style.radius + 'px'}"> 
+    									</div>
+    								</li>
+    							</ul>
+    							<div class="display" v-else>
+    								<div class="display-left">
+    									<img :src="item.data[0].image" :style="{borderRadius: item.style.radius + 'px'}"> 
+    								</div>
+    								<div class="display-right">
+    									<div v-if="item.data.length >= 2" class="display-right1">
+    										<img :src="item.data[1].image"  :style="{borderRadius: item.style.radius + 'px'}"> 
+    									</div>
+    									<div class="display-right2">
+    										<div v-if="item.data.length >= 3" class="left">
+    											<img :src="item.data[2].image" :style="{borderRadius: item.style.radius + 'px'}"> 
+    										</div>
+    										<div v-if="item.data.length >= 4" class="right">
+    											<img :src="item.data[3].image" :style="{borderRadius: item.style.radius + 'px'}"> 
+    										</div>
+    									</div>
+    								</div>
+    							</div>
+    						</div>
+    						<div class="btn-edit-del">
+    							<div class="btn-del" @click.stop="onDeleleItem(index)">删除</div>
+    						</div>
+    					</div>
+    				</div>
+    			</template> 
+    			<!-- diy元素: 视频组 --> 
+    			<template v-else-if="item.type == 'video'">
+    				<div @click.stop="onEditer(index)" class="bg-f7">
+    					<div class="drag optional" :class="{selected:index === selectedIndex}">
+    						<div class="diy-video">
+    						    <video
+    								:style="{height:item.style.height + 'px'}" :src="item.params.src"
+    								:poster="item.params.poster" :autoplay="item.params.autoplay == 1" controls>
+    								您的浏览器不支持 video 标签 
+    							</video> 
+    						</div>
+    						<div class="btn-edit-del">
+    							<div class="btn-del" @click.stop="onDeleleItem(index)">删除</div>
+    						</div>
+    					</div>
+    				</div>
+    			</template> 
+    			<!-- diy元素: 公告组 --> 
+    			<template v-else-if="item.type == 'notice'">
+    				<div @click.stop="onEditer(index)" class="bg-f7">
+    					<div class="drag optional" :class="{selected:index === selectedIndex}">
+    						<div class="diy-notice dis-flex">
+    							<div class="notice__icon"> 
+    							    <img src="/assets/img/diy/notice.png"> 
+    							</div>
+    							<div class="notice__text flex-box am-text-truncate"> 
+    							    <span>{{item.data[0].text}}</span> 
+    							</div>
+    						</div>
+    						<div class="btn-edit-del">
+    							<div class="btn-del" @click.stop="onDeleleItem(index)">删除</div>
+    						</div>
+    					</div>
+    				</div>
+    			</template> 
+    			<!-- diy元素: 导航组--> 
+    			<template v-else-if="item.type == 'navBar'">
+    				<div @click.stop="onEditer(index)" class="bg-f7">
+    					<div class="drag optional" :class="{selected:index === selectedIndex}">
+    						<div class="diy-navBar" :style="{background:item.style.bgColor,borderRadius:item.style.radius}">
+								<li v-for="(navBar,index) in item.data" :class="'column__'+item.params.rowsNum">
+									<div class="item-image"> 
+									    <img :src="navBar.image"> 
+									</div>
+									<p class="item-text am-text-truncate" :style="{color:navBar.color}">
+										{{navBar.text}}</p>
+								</li>
+    						</div>
+    						<div class="btn-edit-del">
+    							<div class="btn-del" @click.stop="onDeleleItem(index)">删除</div>
+    						</div>
+    					</div>
+    				</div>
+    			</template>
+    			<!-- diy元素: 点单组 -->
+    			<template v-else-if="item.type == 'order'">
+
+    				<div @click.stop="onEditer(index)" class="bg-f7">
+
+    					<div class="drag optional" :class="{selected:index === selectedIndex}">
+
+    						<div :style="{padding:'0px ' + item.style.marginLr/2 + 'px'}">
+
+        						<div class="diy-order" :style="{background:item.style.bgColor,borderRadius:item.style.radius + 'px'}">
+
+        						    <div v-if="item.params.number == 1" class="food-box">
+
+    									<div class="icon"> 
+
+    									    <img :src="'/assets/img/diy/'+item.data[0].order_mode+'.png'"> 
+
+    									</div>
+
+    									<div class="right">
+
+        									<div class="title">{{item.data[0].title}}</div>
+
+        									<div class="text">{{item.data[0].text}}</div>
+
+    									</div>
+
+    								</div>
+
+        							<div v-if="item.params.number == 2 && index < item.params.number" :class="index == 0 ? 'item num2':'item num2 b-l'" v-for="(order,index) in item.data">
+
+    									<div class="item-image"> 
+
+    									    <img :src="'/assets/img/diy/'+order.order_mode+'.png'" :style="{width:item.style.width/2 + 'px',height:item.style.height/2 + 'px'}"> 
+
+    									</div>
+
+    									<div class="item-title">
+
+    										{{order.title}}</div>
+
+    									<div class="item-text">
+
+    										{{order.text}}</div>
+
+    								</div>
+
+    								<div v-if="item.params.number == 3" :class="index == 0 ? 'item num3':'item num3 b-l'" v-for="(order,index) in item.data">
+
+    									<div class="item-image"> 
+
+    									    <img :src="order.image" :style="{width:item.style.width/2 + 'px',height:item.style.height/2 + 'px'}"> 
+
+    									</div>
+
+    									<div class="item-title">
+
+    										{{order.title}}</div>
+
+    									<div class="item-text">
+
+    										{{order.text}}</div>
+
+    								</div>
+
+        						</div>
+
+        					</div>
+
+    						<div class="btn-edit-del">
+
+    							<div class="btn-del" @click.stop="onDeleleItem(index)">删除</div>
+
+    						</div>
+
+    					</div>
+
+    				</div>
+
+    			</template>
+    			<!-- diy元素: 商品组 -->
+    			<template v-else-if="item.type == 'goods'">
+
+    				<div @click.stop="onEditer(index)" class="bg-f7">
+
+    					<div class="drag optional" :class="{selected: index === selectedIndex}">
+
+        						<div class="diy-goods" v-if="item.style.display == 'list'" :style="{background:item.style.bgColor}">
+        							<ul class="goods-list am-cf"
+        								:class="['display__' + item.style.display, 'column__' + item.style.column]">
+        								<li class="goods-item"
+        									v-for="goods in (item.params.source == 'choice' ? item.data : item.defaultData)">
+        									<!-- 单列商品 --> 
+        									<template v-if="item.style.column == 1">
+        										<div class="dis-flex">
+        											<!-- 商品图片 -->
+        											<div class="goods-item_left"> 
+        											    <img :src="goods.image"> 
+        											</div>
+        											<div class="goods-item_right">
+        												<!-- 商品名称 -->
+        												<div v-if="item.style.show.goodsName"
+        													class="goods-item_title twolist-hidden">
+        													<span>{{ goods.goods_name }}</span> 
+        												</div>
+        												<div class="goods-item_desc">
+        													<!-- 商品卖点 -->
+        													<div v-if="item.style.show.sellingPoint"
+        														class="desc-selling_point am-text-truncate">
+        														<span>{{ goods.selling_point }}</span> 
+        													</div>
+        													<!-- 商品销量 -->
+        													<div v-if="item.style.show.goodsSales"
+        														class="desc-goods_sales am-text-truncate">
+        														<span>已售{{ goods.goods_sales }}件</span> 
+
+        													</div>
+
+        													<!-- 商品价格 -->
+
+        													<div class="desc_footer"> 
+
+        													    <span v-if="item.style.show.goodsPrice"
+
+        															class="price_x">¥{{ goods.goods_price }}</span>
+
+        														<span class="price_y x-color-999"
+
+        															v-if="item.style.show.linePrice && goods.line_price > 0">
+
+        														    ¥{{ goods.line_price }}
+
+        														</span>
+
+        													</div>
+
+        												</div>
+
+        											</div>
+
+        										</div>
+
+        									</template> 
+
+        									<!-- 两列三列 --> 
+
+        									<template v-else>
+
+        										<div class="goods-image"> <img :src="goods.image"> </div>
+
+        										<div class="detail">
+
+        											<p v-if="item.style.show.goodsName" class="goods-name twolist-hidden"> 
+
+        											    {{goods.goods_name}} 
+
+        											</p>
+
+        											<p class="detail-price"> 
+
+        											    <span v-if="item.style.show.goodsPrice" class="goods-price x-color-red">
+
+        											        {{ goods.goods_price }}
+
+        											    </span>
+
+        												<span v-if="item.style.show.linePrice && goods.line_price > 0" 
+
+        												    class="line-price">
+
+        												    {{ goods.line_price }}
+
+        												</span> 
+
+        											</p>
+
+        										</div>
+
+        									</template>
+
+        								</li>
+
+        							</ul>
+
+        						</div>
+
+        						<div class="diy-goods" v-else :style="{background:item.style.bgColor}">
+
+        							<ul class="goods-list am-cf"
+
+        								:class="['display__' + item.style.display, 'column__3']">
+
+        								<li class="goods-item"
+
+        									v-for="goods in (item.params.source == 'choice' ? item.data : item.defaultData)">
+
+        									<!-- 三列 --> 
+
+        									<template>
+
+        										<div class="goods-image"> <img :src="goods.image"> </div>
+
+        										<div class="detail">
+
+        											<p v-if="item.style.show.goodsName" class="goods-name twolist-hidden"> 
+
+        											    {{goods.goods_name}} 
+
+        											</p>
+
+        											<p class="detail-price"> 
+
+        											    <span v-if="item.style.show.goodsPrice" class="goods-price x-color-red">
+
+        											        {{ goods.goods_price }}
+
+        											    </span>
+
+        												<span v-if="item.style.show.linePrice && goods.line_price > 0" 
+
+        												    class="line-price">
+
+        												    {{ goods.line_price }}
+
+        												</span> 
+
+        											</p>
+
+        										</div>
+
+        									</template>
+
+        								</li>
+
+        							</ul>
+
+        						</div>
+
+    						
+
+    						<div class="btn-edit-del">
+
+    							<div class="btn-del" @click.stop="onDeleleItem(index)">删除</div>
+
+    						</div>
+
+    					</div>
+
+    				</div>
+
+    			</template> 
+    			<!-- diy元素: 在线客服 --> 
+    			<template v-else-if="item.type == 'service'">
+        			<div class="diy-service drag optional drag__nomove" @click.stop="onEditer(index)"
+        				:class="{selected: index === selectedIndex}"
+        				:style="{ right: item.style.right + 'px', bottom: item.style.bottom + 'px', opacity: item.style.opacity / 100 }">
+        				<div class="service-icon"> <img :src="item.params.image" alt=""> </div>
+        				<div class="btn-edit-del">
+        					<div class="btn-del" @click.stop="onDeleleItem(index)">删除</div>
+        				</div>
+        			</div>
+        		</template> 
+        		<!-- diy元素: 关注公众号 --> 
+        		<template v-else-if="item.type == 'officialAccount'">
+    				<div @click.stop="onEditer(index)">
+    					<div class="drag optional" :class="{selected:index === selectedIndex}">
+    						<div class="diy-officialAccount">
+    							<div class="item-top"> 
+    							    <span>关联的公众号</span> 
+    							</div>
+    							<div class="item-content am-cf">
+    								<div class="item-cont-avatar am-fl"> 
+    								    <img src="/assets/img/diy/circular.png" alt=""> 
+    								</div>
+    								<div class="item-cont-public am-fl">
+    									<div class="public-name">
+    									    <span>公众号名称</span>
+    									</div>
+    									<div class="public-describe">
+    									    <span>公众号简介公众号简介</span>
+    									</div>
+    								</div>
+    								<div class="item-cont-active am-fr">
+    									<div class="active-btn"> 
+    									    <span>关注</span> 
+    									</div>
+    								</div>
+    							</div>
+    						</div>
+    						<div class="btn-edit-del">
+    							<div class="btn-del" @click.stop="onDeleleItem(index)">删除</div>
+    						</div>
+    					</div>
+    				</div>
+    			</template> 
+    			<!-- diy元素: 富文本 --> 
+    			<template v-else-if="item.type == 'richText'">
+    				<div @click.stop="onEditer(index)" class="bg-f7">
+    					<div class="drag optional" :class="{selected: index === selectedIndex}">
+    						<div class="diy-richText"
+    							:style="{background: item.style.bgColor}"
+    							v-html="item.params.content"> 
+    						</div>
+    						<div class="btn-edit-del">
+    							<div class="btn-del" @click.stop="onDeleleItem(index)">删除</div>
+    						</div>
+    					</div>
+    				</div>
+    			</template>
+    			<!-- diy元素: 辅助空白 --> 
+    			<template v-else-if="item.type == 'blank'">
+    				<div @click.stop="onEditer(index)">
+    					<div class="drag optional" :class="{selected:index === selectedIndex}">
+    						<div class="diy-blank"
+    							:style="{height: item.style.height/2 +'px'}">
+    						</div>
+    						<div class="btn-edit-del">
+    							<div class="btn-del" @click.stop="onDeleleItem(index)">删除</div>
+    						</div>
+    					</div>
+    				</div>
+    			</template> 
+    			<!-- diy元素: 辅助线 --> 
+    			<template v-else-if="item.type == 'guide'">
+    				<div @click.stop="onEditer(index)" class="drag optional"
+    					:class="{selected: index === selectedIndex}">
+    				    <div :style="{padding:'0px ' + item.style.marginLr + 'px'}">
+        					<div class="diy-guide"
+        						:style="{padding: item.style.paddingTb +'px '+'0', background:item.style.bgColor }">
+        						<p class="line"
+        							:style="{borderTopWidth: item.style.height +'px',borderTopColor:item.style.color,borderTopStyle: item.style.style }">
+        						</p>
+        					</div>
+        				</div>
+    					<div class="btn-edit-del">
+    						<div class="btn-del" @click.stop="onDeleleItem(index)">删除</div>
+    					</div>
+    				</div>
+    			</template>
+    			<!-- diy元素: 栏目标题 --> 
+    			<template v-else-if="item.type == 'columnTitle'">
+    				<div @click.stop="onEditer(index)" class="bg-f7">
+    					<div class="drag optional" :class="{selected:index === selectedIndex}">
+    						<div class="column-title">
+    							<div class="title">{{item.params.title}}</div>
+    							<div v-if="item.params.right==1" class="sub"> 
+    								{{item.params.subTitle}} 
+    								<i v-if="item.params.arrow==1" class="iconfont icongengduo"></i>
+    							</div>
+    						</div>
+    						<div class="btn-edit-del">
+    							<div class="btn-del" @click.stop="onDeleleItem(index)">删除</div>
+    						</div>
+    					</div>
+    				</div>
+    			</template>
+    		</template>
+    	</draggable>
+    </div> 
+	<!-- 手机底部标题 	-->
+	<div id="diy-page11" class="phone-bottom optional box-border-top" @click.stop="onEditer('tabbar')" :class="{selected: 'tabbar' === selectedIndex}" :style="{background: diyData.tabbar.style.backgroundColor}">
+		<div class="tabbar" v-for="(item,index) in diyData.tabbar.list">
+		    <div v-if="item.visible=='1'">
+			<div>
+			    <img :src="index ? '/assets/img/diy/tabbar/'+item.iconPath : '/assets/img/diy/tabbar/'+item.selectedIconPath" />
+			</div>
+			<div class="text" :style="'color:'+ index ? diyData.tabbar.style.color : diyData.tabbar.style.selectedColor +';'"> 
+			    {{item.text}}
+			</div>
+			</div>
+		</div>
+	</div>
+</div>

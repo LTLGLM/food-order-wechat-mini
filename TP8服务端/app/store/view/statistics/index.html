@@ -1,0 +1,208 @@
+<div class="page-home row-content am-cf">
+	<!-- 订单统计 -->
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12 am-margin-bottom">
+            <div class="widget am-cf">
+                <div class="widget-head">
+                    <div class="widget-title">订单数量</div>
+                    <div class="page_toolbar am-margin-bottom" style="float:right;margin-top:-30px;">
+                        <form class="toolbar-form" action="">
+                        <div class="am-form-group am-fl">
+                            <div class="am-input-group am-input-group-sm tpl-form-border-form">
+                            <input style="width:120px;" type="text" name="star"
+                                   class="am-form-field"
+                                   value="{$star}" placeholder="请选择起始日期"
+                                   data-am-datepicker>
+                            </div>
+                        </div>
+                        <div class="am-form-group am-fl">
+                            <div class="am-input-group am-input-group-sm tpl-form-border-form">
+                            <input style="width:120px;" type="text" name="end"
+                                   class="am-form-field"
+                                   value="{$end}" placeholder="请选择截止日期"
+                                   data-am-datepicker>
+                            </div>
+                        </div>
+                        <div class="am-form-group am-fr">
+                            <div class="am-input-group am-input-group-sm tpl-form-border-form">
+                                <div class="am-btn-group am-btn-group-xs">
+                                    <button class="am-btn am-btn-danger" type="submit">
+                                        <span class="am-icon-bar-chart"></span> 统计
+                                    </button>
+                                </div>
+                                <div class="am-btn-group am-btn-group-xs" style="margin-left:10px;">
+                                    <button class="hema-prints am-btn am-btn-secondary am-radius" type="button" data-star="{$star}" data-end="{$end}">
+                                        <span class="am-icon-print"></span> 打印
+                                    </button>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="widget-body am-cf" style="padding-top:8px;">
+                    <div class="am-u-sm-2">
+                        <div class="widget-outline dis-flex flex-y-center hm-dh-move-amplify">
+                            <div class="outline-right dis-flex flex-dir-column flex-x-between">
+                                <div class="title">堂食</div>
+                                <div class="min">{$count['order']['tang']}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-2">
+                        <div class="widget-outline dis-flex flex-y-center hm-dh-move-amplify">
+                            <div class="outline-right dis-flex flex-dir-column flex-x-between">
+                                <div class="title">外卖</div>
+                                <div class="min">{$count['order']['wai']}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-2">
+                        <div class="widget-outline dis-flex flex-y-center hm-dh-move-amplify">
+                            <div class="outline-right dis-flex flex-dir-column flex-x-between">
+                                <div class="title">打包</div>
+                                <div class="min">{$count['order']['bao']}</div>
+                            </div>
+                        </div>
+                    </div>
+					<div class="am-u-sm-2 am-u-end">
+                        <div class="widget-outline dis-flex flex-y-center hm-dh-move-amplify">
+                            <div class="outline-right dis-flex flex-dir-column flex-x-between">
+                                <div class="title">退单</div>
+                                <div class="min">{$count['order']['refund']}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-head">
+                    <div class="widget-title">订单金额</div>
+                </div>
+				<div class="widget-body am-cf">
+                    <div class="am-u-sm-2">
+                        <div class="widget-outline dis-flex flex-y-center hm-dh-move-amplify">
+                            <div class="outline-right dis-flex flex-dir-column flex-x-between">
+                                <div class="title">入账</div>
+                                <div class="min">
+                                    <text class="hm-font-14">￥</text>{$count['order']['money']['order']}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-2">
+                        <div class="widget-outline dis-flex flex-y-center hm-dh-move-amplify">
+                            <div class="outline-right dis-flex flex-dir-column flex-x-between">
+                                <div class="title">退款</div>
+                                <div class="min">
+                                    <text class="hm-font-14">￥</text>{$count['order']['money']['refund']}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-2">
+                        <div class="widget-outline dis-flex flex-y-center hm-dh-move-amplify">
+                            <div class="outline-right dis-flex flex-dir-column flex-x-between">
+                                <div class="title">待入</div>
+                                <div class="min">
+                                    <text class="hm-font-14">￥</text>{$count['order']['money']['order10']}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-2">
+                        <div class="widget-outline dis-flex flex-y-center hm-dh-move-amplify">
+                            <div class="outline-right dis-flex flex-dir-column flex-x-between">
+                                <div class="title">待退</div>
+                                <div class="min">
+                                    <text class="hm-font-14">￥</text>{$count['order']['money']['refund10']}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-2">
+                        <div class="widget-outline dis-flex flex-y-center hm-dh-move-amplify">
+                            <div class="outline-right dis-flex flex-dir-column flex-x-between">
+                                <div class="title">充值</div>
+                                <div class="min">
+                                    <text class="hm-font-14">￥</text>{$count['recharge']}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-2 am-u-end">
+                        <div class="widget-outline dis-flex flex-y-center hm-dh-move-amplify">
+                            <div class="outline-right dis-flex flex-dir-column flex-x-between">
+                                <div class="title">买单</div>
+                                <div class="min">
+                                    <text class="hm-font-14">￥</text>{$count['paybill']['all']}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-head">
+                    <div class="widget-title">支付通道</div>
+                </div>
+				<div class="widget-body am-cf">
+                    <div class="am-u-sm-2">
+                        <div class="widget-outline dis-flex flex-y-center hm-dh-move-amplify">
+                            <div class="outline-right dis-flex flex-dir-column flex-x-between">
+                                <div class="title">微信</div>
+                                <div class="min">
+                                    <text class="hm-font-14">￥</text>{$count['order']['money']['weixin']+$count['paybill']['weixin']}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-2">
+                        <div class="widget-outline dis-flex flex-y-center hm-dh-move-amplify">
+                            <div class="outline-right dis-flex flex-dir-column flex-x-between">
+                                <div class="title">支付宝</div>
+                                <div class="min">
+                                    <text class="hm-font-14">￥</text>{$count['order']['money']['alipay']+$count['paybill']['alipay']}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-2">
+                        <div class="widget-outline dis-flex flex-y-center hm-dh-move-amplify">
+                            <div class="outline-right dis-flex flex-dir-column flex-x-between">
+                                <div class="title">余额</div>
+                                <div class="min">
+                                    <text class="hm-font-14">￥</text>{$count['order']['money']['wallet']}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+					<div class="am-u-sm-2 am-u-end">
+                        <div class="widget-outline dis-flex flex-y-center hm-dh-move-amplify">
+                            <div class="outline-right dis-flex flex-dir-column flex-x-between">
+                                <div class="title">线下</div>
+                                <div class="min">
+                                    <text class="hm-font-14">￥</text>{$count['order']['money']['offline']}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="help-block am-text-center">
+                <small>{$base['name']} 版权所有</small>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('.hema-prints').click(function () {
+            var data = $(this).data();
+			var url = "{:url('statistics/prints')}";
+			url += '?star=' + data.star + '&end=' + data.end;
+			$('.hema-prints').del('id', url,'确定要打印当前统计数据');
+        });
+    });
+</script>

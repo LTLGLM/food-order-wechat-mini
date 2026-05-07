@@ -1,0 +1,106 @@
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <form id="my-form" class="am-form tpl-form-line-form" enctype="multipart/form-data" method="post">
+                    <div class="widget-head am-cf">
+                        <div class="widget-title am-fl">交易设置</div>
+                    </div>
+                    <div class="widget-body">
+                        <fieldset>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">下列任务 </label>
+                                <div class="am-u-sm-9 am-u-end am-input-group">
+                                    <div class="am-u-sm-2">
+                                        <input type="number" min="1" class="am-form-field" name="data[time]"
+                                               value="{$model['time']}" required>
+                                    </div>
+                                    <label class="am-u-sm-5 am-form-label am-text-left">分钟执行一次</label>
+                                    <div class="help-block am-u-sm-12">
+                                        <small>最小设置1。如该设置10后，下列参数即使设置1，最长也要等待10分钟才能执行（刷新）一次</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">未支付订单 </label>
+                                <div class="am-u-sm-9 am-u-end am-input-group">
+                                    <div class="am-u-sm-2">
+                                        <input type="number" class="am-form-field" name="data[close_time]"
+                                               value="{$model['close_time']}" required>
+                                    </div>
+                                    <label class="am-u-sm-5 am-form-label am-text-left">分钟后自动取消</label>
+                                    <div class="help-block am-u-sm-12">
+                                        <small>关闭线下支付有效，设置0不自动操作</small>
+                                    </div>
+                                </div>
+                            </div>
+							<div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">已接订单 </label>
+                                <div class="am-u-sm-9 am-u-end am-input-group">
+                                    <div class="am-u-sm-2">
+                                        <input type="number" class="am-form-field" name="data[delivery_time]"
+                                               value="{$model['delivery_time']}" required>
+                                    </div>
+                                    <label class="am-u-sm-5 am-form-label am-text-left">分钟后自动配送</label>
+                                    <div class="help-block am-u-sm-12">
+                                        <small>备餐时间：设置0不自动操作</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">配送完成订单 </label>
+                                <div class="am-u-sm-9 am-u-end am-input-group">
+                                    <div class="am-u-sm-2">
+                                        <input type="number" class="am-form-field" name="data[receive_time]"
+                                               value="{$model['receive_time']}" required>
+                                    </div>
+                                    <label class="am-u-sm-5 am-form-label am-text-left">分钟后自动确认收货</label>
+                                    <div class="help-block am-u-sm-12">
+                                        <small>用户确认订单完成：设置0不自动操作,(已付款订单有效)</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">已完成订单 </label>
+                                <div class="am-u-sm-9 am-u-end am-input-group">
+                                    <div class="am-u-sm-2">
+                                        <input type="number" class="am-form-field" name="data[cmt_time]"
+                                               value="{$model['cmt_time']}" required>
+                                    </div>
+                                    <label class="am-u-sm-5 am-form-label am-text-left">分钟后自动评价</label>
+                                    <div class="help-block am-u-sm-12">
+                                        <small>订单评价：设置0不自动操作</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">申请退款订单 </label>
+                                <div class="am-u-sm-9 am-u-end am-input-group">
+                                    <div class="am-u-sm-2">
+                                        <input type="number" class="am-form-field" name="data[refund_time]"
+                                               value="{$model['refund_time']}" required>
+                                    </div>
+                                    <label class="am-u-sm-5 am-form-label am-text-left">分钟后自动退款</label>
+                                    <div class="help-block am-u-sm-12">
+                                        <small>自动退款：设置0不自动操作</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <div class="am-u-sm-9 am-u-sm-push-3 am-margin-top-lg">
+                                    <button type="submit" class="j-submit am-btn am-btn-secondary">提交
+                                    </button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('#my-form').formPost();
+    });
+</script>

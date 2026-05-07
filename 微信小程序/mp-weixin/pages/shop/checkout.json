@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "u-icon": "/uni_modules/uview-ui/components/u-icon/u-icon",
+    "u-alert": "/uni_modules/uview-ui/components/u-alert/u-alert",
+    "u-button": "/uni_modules/uview-ui/components/u-button/u-button",
+    "u--input": "/uni_modules/uview-ui/components/u--input/u--input",
+    "u-tag": "/uni_modules/uview-ui/components/u-tag/u-tag",
+    "u-popup": "/uni_modules/uview-ui/components/u-popup/u-popup"
+  }
+}

@@ -1,0 +1,105 @@
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <div class="widget-head am-cf">
+                    <div class="widget-title am-cf">优惠券列表</div>
+                </div>
+                <div class="widget-body am-fr">
+                    <!-- 工具栏 -->
+                    <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
+                        <div class="am-form-group">
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-sm">
+                                    <a class="am-btn am-btn-primary am-radius"
+                                       href="{:url('market.coupon/add')}">
+                                        <span class="am-icon-plus"></span> 新增
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-scrollable-horizontal am-u-sm-12">
+                        <table width="100%" class="am-table am-table-hover tpl-table-black">
+                            <thead>
+                            <tr>
+                                <th>编号ID</th>
+                                <th>优惠券名称</th>
+                                <th>有效天数</th>
+                                <th>数量/天</th>
+                                <th>类型</th>
+                                <th>订单金额</th>
+                                <th>优惠规则</th>
+                                <th>规则说明</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {if !$list->isEmpty()}
+                                {foreach $list as $index => $item}
+                                <tr>
+                                    <td class="am-text-middle">{$item['coupon_id']}</td>
+                                    <td class="am-text-middle">
+                                        <p class="item-title">{$item['name']}</p>
+                                    </td>
+                                    <td class="am-text-middle">{$item['initial_days']}</td>
+                                    <td class="am-text-middle">{$item['use_amount']?$item['use_amount']:'不限'}</td>
+                                    <td class="am-text-middle">{$item['type']['text']}</td>
+                                    <td class="am-text-middle">
+                                        {if $item['order_price']>0}
+                                            满￥{$item['order_price']}
+                                        {else /}
+                                            不限
+                                        {/if}
+                                    </td>
+                                    <td class="am-text-middle">
+                                        {$item['type']['value'] == 10?'立减￥'.$item['values']:''}
+                                        {$item['type']['value'] == 20?($item['values']/10).'折优惠':''}
+                                        {if $item['type']['value'] == 30}
+                                            {foreach $item['gift'] as $vo}
+                                                <p>赠：{$vo['name']}</p>
+                                            {/foreach}
+                                        {/if}
+                                        {if $item['type']['value'] == 40}
+                                            <p>{$item['gift'][0]['goods_name']}：{$item['values']/10}折优惠</p>
+                                        {/if}
+                                    </td>
+                                    <td class="am-text-middle">{$item['explain']}</td>
+                                    <td class="am-text-middle">
+                                        <div class="tpl-table-black-operation">
+                                            <a href="javascript:;" class="item-del tpl-table-black-operation-del"
+                                               data-id="{$item['coupon_id']}">
+                                                <i class="am-icon-trash"></i> 删除
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {/foreach}
+                            {else /}
+                                <tr>
+                                    <td colspan="9" class="am-text-center">暂无记录</td>
+                                </tr>
+                            {/if}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="am-u-lg-12 am-cf">
+                        <div class="am-fr">{:$list->render()} </div>
+                        <div class="am-fr pagination-total am-margin-right">
+                            <div class="am-vertical-align-middle">总记录：{:$list->total()}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        // 删除元素
+        var url = "{:url('market.coupon/delete')}";
+        $('.item-del').del('id', url);
+
+    });
+</script>
+

@@ -1,0 +1,1222 @@
+<div id="diy-editor" ref="diy-editor" class="diy-editor form-horizontal" :style="{ visibility: selectedIndex != -1 ? 'visible' : 'hidden' } " v-cloak>
+	<!-- 编辑器: 标题栏 -->
+	<div id="tpl_editor_page" v-if="selectedIndex === 'page'">
+		<div class="editor-title">
+		    <span>{{ diyData.page.name }}</span>
+		</div>
+		<form class="am-form tpl-form-line-form">
+			<div class="am-form-group"> 
+			    <label class="am-u-sm-3 am-form-label am-text-xs">页面名称 </label>
+				<div class="am-u-sm-8 am-u-end"> 
+				    <input class="tpl-form-input" type="text" v-model="diyData.page.params.name">
+					<div class="help-block am-margin-top-xs"> 
+					    <small>页面名称仅用于后台查找</small> 
+					</div>
+				</div>
+			</div>
+			<div class="am-form-group"> 
+			    <label class="am-u-sm-3 am-form-label am-text-xs">页面标题 </label>
+				<div class="am-u-sm-8 am-u-end"> 
+				    <input class="tpl-form-input" type="text" v-model="diyData.page.params.title">
+					<div class="help-block am-margin-top-xs"> 
+					    <small>小程序端顶部显示的标题</small> 
+					</div>
+				</div>
+			</div>
+			<div class="am-form-group"> 
+			    <label class="am-u-sm-3 am-form-label am-text-xs">分享标题 </label>
+				<div class="am-u-sm-8 am-u-end"> 
+				    <input class="tpl-form-input" type="text" v-model="diyData.page.params.share_title">
+					<div class="help-block am-margin-top-xs"> 
+					    <small>小程序端转发时显示的标题</small> 
+					</div>
+				</div>
+			</div>
+			<div class="am-form-group"> 
+			    <label class="am-u-sm-3 am-form-label am-text-xs">分享图片 </label>
+				<div class="am-u-sm-8 am-u-end">
+					<div class="data-image"> 
+					    <img :src="curItem.params.share_image" style="height: 60px;"
+							@click="onEditorSelectImage(curItem.params, 'share_image')" alt=""> 
+						</div>
+					<div class="help-block"> 
+					    <small>建议尺寸：500×400</small> 
+					</div>
+				</div>
+			</div>
+			<div class="am-form-group"> 
+			    <label class="am-u-sm-3 am-form-label am-text-xs">标题栏文字 </label>
+				<div class="am-u-sm-8 am-u-end"> 
+				    <label class="am-radio-inline"> 
+				        <input type="radio" value="black" v-model="diyData.page.style.titleTextColor"> 黑色 
+				    </label> 
+				    <label class="am-radio-inline">
+						<input type="radio" value="white" v-model="diyData.page.style.titleTextColor"> 白色 
+					</label>
+				</div>
+			</div>
+			<div class="am-form-group"> 
+			    <label class="am-u-sm-3 am-form-label am-text-xs">标题栏背景 </label>
+				<div class="am-u-sm-8 am-u-end"> 
+				    <input class="" type="color" v-model="diyData.page.style.titleBackgroundColor"> 
+			        <button type="button" class="btn-resetColor am-btn am-btn-xs"
+					    @click.stop="onEditorResetColor(diyData.page.style, 'titleBackgroundColor', '#ffffff')"> 重置
+				    </button> 
+				</div>
+			</div>
+		</form>
+	</div> 
+	<!-- 编辑器: 底部导航 -->
+	<div id="tpl_editor_tabbar" v-if="selectedIndex === 'tabbar'">
+		<div class="editor-title">
+		    <span>{{ diyData.tabbar.name }}</span>
+		</div>
+		<form class="am-form tpl-form-line-form">
+			<div class="am-form-group"> 
+			    <label class="am-u-sm-3 am-form-label am-text-xs">顶部边框 </label>
+				<div class="am-u-sm-8 am-u-end"> 
+				    <label class="am-radio-inline"> 
+				        <input type="radio" value="white" v-model="diyData.tabbar.style.borderStyle"> 灰 
+				    </label> 
+				    <label class="am-radio-inline">
+						<input type="radio" value="black" v-model="diyData.tabbar.style.borderStyle"> 黑 
+					</label>
+				</div>
+			</div>
+			<div class="am-form-group"> 
+			    <label class="am-u-sm-3 am-form-label am-text-xs">背景颜色 </label>
+				<div class="am-u-sm-8 am-u-end"> 
+				    <input class="" type="color" v-model="diyData.tabbar.style.backgroundColor"> 
+				    <button type="button" class="btn-resetColor am-btn am-btn-xs"
+						@click.stop="onEditorResetColor(diyData.tabbar.style, 'backgroundColor', '#ffffff')"> 重置
+					</button> 
+				</div>
+			</div>
+			<div class="am-form-group"> 
+			    <label class="am-u-sm-3 am-form-label am-text-xs">未激活颜色 </label>
+				<div class="am-u-sm-8 am-u-end"> 
+				    <input class="" type="color" v-model="diyData.tabbar.style.color"> 
+				    <button type="button" class="btn-resetColor am-btn am-btn-xs"
+						@click.stop="onEditorResetColor(diyData.tabbar.style, 'color', '#c0c4cc')"> 重置
+					</button> 
+				</div>
+			</div>
+			<div class="am-form-group"> 
+			    <label class="am-u-sm-3 am-form-label am-text-xs">被激活颜色 </label>
+				<div class="am-u-sm-8 am-u-end"> 
+				    <input class="" type="color" v-model="diyData.tabbar.style.selectedColor"> 
+				        <button type="button" class="btn-resetColor am-btn am-btn-xs"
+						@click.stop="onEditorResetColor(diyData.tabbar.style, 'selectedColor', '#303133')"> 重置
+					</button> 
+				</div>
+			</div>
+			<hr data-am-widget="divider" class="am-divider am-divider-dashed">
+			<div class="form-items">
+    			<div class="form-item">
+    				<div class="item-inner">
+    					    
+			            <div v-for="(item, index) in diyData.tabbar.list">
+    						<div class="am-form-group"> 
+    						    <label class="am-u-sm-3 am-form-label am-text-xs">栏目{{index+1}} </label>
+    							<div class="am-u-sm-8 am-u-end"> 
+    							    <input type="text" v-model='item.text'> 
+    							</div>
+    						</div>
+    						<input type="hidden" v-model='item.selectedIconPath'>
+    						<input type="hidden" v-model='item.iconPath'>
+    						<!--
+    						<div class="am-form-group"> 
+    						    <label class="am-u-sm-3 am-form-label am-text-xs">栏目链接 </label>
+    							<div class="am-u-sm-8 am-u-end"> 
+    							    <input type="text" v-model='item.pagePath'> 
+    							</div>
+    						</div>
+    						<div class="am-form-group"> 
+    						    <label class="am-u-sm-3 am-form-label am-text-xs">是否显示 </label>
+                				<div class="am-u-sm-8 am-u-end"> 
+                				    <label class="am-radio-inline"> 
+                				        <input type="radio" value="1" v-model="item.visible"> 是 
+                				    </label> 
+                				    <label class="am-radio-inline">
+                						<input type="radio" value="false" v-model="item.visible"> 否 
+                					</label>
+                				</div>
+    						</div>
+    						-->
+    					</div>
+    				</div>
+    			</div>
+			</div>
+		</form>
+	</div> 
+	<template v-if="diyData.items.length && curItem">
+	    <!-- 编辑器: 图片轮播 -->
+		<div id="tpl_editor_banner" v-if="curItem.type == 'banner'">
+			<div class="editor-title"><span>{{curItem.name}}</span></div>
+			<form class="am-form tpl-form-line-form">
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">自动播放 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="true" v-model="curItem.params.autoplay"> 开 
+					    </label> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="false" v-model="curItem.params.autoplay"> 关 
+					    </label> 
+				    </div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">播放衔接 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="true" v-model="curItem.params.circular"> 开 
+					    </label> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="false" v-model="curItem.params.circular"> 关 
+					    </label> 
+					 </div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">面板指示 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="true" v-model="curItem.params.indicator"> 开 
+					    </label> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="false"
+								v-model="curItem.params.indicator"> 关 </label> </div>
+				</div>
+				<div class="am-form-group"> <label class="am-u-sm-3 am-form-label am-text-xs">轮播时间 </label>
+					<div class="am-u-sm-8 am-u-end"> <input class="tpl-form-input" type="number"
+							v-model="curItem.params.interval">
+						<div class="help-block"> <small>自动轮播时间间隔，单位ms</small> </div>
+					</div>
+				</div>
+				<div class="am-form-group"> <label class="am-u-sm-3 am-form-label am-text-xs">切换时间 </label>
+					<div class="am-u-sm-8 am-u-end"> <input class="tpl-form-input" type="number"
+							v-model="curItem.params.duration">
+						<div class="help-block"> <small>切换一张轮播图所需的时间，单位ms</small> </div>
+					</div>
+				</div>
+				<div class="am-form-group"> <label class="am-u-sm-3 am-form-label am-text-xs">显示高度 </label>
+					<div class="am-u-sm-8 am-u-end"> <input class="tpl-form-input" type="number"
+							v-model="curItem.style.height">
+						<div class="help-block"> <small>轮播图显示高度，单位px</small> </div>
+					</div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">左右边距 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <input class="tpl-form-input" type="range"
+							v-model="curItem.style.marginLr" min="0" max="100">
+						<div class="display-value"> 
+						    <span class="value">{{ curItem.style.marginLr }}</span>px (像素)
+						</div>
+					</div>
+				</div>
+				<div class="am-form-group"> <label class="am-u-sm-3 am-form-label am-text-xs">圆角边框 </label>
+					<div class="am-u-sm-9 am-u-end"> <input class="tpl-form-input" type="range"
+							v-model="curItem.style.radius" min="0" max="20">
+						<div class="display-value"> <span class="value">{{ curItem.style.radius }}</span>px (像素)
+						</div>
+					</div>
+				</div>
+				<div class="am-form-group"> <label class="am-u-sm-3 am-form-label am-text-xs">3D效果 </label>
+					<div class="am-u-sm-9 am-u-end"> <label class="am-radio-inline"> <input type="radio" value="30"
+								v-model="curItem.style.effect3d"> 开 </label> <label class="am-radio-inline"> <input
+								type="radio" value="0" v-model="curItem.style.effect3d"> 关 </label> </div>
+				</div>
+				<div class="am-form-group"> <label class="am-u-sm-3 am-form-label am-text-xs">显示标题 </label>
+					<div class="am-u-sm-9 am-u-end"> <label class="am-radio-inline"> <input type="radio"
+								value="true" v-model="curItem.style.showTitle"> 开 </label> <label
+							class="am-radio-inline"> <input type="radio" value="false"
+								v-model="curItem.style.showTitle"> 关 </label> </div>
+				</div>
+				<div class="am-form-group"> <label class="am-u-sm-3 am-form-label am-text-xs">指示点形状 </label>
+					<div class="am-u-sm-9 am-u-end"> <label class="am-radio-inline"> <input type="radio"
+								value="rect" v-model="curItem.style.indicatorMode"> 方块 </label> <label
+							class="am-radio-inline"> <input type="radio" value="dot"
+								v-model="curItem.style.indicatorMode"> 圆点 </label> <label class="am-radio-inline">
+							<input type="radio" value="line" v-model="curItem.style.indicatorMode"> 粗线 </label>
+						<label class="am-radio-inline"> <input type="radio" value="none"
+								v-model="curItem.style.indicatorMode"> 无 </label> </div>
+				</div>
+				<div class="am-form-group"> <label class="am-u-sm-3 am-form-label am-text-xs">指点位置 </label>
+					<div class="am-u-sm-9 am-u-end"> <label class="am-radio-inline"> <input type="radio" value="top"
+								v-model="curItem.style.indicatorStyle"> 上边 </label> <label class="am-radio-inline">
+							<input type="radio" value="bottom" v-model="curItem.style.indicatorStyle"> 下边 </label>
+						<label class="am-radio-inline"> <input type="radio" value="left"
+								v-model="curItem.style.indicatorStyle"> 左边 </label> <label class="am-radio-inline">
+							<input type="radio" value="right" v-model="curItem.style.indicatorStyle"> 右边 </label>
+					</div>
+				</div>
+				<div class="form-items">
+					<draggable :list="curItem.data"
+						:options="{ animation: 120, filter: 'input', preventOnFilter: false }">
+						<div class="form-item" v-for="(banner, index) in curItem.data"> 
+						    <i class="iconfont iconshanchu item-delete"
+								@click="onEditorDeleleData(index, selectedIndex)"></i>
+							<div class="item-inner">
+								<div class="am-form-group"> <label class="am-u-sm-3 am-form-label am-text-xs">类型
+									</label>
+									<div class="am-u-sm-8 am-u-end"> <label class="am-radio-inline"> <input
+												type="radio" value="image" v-model="banner.type"> 图片 </label> <label
+											class="am-radio-inline"> <input type="radio" value="video"
+												v-model="banner.type"> 视频 </label> </div>
+								</div>
+								<div class="am-form-group"> <label class="am-u-sm-3 am-form-label am-text-xs">图片
+									</label>
+									<div class="am-u-sm-8 am-u-end">
+										<div v-if="banner.type == 'image'" class="data-image"> <img
+												:src="banner.image" alt=""
+												@click="onEditorSelectImage(banner, 'image')"> </div>
+										<div v-if="banner.type == 'video'" class="data-image"> <img
+												:src="banner.poster" alt=""
+												@click="onEditorSelectImage(banner, 'poster')"> </div>
+										<div class="help-block"> <small>建议尺寸：宽750 高度同上设置，单位PX</small> </div>
+									</div>
+								</div>
+								<div class="am-form-group"> <label class="am-u-sm-3 am-form-label am-text-xs">显示标题
+									</label>
+									<div class="am-u-sm-8 am-u-end"> <input type="text" value=""
+											v-model='banner.title'> </div>
+								</div>
+								<div class="am-form-group"> <label class="am-u-sm-3 am-form-label am-text-xs">链接地址
+									</label>
+									<div class="am-u-sm-8 am-u-end"> <input type="text" value=""
+											v-model='banner.url'> </div>
+								</div>
+								<div v-if="banner.type == 'video'" class="am-form-group"> <label
+										class="am-u-sm-3 am-form-label am-text-xs">视频地址 </label>
+									<div class="am-u-sm-8 am-u-end"> <input type="text" value=""
+											v-model='banner.image'> </div>
+								</div>
+							</div>
+						</div>
+					</draggable>
+				</div>
+				<div class="j-data-add form-item-add" @click="onEditorAddData"> <i class="fa fa-plus"></i> 添加一个
+				</div>
+			</form>
+		</div>
+		<!--编辑器: 单图组-->
+		<div id="tpl_editor_imageSingle" v-if="curItem.type == 'imageSingle'">
+			<div class="editor-title">
+			    <span>{{ curItem.name }}</span>
+			</div>
+			<form class="am-form tpl-form-line-form">
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">图片圆角 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <input class="tpl-form-input" type="range" v-model="curItem.style.radius" min="0" max="20">
+						<div class="display-value"> 
+						    <span class="value">{{ curItem.style.radius }}</span>px(像素) 
+						</div>
+					</div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">间隔距离 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <input class="tpl-form-input" type="range"
+							v-model="curItem.style.marginT" min="0" max="100">
+						<div class="display-value"> 
+						    <span class="value">{{ curItem.style.marginT }}</span>px (像素)
+						</div>
+					</div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">背景颜色 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <input class="" type="color" v-model="curItem.style.bgColor"> 
+					    <button type="button" class="btn-resetColor am-btn am-btn-xs"
+							@click.stop="onEditorResetColor(curItem.style, 'bgColor', '#f7f7f7')"> 重置 </button>
+					</div>
+				</div>
+				<hr data-am-widget="divider" class="am-divider am-divider-dashed">
+				<div class="form-items">
+					<draggable :list="curItem.data"
+						:options="{ animation: 120, filter: 'input', preventOnFilter: false }">
+						<div class="form-item drag" v-for="(imageSingle, index) in curItem.data"> 
+						    <i class="iconfont iconshanchu item-delete"
+								@click="onEditorDeleleData(index,selectedIndex)"></i>
+							<div class="item-inner">
+								<div class="am-form-group"> 
+								    <label class="am-u-sm-3 am-form-label am-text-xs">图片</label>
+									<div class="am-u-sm-8 am-u-end">
+										<div class="data-image"> 
+										    <img :src="imageSingle.image" alt=""
+												@click="onEditorSelectImage(imageSingle, 'image')"> 
+										</div>
+										<div class="help-block"> 
+                					        <small>通栏图片建议宽度375，单位px(像素)</small> 
+                					    </div>
+									</div>
+								</div>
+								<div class="am-form-group"> 
+								    <label class="am-u-sm-3 am-form-label am-text-xs">链接地址</label>
+									<div class="am-u-sm-8 am-u-end"> 
+									    <input type="text" value="" v-model='imageSingle.url'> 
+									</div>
+								</div>
+							</div>
+						</div>
+					</draggable>
+				</div>
+				<div class="j-data-add form-item-add" @click="onEditorAddData"> 
+				    <i class="fa fa-plus"></i> 添加一个
+				</div>
+			</form>
+		</div>
+		<!--编辑器: 图片橱窗-->
+		<div id="tpl_editor_window" v-if="curItem.type == 'window'">
+			<div class="editor-title"><span>{{ curItem.name }}</span></div>
+			<form class="am-form tpl-form-line-form">
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">图片圆角 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <input class="tpl-form-input" type="range" v-model="curItem.style.radius" min="0" max="20">
+						<div class="display-value"> 
+						    <span class="value">{{ curItem.style.radius }}</span>px(像素) 
+						</div>
+					</div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">间隔距离 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <input class="tpl-form-input" type="range"
+							v-model="curItem.style.marginT" min="0" max="100">
+						<div class="display-value"> 
+						    <span class="value">{{ curItem.style.marginT }}</span>px (像素)
+						</div>
+					</div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">背景颜色 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <input class="" type="color" v-model="curItem.style.bgColor"> 
+					    <button type="button" class="btn-resetColor am-btn am-btn-xs"
+							@click.stop="onEditorResetColor(curItem.style, 'bgColor', '#f7f7f7')"> 重置 </button>
+					</div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">布局方式 </label>
+					<div class="j-switch-help am-u-sm-8 am-u-end"> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="2" v-model="curItem.style.layout"> 堆积两列 
+					    </label> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="3" v-model="curItem.style.layout"> 堆积三列 
+					    </label> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="4" v-model="curItem.style.layout"> 堆积四列 
+					    </label> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="-1" v-model="curItem.style.layout"> 橱窗样式 
+					        <small class="help am-hide"> 最多显示四张图片，超出隐藏 </small> 
+					   </label>
+						<div class="help-block am-margin-top-xs" data-default="请确保所有图片的尺寸/比例相同。">
+							<small>请确保所有图片的尺寸/比例相同。</small> 
+						</div>
+					</div>
+				</div>
+				<hr data-am-widget="divider" class="am-divider am-divider-dashed">
+				<div class="form-items">
+					<draggable :list="curItem.data"
+						:options="{ animation: 120, filter: 'input', preventOnFilter: false }">
+						<div class="form-item drag" v-for="(item, index) in curItem.data"> <i
+								class="iconfont iconshanchu item-delete"
+								@click="onEditorDeleleData(index,selectedIndex)"> </i>
+							<div class="item-inner">
+								<div class="am-form-group"> 
+								    <label class="am-u-sm-3 am-form-label am-text-xs">图片</label>
+									<div class="am-u-sm-8 am-u-end">
+										<div class="data-image"> 
+										    <img :src="item.image" @click="onEditorSelectImage(item, 'image')"> 
+										</div>
+									</div>
+								</div>
+								<div class="am-form-group"> 
+								    <label class="am-u-sm-3 am-form-label am-text-xs">链接地址</label>
+									<div class="am-u-sm-8 am-u-end"> 
+									    <input type="text" v-model="item.url">
+									</div>
+								</div>
+							</div>
+						</div>
+					</draggable>
+				</div>
+				<div class="j-data-add form-item-add" @click="onEditorAddData"> <i class="fa fa-plus"></i> 添加一个
+				</div>
+			</form>
+		</div>
+		<!--编辑器: 视频组-->
+		<div id="tpl_editor_video" v-if="curItem.type == 'video'">
+			<div class="editor-title"><span>{{ curItem.name }}</span></div>
+			<form class="am-form tpl-form-line-form">
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">自动播放 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="0" v-model="curItem.params.autoplay"> 否 
+					    </label> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="1" v-model="curItem.params.autoplay"> 是 
+					    </label> 
+				    </div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">循环播放 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="0" v-model="curItem.params.loop"> 否 
+					    </label> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="1" v-model="curItem.params.loop"> 是 
+					    </label> 
+				    </div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">静音播放 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="0" v-model="curItem.params.muted"> 否 
+					    </label> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="1" v-model="curItem.params.muted"> 是 
+					    </label> 
+				    </div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">视频高度 </label>
+					<div class="am-u-sm-8 am-u-end"> 
+					    <input class="tpl-form-input" type="text" v-model="curItem.style.height">
+						<div class="help-block"> 
+					        <small>显示的高度，单位px(像素)</small> 
+					    </div>
+					</div>
+				</div>
+				<hr data-am-widget="divider" class="am-divider am-divider-dashed">
+				<div class="am-form-group am-padding-top"> <label class="am-u-sm-3 am-form-label am-text-xs">视频封面
+					</label>
+					<div class="am-u-sm-8 am-u-end">
+						<div class="data-image"> 
+						    <img :src="curItem.params.poster" @click="onEditorSelectImage(curItem.params, 'poster')"> 
+						 </div>
+					</div>
+				</div>
+				<div class="am-form-group"> <label class="am-u-sm-3 am-form-label am-text-xs">视频地址 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <input class="tpl-form-input" type="text" v-model="curItem.params.src"> </div>
+				</div>
+				
+			</form>
+		</div>
+		<!--编辑器: 公告组-->
+		<div id="tpl_editor_notice" v-if="curItem.type == 'notice'">
+			<div class="editor-title"><span>{{ curItem.name }}</span></div>
+			<form class="am-form tpl-form-line-form">
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">滚动方式 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="row" v-model="curItem.params.direction"> 水平 
+					    </label> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="column" v-model="curItem.params.direction"> 垂直 
+					    </label> 
+					</div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">步进效果 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="0" v-model="curItem.params.step"> 否 
+					    </label> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="1" v-model="curItem.params.step"> 是 
+					    </label> 
+				    </div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">边框颜色 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="0" v-model="curItem.params.is_border"> 关闭
+					    </label> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="1" v-model="curItem.params.is_border"> 开启 
+					    </label> 
+				    </div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">边框圆角 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <input class="tpl-form-input" type="range"
+							v-model="curItem.style.radius" min="0" max="20">
+						<div class="display-value"> 
+						    <span class="value">{{ curItem.style.radius }}</span>px (像素)
+						</div>
+					</div>
+				</div>
+				<hr data-am-widget="divider" class="am-divider am-divider-dashed">
+				<div class="form-items">
+					<draggable :list="curItem.data"
+						:options="{ animation: 120, filter: 'input', preventOnFilter: false }">
+						<div class="form-item drag" v-if="curItem.params.direction == 'row'"> 
+							<div class="item-inner">
+								<div class="am-form-group"> 
+								    <label class="am-u-sm-3 am-form-label am-text-xs">公告内容</label>
+									<div class="am-u-sm-9 am-u-end"> 
+									    <input type="text" v-model='curItem.data[0].text'> 
+									</div>
+								</div>
+								<div class="am-form-group"> 
+								    <label class="am-u-sm-3 am-form-label am-text-xs">公告连接</label>
+									<div class="am-u-sm-9 am-u-end"> 
+									    <input type="text" v-model='curItem.data[0].url'> 
+									</div>
+								</div>
+							</div>
+						</div>
+						<div v-else class="form-item drag" v-for="(notice, index) in curItem.data"> 
+						    <i class="iconfont iconshanchu item-delete"
+								@click="onEditorDeleleData(index,selectedIndex)"></i>
+							<div class="item-inner">
+								<div class="am-form-group"> 
+								    <label class="am-u-sm-3 am-form-label am-text-xs">公告内容</label>
+									<div class="am-u-sm-9 am-u-end"> 
+									    <input type="text" v-model='notice.text'> 
+									</div>
+								</div>
+								<div class="am-form-group"> 
+								    <label class="am-u-sm-3 am-form-label am-text-xs">公告连接</label>
+									<div class="am-u-sm-9 am-u-end"> 
+									    <input type="text" v-model='notice.url'> 
+									</div>
+								</div>
+							</div>
+						</div>
+					</draggable>
+				</div>
+				<div v-if="curItem.params.direction == 'column'" class="j-data-add form-item-add" @click="onEditorAddData"> 
+				    <i class="fa fa-plus"></i> 添加一个
+				</div>
+			</form>
+		</div>
+		<!--编辑器: 导航组-->
+		<div id="tpl_editor_navBar" v-if="curItem.type == 'navBar'">
+			<div class="editor-title"><span>{{ curItem.name }}</span></div>
+			<form class="am-form tpl-form-line-form">
+			    <div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs"> 栏目标题 </label>
+					<div class="am-u-sm-8 am-u-end"> 
+					    <input class="tpl-form-input" type="text" v-model="curItem.params.title"> 
+					    <small>留空则不显示</small>
+					</div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">每行数量 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="3" v-model="curItem.params.rowsNum"> 3个 
+					    </label> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="4" v-model="curItem.params.rowsNum"> 4个 
+					    </label> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="5" v-model="curItem.params.rowsNum"> 5个 
+						</label> 
+					</div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">外框颜色 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="0" v-model="curItem.params.is_border"> 关闭 
+					    </label> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="1" v-model="curItem.params.is_border"> 开启 
+					    </label> 
+					</div>
+				</div>
+				<hr data-am-widget="divider" class="am-divider am-divider-dashed">
+			    <div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">图标宽度</label>
+					<div class="am-u-sm-8 am-u-end"> 
+					    <input type="text" value="" v-model='curItem.style.width'> 
+					    <div class="help-block"> 
+					        <small>图片显示的宽度，单位px(像素)</small> 
+					    </div>
+					</div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">图标高度</label>
+					<div class="am-u-sm-8 am-u-end"> 
+					    <input type="text" value="" v-model='curItem.style.height'> 
+					    <div class="help-block"> 
+					        <small>图片显示的高度，单位px(像素)</small> 
+					    </div>
+					</div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">边框圆角 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <input class="tpl-form-input" type="range"
+							v-model="curItem.style.radius" min="0" max="20">
+						<div class="display-value"> 
+						    <span class="value">{{ curItem.style.radius }}</span>px (像素)
+						</div>
+					</div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">背景颜色 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <input class="" type="color" v-model="curItem.style.bgColor">
+						<button type="button" class="btn-resetColor am-btn am-btn-xs"
+							@click.stop="onEditorResetColor(curItem.style, 'bgColor', '#ffffff')"> 重置 </button>
+					</div>
+				</div>
+				<hr data-am-widget="divider" class="am-divider am-divider-dashed">
+				
+				<div class="form-items">
+					<draggable :list="curItem.data"
+						:options="{ animation: 120, filter: 'input', preventOnFilter: false }">
+						<div class="form-item drag" v-for="(navBar, index) in curItem.data"> <i
+								class="iconfont iconshanchu item-delete"
+								@click="onEditorDeleleData(index, selectedIndex)"></i>
+							<div class="item-inner">
+								<div class="am-form-group"> 
+								    <label class="am-u-sm-3 am-form-label am-text-xs">图片</label>
+									<div class="am-u-sm-8 am-u-end">
+										<div class="data-image"> 
+										    <img :src="navBar.image" @click="onEditorSelectImage(navBar, 'image')"> 
+										</div>
+										<div class="help-block"> 
+										    <small>建议尺寸100x100</small> 
+										</div>
+									</div>
+								</div>
+								<div class="am-form-group"> 
+								    <label class="am-u-sm-3 am-form-label am-text-xs">文字内容</label>
+									<div class="am-u-sm-8 am-u-end"> 
+									    <input type="text" v-model="navBar.text">
+									</div>
+								</div>
+								<div class="am-form-group"> 
+								    <label class="am-u-sm-3 am-form-label am-text-xs">文字颜色</label>
+									<div class="am-u-sm-8 am-u-end"> 
+									    <input type="color" v-model="navBar.color">
+										<button type="button" class="btn-resetColor am-btn am-btn-xs"
+											@click.stop="onEditorResetColor(navBar, 'color', '#999999')"> 重置
+										</button> 
+									</div>
+								</div>
+								<div class="am-form-group"> 
+								    <label class="am-u-sm-3 am-form-label am-text-xs">链接地址</label>
+									<div class="am-u-sm-8 am-u-end"> 
+									    <input type="text" v-model="navBar.url">
+									</div>
+								</div>
+							</div>
+						</div>
+					</draggable>
+				</div>
+				<div class="j-data-add form-item-add" @click="onEditorAddData"> <i class="fa fa-plus"></i> 添加一个
+				</div>
+			</form>
+		</div>
+		<!--编辑器: 点单组-->
+		<div id="tpl_editor_navBar" v-if="curItem.type == 'order'">
+			<div class="editor-title"><span>{{ curItem.name }}</span></div>
+			<form class="am-form tpl-form-line-form">
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">外框圆角 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <input class="tpl-form-input" type="range"
+							v-model="curItem.style.radius" min="0" max="20">
+						<div class="display-value"> 
+						    <span class="value">{{ curItem.style.radius }}</span>px (像素)
+						</div>
+					</div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs"> 外框颜色 </label>
+					<div class="am-u-sm-8 am-u-end">
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="0" v-model="curItem.params.is_border"> 关闭
+						</label> 
+						<label class="am-radio-inline"> 
+						    <input type="radio" value="1" v-model="curItem.params.is_border"> 开启
+						</label>
+					</div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">背景颜色 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <input class="" type="color" v-model="curItem.style.bgColor">
+						<button type="button" class="btn-resetColor am-btn am-btn-xs"
+							@click.stop="onEditorResetColor(curItem.style, 'bgColor', '#ffffff')"> 重置 </button>
+					</div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs"> 显示数量 </label>
+					<div class="am-u-sm-8 am-u-end">
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="1" v-model="curItem.params.number"> 1个
+						</label> 
+						<label class="am-radio-inline"> 
+						    <input type="radio" value="2" v-model="curItem.params.number"> 2个 
+						</label>
+						<!--
+						<label class="am-radio-inline"> 
+						    <input type="radio" value="3" v-model="curItem.params.number"> 3个 
+						</label>
+						-->
+					</div>
+				</div>
+				<hr data-am-widget="divider" class="am-divider am-divider-dashed">
+    			<div class="form-items">
+					<draggable :list="curItem.data"
+						:options="{ animation: 120, filter: 'input', preventOnFilter: false }">
+						<div class="form-item drag" v-for="(item, index) in curItem.data"> <i
+								class="iconfont iconshanchu item-delete"
+								@click="onEditorDeleleData(index, selectedIndex)"></i>
+							<div class="item-inner">
+        						<div class="am-form-group"> 
+        						    <label class="am-u-sm-3 am-form-label am-text-xs">标题名称 </label>
+        							<div class="am-u-sm-8 am-u-end"> 
+        							    <input type="text" v-model='item.title'> 
+        							</div>
+        						</div>
+        						<div class="am-form-group"> 
+        						    <label class="am-u-sm-3 am-form-label am-text-xs">辅助文字 </label>
+        							<div class="am-u-sm-8 am-u-end"> 
+        							    <input type="text" v-model='item.text'> 
+        							</div>
+        						</div>
+        						<div class="am-form-group"> 
+        						    <label class="am-u-sm-3 am-form-label am-text-xs">点单类型 </label>
+        							<div class="am-u-sm-8 am-u-end">
+        							    <label class="am-radio-inline"> 
+                					        <input type="radio" value="10" v-model="item.order_mode"> 堂食
+                						</label> 
+                						<label class="am-radio-inline"> 
+                						    <input type="radio" value="20" v-model="item.order_mode"> 外卖 
+                						</label>
+        							</div>
+        						</div>
+							</div>
+						</div>
+					</draggable>
+				</div>
+				<div v-if="curItem.data.length < curItem.params.number" class="j-data-add form-item-add" @click="onEditorAddData"> 
+				    <i class="fa fa-plus"></i> 添加一个
+				</div>
+			</form>
+		</div>
+		<!--编辑器: 商品组-->
+		<div id="tpl_editor_goods" v-if="curItem.type == 'goods'">
+			<div class="editor-title"><span>{{ curItem.name }}</span></div>
+			<form class="am-form tpl-form-line-form">
+				<!--商品数据-->
+				<div class="j-switch-box" data-item-class="switch-source">
+				    <div class="am-form-group"> 
+					    <label class="am-u-sm-3 am-form-label am-text-xs"> 栏目标题 </label>
+						<div class="am-u-sm-8 am-u-end"> 
+						    <input class="tpl-form-input" type="text" v-model="curItem.params.title"> 
+						    <small>留空则不显示</small>
+						</div>
+					</div>
+    				<div class="am-form-group"> 
+    				    <label class="am-u-sm-3 am-form-label am-text-xs">外框颜色 </label>
+    					<div class="am-u-sm-9 am-u-end"> 
+    					    <label class="am-radio-inline"> 
+    					        <input type="radio" value="0" v-model="curItem.params.is_border"> 关闭 
+    					    </label> 
+    					    <label class="am-radio-inline"> 
+    					        <input type="radio" value="1" v-model="curItem.params.is_border"> 开启 
+    					    </label> 
+    					</div>
+    				</div>
+					<div class="am-form-group"> 
+					    <label class="am-u-sm-3 am-form-label am-text-xs">商品来源 </label>
+						<div class="am-u-sm-8 am-u-end"> 
+						    <label class="am-radio-inline"> 
+						        <input type="radio" value="auto" v-model="curItem.params.source"> 自动获取 
+						    </label> 
+						    <label class="am-radio-inline"> 
+						        <input type="radio" value="choice" v-model="curItem.params.source" disabled> 手动选择 
+						    </label> 
+					    </div>
+					</div>
+					<!--手动选择-->
+					<div class="switch-source __choice " v-show="curItem.params.source == 'choice'">
+						<div class="form-items __goods am-cf">
+							<draggable :list="curItem.data"
+								:options="{ animation: 120, filter: 'input', preventOnFilter: false }">
+								<div v-for="(goods,index) in curItem.data" class="form-item drag"> 
+								    <i class="iconfont iconshanchu item-delete" data-no-confirm="true"
+										@click="onEditorDeleleData(index, selectedIndex)"></i>
+									<div class="item-inner">
+										<div class="data-image"> <img :src="goods.image"> </div>
+									</div>
+								</div>
+							</draggable>
+						</div>
+						<div class="j-selectGoods form-item-add" @click.stop="onSelectGoods(curItem)"> 
+						    <i class="fa fa-plus"></i> 选择商品 
+						</div>
+					</div> 
+					<!-- 自动获取 -->
+					<div class="switch-source" v-show="curItem.params.source == 'auto'">
+						<!-- <div class="am-form-group"> <label class="am-u-sm-3 am-form-label am-text-xs">商品分类 </label> <div class="am-u-sm-8 am-u-end"> <select v-model="curItem.params.auto.category" data-am-selected="{btnSize: 'sm',  placeholder:'全部分类', maxHeight: 400}"> <option value="0"> -- 全部分类 --</option> <template v-for="first in opts.category"> <option :value="first.category_id"> {{ first.name }}</option> <template v-if="first.child"> <option v-for="two in first.child" :value="two.category_id"> 　{{ two.name }} </option> </template> </template> </select> </div> </div> -->
+						<div class="am-form-group"> 
+						    <label class="am-u-sm-3 am-form-label am-text-xs"> 筛选条件 </label>
+							<div class="am-u-sm-8 am-u-end"> 
+							    <label class="am-radio-inline"> 
+							        <input type="radio" value="all" v-model="curItem.params.auto.goodsSort"> 综合 
+							    </label> 
+							    <label class="am-radio-inline"> 
+							        <input type="radio" value="sales" v-model="curItem.params.auto.goodsSort"> 销量 
+							    </label> 
+							    <label class="am-radio-inline"> 
+							        <input type="radio" value="new" v-model="curItem.params.auto.goodsSort"> 新品 
+							    </label> 
+							    <label class="am-radio-inline"> 
+							        <input type="radio" value="recommend" v-model="curItem.params.auto.goodsSort"> 推荐 
+							    </label> 
+							</div>
+						</div>
+						<div class="am-form-group"> 
+						    <label class="am-u-sm-3 am-form-label am-text-xs"> 显示数量 </label>
+							<div class="am-u-sm-8 am-u-end"> 
+							    <input class="tpl-form-input" type="number" min="1" v-model="curItem.params.auto.showNum"> 
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--分割线-->
+				<hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" />
+				<!--组件样式-->
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">边框圆角 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <input class="tpl-form-input" type="range"
+							v-model="curItem.style.radius" min="0" max="20">
+						<div class="display-value"> 
+						    <span class="value">{{ curItem.style.radius }}</span>px (像素)
+						</div>
+					</div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">背景颜色 </label>
+					<div class="am-u-sm-8 am-u-end"> 
+					    <input type="color" v-model="curItem.style.bgColor"> 
+					    <button type="button" class="btn-resetColor am-btn am-btn-xs"
+							@click.stop="onEditorResetColor(curItem.style, 'bgColor', '#ffffff')"> 重置 </button>
+					</div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">显示类型 </label>
+					<div class="am-u-sm-8 am-u-end"> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="list" v-model="curItem.style.display"> 列表平铺 
+					    </label> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="slide" v-model="curItem.style.display"> 横向滑动 
+					    </label>
+					</div>
+				</div>
+				<div class="am-form-group" v-if="curItem.style.display == 'list'"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">分列数量 </label>
+					<div class="am-u-sm-8 am-u-end"> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="1" v-model="curItem.style.column"> 单列
+						</label> 
+						<label class="am-radio-inline"> 
+						    <input type="radio" value="2" v-model="curItem.style.column"> 两列 
+						</label> 
+						<label class="am-radio-inline"> 
+						    <input type="radio" value="3" v-model="curItem.style.column"> 三列 
+					    </label> 
+					</div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">显示内容 </label>
+					<div class="am-u-sm-8 am-u-end"> 
+					    <label class="am-checkbox-inline"> 
+					        <input type="checkbox" v-model="curItem.style.show.goodsName">商品名称 
+					    </label> 
+					    <label class="am-checkbox-inline"> 
+							<input type="checkbox" v-model="curItem.style.show.goodsPrice"> 商品价格 
+						</label> 
+						<label class="am-checkbox-inline"> 
+							<input type="checkbox" v-model="curItem.style.show.linePrice"> 划线价格 
+						</label> 
+						<label class="am-checkbox-inline" v-if="curItem.style.column == 1 && curItem.style.display == 'list'"> 
+							<input type="checkbox" v-model="curItem.style.show.sellingPoint"> 商品卖点 
+						</label> 
+					    <label class="am-checkbox-inline" v-if="curItem.style.column == 1 && curItem.style.display == 'list'"> 
+					        <input type="checkbox" v-model="curItem.style.show.goodsSales"> 商品销量 
+						</label> 
+					</div>
+				</div>
+			</form>
+		</div>
+		<!--编辑器: 在线客服-->
+		<div id="tpl_editor_service" v-if="curItem.type == 'service'">
+			<div class="editor-title"><span>{{ curItem.name }}</span></div>
+			<form class="am-form tpl-form-line-form">
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs"> 底边距 </label>
+					<div class="am-u-sm-8 am-u-end"> 
+					    <input class="tpl-form-input" type="range" v-model="curItem.style.bottom" min="0" max="200">
+						<div class="display-value"> 
+						    <span class="value">{{ curItem.style.bottom }}</span>px 
+						</div>
+					</div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs"> 右边距 </label>
+					<div class="am-u-sm-8 am-u-end"> 
+					    <input class="tpl-form-input" type="range" v-model="curItem.style.right" min="0" max="200">
+						<div class="display-value"> 
+						    <span class="value">{{ curItem.style.right }}</span>px 
+						</div>
+					</div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs"> 透明度 </label>
+					<div class="am-u-sm-8 am-u-end"> 
+					    <input class="tpl-form-input" type="range" v-model="curItem.style.opacity" min="0" max="100">
+						<div class="display-value"> 
+						    <span class="value">{{ curItem.style.opacity }}</span>% 
+						</div>
+					</div>
+				</div>
+				<hr data-am-widget="divider" class="am-divider am-divider-dashed">
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs"> 客服类型 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="chat" v-model="curItem.params.type"> 在线聊天 
+					    </label> 
+					    <label class="am-radio-inline"> 
+					            <input type="radio" value="phone" v-model="curItem.params.type"> 拨打电话 
+					    </label> 
+				    </div>
+				</div>
+				<div class="am-form-group" v-show="curItem.params.type == 'phone'"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs"> 电话号码 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <input type="text" class="tpl-form-input" placeholder="请输入电话号码" v-model="curItem.params.phone_num"> 
+					</div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs"> 客服图标 </label>
+					<div class="am-u-sm-8 am-u-end">
+						<div class="data-image"> 
+						    <img :src="curItem.params.image" style="height: 45px;" title="点击更换图片" alt="" @click="onEditorSelectImage(curItem.params, 'image')"> 
+						</div>
+						<div class="help-block"> 
+						    <small>建议尺寸：90×90</small> 
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- 编辑器: 关注公众号 -->
+		<div id="tpl_editor_officialAccount" v-if="curItem.type == 'officialAccount'">
+			<div class="editor-title">
+			    <span>{{ curItem.name }}</span>
+			</div>
+			<div class="editor-centent">
+				<p>1、使用组件前，需前往<a href="https://mp.weixin.qq.com" target="_blank">小程序后台</a>，在“设置”->“接口设置”->“公众号关注组件”中设置要展示的公众号。</p>
+				<p class="x-mb-10">注：设置的公众号需与小程序主体一致。</p>
+				<p>2、当小程序从扫二维码场景（场景值1011）打开时，才具有展示引导关注公众号组件的能力。</p>
+			</div>
+		</div>
+		<!--编辑器: 富文本-->
+		<div id="tpl_editor_richText" v-if="curItem.type == 'richText'">
+			<div class="editor-title">
+			    <span>{{curItem.name}}</span>
+			</div>
+			<form class="am-form tpl-form-line-form">
+			    <div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs"> 栏目标题 </label>
+					<div class="am-u-sm-8 am-u-end"> 
+					    <input class="tpl-form-input" type="text" v-model="curItem.params.title"> 
+					    <small>留空则不显示</small>
+					</div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">外框颜色 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="0" v-model="curItem.params.is_border"> 隐藏 
+					    </label> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="1" v-model="curItem.params.is_border"> 显示 
+					    </label> 
+					</div>
+				</div>
+			    <!--分割线-->
+				<hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" />
+			    <div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">边框圆角 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <input class="tpl-form-input" type="range"
+							v-model="curItem.style.radius" min="0" max="20">
+						<div class="display-value"> 
+						    <span class="value">{{ curItem.style.radius }}</span>px (像素)
+						</div>
+					</div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">背景颜色 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <input class="" type="color" v-model="curItem.style.bgColor"> 
+					        <button type="button" class="btn-resetColor am-btn am-btn-xs"
+							@click.stop="onEditorResetColor(curItem.style, 'bgColor', '#ffffff')"> 重置 </button>
+					</div>
+				</div>
+				<div class="am-form-group am-padding-top-sm"> 
+				    <textarea id="ume-editor" name="editorValue"></textarea> 
+				</div>
+			</form>
+		</div>
+		<!--编辑器: 辅助空白-->
+		<div id="tpl_editor_blank" v-if="curItem.type == 'blank'">
+			<div class="editor-title">
+			    <span>{{ curItem.name }}</span>
+			</div>
+			<form class="am-form tpl-form-line-form">
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">组件高度 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <input class="tpl-form-input" type="range" v-model="curItem.style.height" min="1" max="100">
+						<div class="display-value"> 
+						    <span class="value">{{ curItem.style.height }}</span>px(像素)
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!--编辑器: 辅助线-->
+		<div id="tpl_editor_guide" v-if="curItem.type == 'guide'">
+			<div class="editor-title">
+			    <span>{{ curItem.name }}</span>
+			</div>
+			<form class="am-form tpl-form-line-form">
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">线条样式 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="solid" v-model='curItem.style.style'> 实线 
+					    </label> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="dashed" v-model='curItem.style.style'> 虚线 
+					    </label> 
+					    <label class="am-radio-inline">
+							<input type="radio" value="dotted" v-model='curItem.style.style'> 点状 
+						</label> 
+					</div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">线条颜色 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <input class="" type="color" v-model="curItem.style.color">
+						<button type="button" class="btn-resetColor am-btn am-btn-xs"
+							@click.stop="onEditorResetColor(curItem.style, 'color', '#f7f7f7')"> 重置 </button>
+					</div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">背景颜色 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <input class="" type="color" v-model="curItem.style.bgColor"> 
+					        <button type="button" class="btn-resetColor am-btn am-btn-xs"
+							@click.stop="onEditorResetColor(curItem.style, 'bgColor', '#f7f7f7')"> 重置 </button>
+					</div>
+				</div>
+				<!--分割线-->
+				<hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" />
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">线条高度 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <input class="tpl-form-input" type="range" v-model="curItem.style.height" min="1" max="20">
+						<div class="display-value"> 
+						    <span class="value">{{ curItem.style.height }}</span>px(像素)
+						</div>
+					</div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">左右边距 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <input class="tpl-form-input" type="range"
+							v-model="curItem.style.marginLr" min="0" max="100">
+						<div class="display-value"> 
+						    <span class="value">{{ curItem.style.marginLr }}</span>px (像素)
+						</div>
+					</div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs">上下填充 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <input class="tpl-form-input" type="range" v-model="curItem.style.paddingTb" min="0" max="50">
+						<div class="display-value"> 
+						    <span class="value">{{ curItem.style.paddingTb }}</span>px(像素)
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!--编辑器: 栏目标题-->
+		<div id="tpl_editor_service" v-if="curItem.type == 'columnTitle'">
+			<div class="editor-title">
+			    <span>{{ curItem.name }}</span>
+			</div>
+			<form class="am-form tpl-form-line-form">
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs"> 右边标题 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <input type="text" class="tpl-form-input" placeholder="请输入标题" v-model="curItem.params.title"> </div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs"> 左边标题 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <input type="text" class="tpl-form-input" placeholder="请输入标题" v-model="curItem.params.subTitle"> 
+					</div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs"> 标题链接 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <input type="text" class="tpl-form-input" placeholder="请输入连接地址" v-model="curItem.params.url"> 
+					</div>
+				</div>
+				<hr data-am-widget="divider" class="am-divider am-divider-dashed">
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs"> 右边内容 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="1" v-model="curItem.params.right"> 显示 
+					    </label> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="0" v-model="curItem.params.right"> 隐藏 
+					    </label> 
+				    </div>
+				</div>
+				<div class="am-form-group"> 
+				    <label class="am-u-sm-3 am-form-label am-text-xs"> 右边箭头 </label>
+					<div class="am-u-sm-9 am-u-end"> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="1" v-model="curItem.params.arrow"> 显示 
+					    </label> 
+					    <label class="am-radio-inline"> 
+					        <input type="radio" value="0" v-model="curItem.params.arrow"> 隐藏 
+					    </label> 
+				    </div>
+				</div>
+			</form>
+		</div>
+	</template>
+</div>

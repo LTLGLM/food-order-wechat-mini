@@ -1,0 +1,81 @@
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <div class="widget-head am-cf">
+                    <div class="widget-title am-fl">关注回复</div>
+                </div> 
+                <form id="my-form" class="am-form tpl-form-line-form" method="post">
+                    <div class="widget-body">
+                        <fieldset>
+                        <div class="am-form-group">
+                            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">是否开启 </label>
+                            <div class="am-u-sm-9 am-u-end">
+                                <label class="am-radio-inline">
+                                    <input type="radio" name="data[is_open][value]" value="1" data-am-ucheck {$model['is_open']['value']==1?'checked':''}>
+                                    开启
+                                </label>
+                                <label class="am-radio-inline">
+                                    <input type="radio" name="data[is_open][value]" value="0" data-am-ucheck {$model['is_open']['value']==0?'checked':''}>
+                                    关闭
+                                </label>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">消息类型 </label>
+                            <div class="am-u-sm-9 am-u-end">
+                                <select v-model="type" name="data[type][value]" required style="width:200px;">
+                                    <option value="text" {$model['type']['value']=='text'?'selected':''}>文字消息</option>
+                                    <option value="image" {$model['type']['value']=='image'?'selected':''}>图片消息</option>
+                                    <option value="voice" {$model['type']['value']=='voice'?'selected':''}>语音消息</option>
+                                    <option value="video" {$model['type']['value']=='video'?'selected':''}>视频消息</option>
+                                    <!--<option value="music">音乐消息</option>-->
+                                    <option value="news" {$model['type']['value']=='news'?'selected':''}>图文消息</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div v-if="type === 'text'" class="am-form-group">
+                            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">回复内容 </label>
+                            <div class="am-u-sm-9 am-u-end">
+                                <textarea name="data[content][text]" rows="5" placeholder="请输入回复内容">{$model['content']['text']}</textarea>
+                                <small>换行显示用“回车”</small>
+                            </div>
+                        </div>
+                        <div v-else class="am-form-group">
+                            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">MEDIA_ID </label>
+                            <div class="am-u-sm-9 am-u-end">
+                                <input type="text" class="tpl-form-input" name="data[content][media_id]"
+                                       value="{$model['content']['media_id']}" required>
+                                <small v-if="type === 'image'"><a href="{:url('plat.weixin.wechat.material.image/index')}">点此上传图片素材，或获取 MEDIA_ID</a></small>
+                                <small v-if="type === 'voice'"><a href="{:url('plat.weixin.wechat.material.voice/index')}">点此上传语音素材，或获取 MEDIA_ID</a></small>
+                                <small v-if="type === 'video'"><a href="{:url('plat.weixin.wechat.material.video/index')}">点此上传视频素材，或获取 MEDIA_ID</a></small>
+                                <small v-if="type === 'news'"><a href="{:url('plat.weixin.wechat.material.text/index')}">点此上传图文素材，或获取 MEDIA_ID</a></small>
+                            </div>
+                        </div> 
+                        <div class="am-form-group">
+                            <div class="am-u-sm-9 am-u-sm-push-3 am-margin-top-lg">
+                                <button type="submit" class="j-submit am-btn am-btn-secondary">提交
+                                </button>
+                            </div>
+                        </div>
+                        </fieldset>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/assets/plugins/vue/vue.min.js?v={$version}"></script>
+<script>
+    $(function () {
+        // 渲染页面
+        new Vue({
+            el: '#my-form',
+            data: {
+                type:"{$model['type']['value']}"
+            }
+        });
+        $('#my-form').formPost();
+
+    });
+</script>

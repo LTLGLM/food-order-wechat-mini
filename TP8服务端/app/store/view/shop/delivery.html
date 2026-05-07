@@ -1,0 +1,185 @@
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <form id="my-form" class="am-form tpl-form-line-form" enctype="multipart/form-data" method="post">
+                    <div class="widget-head am-cf">
+                        <div class="widget-title am-fl">同城配送设置</div>
+                    </div>
+                    <div class="widget-body">
+                        <fieldset>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">配送范围 </label>
+                                <div class="am-u-sm-9 am-u-end am-input-group">
+                                    <div class="am-u-sm-2">
+                                        <input type="number" class="am-form-field" name="data[delivery_range]"
+                                               value="{$model['delivery_range']}" required>
+                                    </div>
+                                    <label class="am-u-sm-5 am-form-label am-text-left">米</label>
+									<div class="help-block am-u-sm-12">
+                                        <small>最远配送范围</small>
+                                    </div>
+                                </div>
+                            </div>
+							<div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">免费范围 </label>
+                                <div class="am-u-sm-9 am-u-end am-input-group">
+                                    <div class="am-u-sm-2">
+                                        <input type="number" class="am-form-field" name="data[free_range]"
+                                               value="{$model['free_range']}" required>
+                                    </div>
+                                    <label class="am-u-sm-5 am-form-label am-text-left">米</label>
+									<div class="help-block am-u-sm-12">
+                                        <small>设置0为不使用</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">配送费用 </label>
+                                <div class="am-u-sm-9 am-u-end am-input-group">
+                                    <div class="am-u-sm-2">
+                                        <input type="number" class="am-form-field" name="data[delivery_price]"
+                                               value="{$model['delivery_price']}" required>
+                                    </div>
+                                    <label class="am-u-sm-5 am-form-label am-text-left">元</label>
+                                    <div class="help-block am-u-sm-12">
+                                        <small>设置0为不收取</small>
+                                    </div>
+                                </div>
+                            </div>
+							<div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">起送价格 </label>
+                                <div class="am-u-sm-9 am-u-end am-input-group">
+                                    <div class="am-u-sm-2">
+                                        <input type="number" class="am-form-field" name="data[min_price]"
+                                               value="{$model['min_price']}" required>
+                                    </div>
+                                    <label class="am-u-sm-5 am-form-label am-text-left">元</label>
+									<div class="help-block am-u-sm-12">
+                                        <small>不含配送费包装费等附加费用，设置0为不要求</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require"> 自动配送 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <label class="am-radio-inline">
+                                        <input v-model="checked" type="radio" name="data[is_delivery]" value="0" 
+											{$model['is_delivery'] == 0?'checked':''} data-am-ucheck>
+                                        关闭
+                                    </label>
+                                    <label class="am-radio-inline">
+                                        <input v-model="checked" type="radio" name="data[is_delivery]" value="1" 
+										{$model['is_delivery'] == 1?'checked':''} data-am-ucheck>
+                                        开启
+                                    </label>
+                                    <div class="help-block">
+                                        <small>开启后外卖订单会自动推送给第三方配送公司</small>
+                                    </div>
+                                </div>
+                            </div>
+							<div v-show="checked == 1" class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require"> 配送公司 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <label class="am-radio-inline">
+                                        <input type="radio" name="data[company]" value="self" {$model['company'] == 'self'?'checked':''} data-am-ucheck>
+                                        商家自配
+                                    </label>
+                                    {foreach $company as $item}
+                                    <label class="am-radio-inline">
+                                        <input type="radio" name="data[company]" value="{$item['name']}" {$model['company'] == $item['name']?'checked':''} data-am-ucheck>
+                                        {$item['title']}
+                                    </label>
+                                    {/foreach}
+                                    <div class="help-block">
+                                        <small>选择外卖配送第三方服务商，外卖订单有效</small>
+                                    </div>
+                                </div>
+                            </div>
+                            {foreach $company as $item}
+                            {if $item['name']=='sf'}
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label">顺丰门店ID </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <input type="text" class="tpl-form-input" name="data[sf_shop_id]"
+                                           value="{$model['sf_shop_id']}">
+                                    <small>使用顺丰配送必须配置该项</small>
+                                </div>
+                            </div>
+                            {/if}
+                            {if $item['name']=='dada'}
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label">达达门店ID </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <input type="text" class="tpl-form-input" name="data[dada_shop_id]"
+                                           value="{$model['dada_shop_id']}">
+                                    <small>使用达达配送必须配置该项</small>
+                                </div>
+                            </div>
+                            {/if}
+                            {if $item['name']=='make'}
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label">码科门店ID </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <input type="text" class="tpl-form-input" name="data[make_shop_id]"
+                                           value="{$model['make_shop_id']}">
+                                    <small>使用码科配送必须配置该项</small>
+                                </div>
+                            </div>
+                            {/if}
+                            {if $item['name']=='hmpt'}
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label">河马门店ID </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <input type="text" class="tpl-form-input" name="data[hmpt_shop_id]"
+                                           value="{$model['hmpt_shop_id']}">
+                                    <small>使用河马跑腿配送必须配置该项</small>
+                                </div>
+                            </div>
+                            {/if}
+                            {if $item['name']=='shansong'}
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label">闪送门店ID </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <input type="text" class="tpl-form-input" name="data[shansong_shop_id]"
+                                           value="{$model['shansong_shop_id']}">
+                                    <small>使用闪送配送必须配置该项</small>
+                                </div>
+                            </div>
+                            {/if}
+                            {if $item['name']=='uu'}
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label">UU门店ID </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <input type="text" class="tpl-form-input" name="data[uu_shop_id]"
+                                           value="{$model['uu_shop_id']}">
+                                    <small>使用UU跑腿必须配置该项</small>
+                                </div>
+                            </div>
+                            {/if}
+                            {/foreach}
+                            <div class="am-form-group">
+                                <div class="am-u-sm-9 am-u-sm-push-3 am-margin-top-lg">
+                                    <button type="submit" class="j-submit am-btn am-btn-secondary">提交
+                                    </button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/assets/plugins/vue/vue.min.js?v={$version}"></script>
+<script>
+    $(function () {
+        new Vue({
+		  el: '#my-form',
+		  data: {
+			checked:"{$model['is_delivery']}"
+		  }
+		});
+        $('#my-form').formPost();
+    });
+</script>

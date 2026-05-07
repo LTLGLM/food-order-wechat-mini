@@ -1,0 +1,134 @@
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <form id="my-form" class="am-form tpl-form-line-form" enctype="multipart/form-data" method="post">
+                    <div class="widget-head am-cf">
+                        <div class="widget-title am-fl">订单设置</div>
+                    </div>
+                    <fieldset>
+                    <div class="widget-body">
+                        <div class="am-form-group">
+                            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">下单模式 </label>
+                            <div class="am-u-sm-9 am-u-end">
+                                <label class="am-checkbox-inline">
+                                    <input type="checkbox" name="data[order_mode][]" value="10" 
+                                    {$model['order_mode']['value']['10']['status'] == 1 ? 'checked' : ''} required>
+                                    堂食
+                                </label>
+                                <label class="am-checkbox-inline">
+                                    <input type="checkbox" name="data[order_mode][]" value="20" 
+                                    {$model['order_mode']['value']['20']['status'] == 1 ? 'checked' : ''} required>
+                                    外卖
+                                </label>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require"> 强制扫码 </label>
+                            <div class="am-u-sm-9 am-u-end">
+                                
+                                <label class="am-radio-inline">
+                                    <input type="radio" name="data[is_scan]" value="0" data-am-ucheck {$model['is_scan'] == 0?'checked':''}>
+                                    关闭
+                                </label>
+                                <label class="am-radio-inline">
+                                    <input type="radio" name="data[is_scan]" value="1" data-am-ucheck {$model['is_scan'] == 1?'checked':''}>
+                                    开启
+                                </label>
+								<div class="help-block">
+								    <small>堂食有效，扫门店码下单为排号模式，扫餐桌码下单为餐桌模式</small>
+								</div>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">餐后付款 </label>
+                            <div class="am-u-sm-9 am-u-end">
+                                <label class="am-radio-inline">
+                                    <input type="radio" name="data[after_pay]" value="0" data-am-ucheck
+                                        {$model['after_pay'] == 0 ? 'checked' : ''} >
+                                    关闭
+                                </label>
+                                <label class="am-radio-inline">
+                                    <input type="radio" name="data[after_pay]" value="1" data-am-ucheck
+                                        {$model['after_pay'] == 1 ? 'checked' : ''} >
+                                    开启
+                                </label>
+                                <div class="help-block">
+                                    <small>仅堂食下单有效</small>
+                                </div>
+                            </div>
+                        </div>
+						<div class="am-form-group">
+                            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">自动接单 </label>
+                            <div class="am-u-sm-9 am-u-end">
+                            	<label class="am-radio-inline">
+                                    <input type="radio" name="data[is_order]" value="0" data-am-ucheck
+                                        {$model['is_order'] == 0 ? 'checked' : ''} >
+                                    关闭
+                                </label>
+                                <label class="am-radio-inline">
+                                    <input type="radio" name="data[is_order]" value="1" data-am-ucheck
+                                        {$model['is_order'] == 1 ? 'checked' : ''} >
+                                    开启
+                                </label>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">口味选项 </label>
+                            <div class="am-u-sm-9 am-u-end">
+                            	<label class="am-radio-inline">
+                                    <input type="radio" name="data[is_flavor]" value="0" data-am-ucheck
+                                        {$model['is_flavor'] == 0 ? 'checked' : ''} >
+                                    关闭
+                                </label>
+                                <label class="am-radio-inline">
+                                    <input type="radio" name="data[is_flavor]" value="1" data-am-ucheck
+                                        {$model['is_flavor'] == 1 ? 'checked' : ''} >
+                                    开启
+                                </label>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">就餐人数 </label>
+                            <div class="am-u-sm-9 am-u-end">
+                            	<label class="am-radio-inline">
+                                    <input type="radio" name="data[is_people]" value="0" data-am-ucheck
+                                        {$model['is_people'] == 0 ? 'checked' : ''} >
+                                    关闭
+                                </label>
+                                <label class="am-radio-inline">
+                                    <input type="radio" name="data[is_people]" value="1" data-am-ucheck
+                                        {$model['is_people'] == 1 ? 'checked' : ''} >
+                                    开启
+                                </label>
+                                <div class="help-block">
+                                    <small>仅堂食下单有效</small>
+                                </div>
+                            </div>
+                        </div>
+						<div class="am-form-group">
+                            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require"> 茶位费用 </label>
+                            <div class="am-u-sm-9 am-u-end">
+                                <input type="number" class="tpl-form-input" name="data[ware_price]"
+                                       placeholder="请输入茶位费用" value="{$model['ware_price']}" required>
+                                <small>就餐人数开启有效，单位元。按照每一人收取费用，0=不收取</small>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <div class="am-u-sm-9 am-u-sm-push-2 am-margin-top-lg">
+                                <button type="submit" class="j-submit am-btn am-btn-secondary">提交
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('#my-form').formPost();
+    });
+</script>

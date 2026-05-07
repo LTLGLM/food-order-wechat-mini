@@ -1,0 +1,82 @@
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <form id="my-form" class="am-form tpl-form-line-form" enctype="multipart/form-data" method="post">
+					<div class="widget-body">
+                        <fieldset>
+							<div class="widget-head am-cf">
+								<div class="widget-title am-fl">短信提醒配置</div>
+							</div>
+							<div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">短信平台</label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <label class="am-radio-inline">
+                                        <input v-model="checked" type="radio" name="data[gateway]" value="" data-am-ucheck
+                                            {$model['gateway'] == '' ? 'checked':''}>
+                                        无
+                                    </label>
+                                    {foreach $list as $item}
+                                    <label class="am-radio-inline">
+                                        <input v-model="checked" type="radio" name="data[gateway]" value="{$item['value']}" data-am-ucheck
+                                            {$model['gateway'] == $item['value'] ? 'checked':''}>
+                                        {$item['text']}
+                                    </label>
+                                    {/foreach}
+                                    <div class="help-block">
+                                        <small>
+                                        {if $list}
+                                            选择短信平台后，请确保对相应的短信插件参数配置无误
+                                        {else /}
+                                            无法设置：您暂未安装任何短信插件，请前往插件中心进行安装。
+                                        {/if}
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-if="checked">
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">验证码</label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <label class="am-radio-inline">
+                                        <input type="radio" name="data[scene][captcha]" value="0" data-am-ucheck
+                                            {$model['scene']['captcha'] == 0 ? 'checked':''}>
+                                        关闭
+                                    </label>
+                                    <label class="am-radio-inline">
+                                        <input type="radio" name="data[scene][captcha]" value="1" data-am-ucheck
+                                            {$model['scene']['captcha'] == 1 ? 'checked':''}>
+                                        开启
+                                    </label>
+                                    <div class="help-block">
+                                        <small>是否启用手机短信验证码，选择平台后有效</small>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="am-form-group">
+                                <div class="am-u-sm-9 am-u-sm-push-3 am-margin-top-lg">
+                                    <button type="submit" class="j-submit am-btn am-btn-secondary">提交
+                                    </button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/assets/plugins/vue/vue.min.js?v={$version}"></script>
+<script>
+    
+    $(function () {
+        new Vue({
+    	  el: '#my-form',
+    	  data: {
+    		checked: "{$model['gateway']}"
+    	  }
+    	});
+        $('#my-form').formPost();
+    });
+</script>

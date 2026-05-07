@@ -1,0 +1,92 @@
+<!-- 添加 -->
+<script id="tpl-add" type="text/template">
+    <div class="am-padding-xs am-padding-top-sm">
+        <div class="am-form-group">
+            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">消息类型 </label>
+            <div class="am-u-sm-9 am-u-end">
+                <select class="msg_type" name="data[msg_type]" style="width:150px;" required>
+                    <option value="">请选择消息类型</option>
+					<option value="news">图文消息</option>
+					<option value="text">文本消息</option>
+					<option value="image">图片消息</option>
+					<option value="video">视频消息</option>
+					<option value="voice">语音消息</option>
+					<option value="music">音乐消息</option>
+					<option value="wxcard">卡券消息</option>
+                </select>
+            </div>
+        </div>
+        <div class="am-form-group">
+            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">消息标题 </label>
+            <div class="am-u-sm-9 am-u-end">
+                <input type="text" class="tpl-form-input" name="data[title]" value="" required>
+            </div>
+        </div>
+        <div class="am-form-group material-content">
+            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">
+				消息内容 <span class="tpl-form-line-small-title text-no">
+				    <text class="material-wxcard">CARD_ID</text>
+				    <text class="media-id">MEDIA_ID</text>
+				</span> 
+			</label>
+            <div class="am-u-sm-9 am-u-end">
+                <input type="text" class="tpl-form-input" name="data[content]" required>
+				<small class="material-news">获取 <a href="{:url('plat.weixin.wechat.material.text/index')}" target="_blank">图文素材MEDIA_ID</a></small>
+				<small class="material-image">获取 <a href="{:url('plat.weixin.wechat.material.image/index')}" target="_blank">图片素材MEDIA_ID</a></small>
+				<small class="material-video">获取 <a href="{:url('plat.weixin.wechat.material.video/index')}" target="_blank">视频素材MEDIA_ID</a></small>
+				<small class="material-voice">获取 <a href="{:url('plat.weixin.wechat.material.voice/index')}" target="_blank">语音素材MEDIA_ID</a></small>
+			</div>
+		</div>
+		<div class="am-form-group material-image">
+            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">推荐语 </label>
+            <div class="am-u-sm-9 am-u-end">
+                <input type="text" class="tpl-form-input" name="data[recommend]" value="" required>
+            </div>
+        </div>
+		<div class="am-form-group material-image">
+            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">开启评论 </label>
+            <div class="am-u-sm-9 am-u-end">
+                <label class="am-radio-inline">
+                    <input type="radio" name="data[need_open_comment]" value="1" data-am-ucheck checked>
+                    开启
+                </label>
+                <label class="am-radio-inline">
+                    <input type="radio" name="data[need_open_comment]" value="0" data-am-ucheck>
+                    关闭
+                </label>
+            </div>
+        </div>
+		<div class="am-form-group material-image">
+            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">谁可评论 </label>
+            <div class="am-u-sm-9 am-u-end">
+                <label class="am-radio-inline">
+                    <input type="radio" name="data[only_fans_can_comment]" value="1" data-am-ucheck checked>
+                    粉丝
+                </label>
+                <label class="am-radio-inline">
+                    <input type="radio" name="data[only_fans_can_comment]" value="0" data-am-ucheck>
+                    所有人
+                </label>
+            </div>
+        </div>
+		<div class="am-form-group material-image">
+            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">素材描述 </label>
+            <div class="am-u-sm-9 am-u-end">
+                <input type="text" class="tpl-form-input" name="data[description]" value="" required>
+            </div>
+        </div>
+		<div class="am-form-group material-news">
+            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">判定为转载时 </label>
+            <div class="am-u-sm-9 am-u-end">
+                <label class="am-radio-inline">
+                    <input type="radio" name="data[send_ignore_reprint]" value="0" data-am-ucheck checked>
+                    停止群发
+                </label>
+                <label class="am-radio-inline">
+                    <input type="radio" name="data[send_ignore_reprint]" value="1" data-am-ucheck>
+                    继续群发
+                </label>
+            </div>
+        </div>
+    </div>  
+</script>

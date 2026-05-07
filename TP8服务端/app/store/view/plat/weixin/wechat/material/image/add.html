@@ -1,0 +1,26 @@
+<!-- 添加 -->
+<script id="tpl-add" type="text/template">
+    <div class="am-padding-xs am-padding-top-sm">
+        <div class="am-form-group">
+            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">素材名称 </label>
+            <div class="am-u-sm-9 am-u-end">
+                <input type="text" placeholder="请输入素材名称" class="tpl-form-input" name="data[name]" value="" required>
+				<input type="hidden" name="data[file_type]" value="10">
+            </div>
+        </div>
+		<div class="am-form-group">
+			<label class="am-u-sm-3 am-u-lg-2 am-form-label am-text-xs form-require">选择素材 </label>
+			<div class="am-u-sm-9 am-u-end">
+				<div class="am-form-file">
+					<button type="button" class="upload-file am-btn am-btn-primary am-btn-xs">
+						<i class="am-icon-cloud-upload"></i> 选择图片
+					</button>
+					<div class="uploader-list am-cf"></div>
+				</div>
+				<div class="help-block">
+                    <small>文件最大2Mb，支持bmp/png/jpeg/jpg/gif格式</small>
+                </div>
+			</div>
+		</div>
+    </div>  
+</script>

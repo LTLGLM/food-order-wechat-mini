@@ -1,0 +1,126 @@
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <form id="my-form" class="am-form tpl-form-line-form" method="post">
+                    <div class="widget-body">
+                        <fieldset>
+                            <div class="widget-head am-cf">
+                                <div class="widget-title am-fl">编辑智能设备</div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">设备品牌 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <input type="text" class="tpl-form-input" value="{$model['dev_type']['text']}" disabled>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">设备名称 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <input type="text" class="tpl-form-input" name="data[dev_name]" value="{$model['dev_name']}" placeholder="请为设备自定义个名称" required>
+                                </div>
+                            </div>
+                            <div class="am-form-group" v-if="selected!=10">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">设备编号 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <input type="text" class="tpl-form-input" value="{$model['dev_id']}" disabled>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">设备密钥 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <input type="text" class="tpl-form-input" value="{$model['dev_key']}" disabled>
+                                </div>
+                            </div>
+                            {if $model['dev_type']['value'] != 'hmcalling'}
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">打印份数 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <input type="number" class="tpl-form-input" name="data[values][prt_num]" 
+                                    value="{$model['values']['prt_num']}" required>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">打印类目 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    {foreach $category as $item}
+                                    <label  class="am-checkbox-inline">
+                                        <input type="checkbox" name="data[values][category][]" value="{$item['category_id']}" data-am-ucheck 
+                                        {$item['checked']?'checked':''} required>
+                                        {$item['name']}
+                                    </label>
+                                    {/foreach}
+                                </div>
+                            </div>
+                            {else /}
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">设备音量 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <input type="number" class="tpl-form-input" name="data[values][volume]" value="{$model['values']['volume']}" min="0" max="15" required>
+                                    <small>取值0-15，数字越大声音越大</small>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">微信到账提醒 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <label class="am-radio-inline">
+                                        <input type="radio" name="data[values][is_pay]" value="1" data-am-ucheck
+                                               {$model['values']['is_pay']==1?'checked':''}>
+                                        开启
+                                    </label>
+                                    <label class="am-radio-inline">
+                                        <input type="radio" name="data[values][is_pay]" value="0" data-am-ucheck 
+                                        {$model['values']['is_pay']==0?'checked':''}>
+                                        关闭
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">新订单提醒 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <label class="am-radio-inline">
+                                        <input type="radio" name="data[values][is_new]" value="1" data-am-ucheck
+                                               {$model['values']['is_new']==1?'checked':''}>
+                                        开启
+                                    </label>
+                                    <label class="am-radio-inline">
+                                        <input type="radio" name="data[values][is_new]" value="0" data-am-ucheck 
+                                        {$model['values']['is_new']==0?'checked':''}>
+                                        关闭
+                                    </label>
+                                </div>
+                            </div>
+                            {/if}
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">状态 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <label class="am-radio-inline">
+                                        <input type="radio" name="data[is_open]" value="1" data-am-ucheck
+                                               {$model['is_open']['value']==1?'checked':''}>
+                                        开启
+                                    </label>
+                                    <label class="am-radio-inline">
+                                        <input type="radio" name="data[is_open]" value="0" data-am-ucheck 
+                                        {$model['is_open']['value']==0?'checked':''}>
+                                        关闭
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <div class="am-u-sm-9 am-u-sm-push-3 am-margin-top-lg">
+                                    <button type="submit" class="j-submit am-btn am-btn-secondary">提交
+                                    </button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('#my-form').formPost();
+    });
+</script>

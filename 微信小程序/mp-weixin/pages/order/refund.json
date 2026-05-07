@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "u-sticky": "/uni_modules/uview-ui/components/u-sticky/u-sticky",
+    "u-subsection": "/uni_modules/uview-ui/components/u-subsection/u-subsection",
+    "u--input": "/uni_modules/uview-ui/components/u--input/u--input",
+    "u-button": "/uni_modules/uview-ui/components/u-button/u-button",
+    "shortcut": "/components/shortcut/shortcut"
+  }
+}

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>腾讯地图开放API - 轻快小巧,简单易用!</title>
+    <link rel="stylesheet" href="https://lbs.qq.com/tool/getpoint/common.css">
+    <script src="https://lbs.qq.com/tool/getpoint/jquery-1.9.1.min.js"></script>
+    <link rel="stylesheet" href="https://lbs.qq.com/tool/getpoint/jquery-ui.min.css">
+    <script src="https://lbs.qq.com/tool/getpoint/jquery-ui-1.10.4.min.js"></script>
+    <script charset="utf-8" src="https://map.qq.com/api/js?v=2.exp&key={$wxmap_key}"></script>
+    <style type="text/css">
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        #main {
+            height: 553px;
+            width: 700px;
+            border: 1px solid #5688CB;
+            border-top: 0px;
+        }
+        #tooles {
+            height: 23px;
+            background: #5688CB;
+            position: relative;
+            z-index: 100;
+            color: white;
+        }
+        #cur_city, #no_value {
+            /*height: 20px;*/
+            position: absolute;
+            top: 3px;
+            left: 10px;
+        }
+        #level {
+            margin-left: 20px;
+        }
+        .logo_img {
+            width: 172px;
+            height: 23px;
+        }
+        .poi {
+            width: 570px;
+            height: 41;
+            padding-top: 12px;
+            float: left;
+            position: relative;
+        }
+        .poi_note {
+            width: 63px;
+            line-height: 26px;
+            float: left;
+        }
+        #poi_cur {
+            width: 160px;
+            height: 22px;
+            margin-right: 10px;
+            /*margin-top: 3px;*/
+            line-height: 26px;
+            float: left;
+            text-align: center;
+        }
+        #addr_cur {
+            width: 260px;
+            height: 22px;
+            margin-right: 5px;
+            /*margin-top: 3px;*/
+            line-height: 26px;
+            float: left;
+            text-align: center;
+        }
+        .btn_copy {
+            width: 49px;
+            height: 24px;
+            /*background: url(../img/btn_cpoy.png) 0px 0px;*/
+            float: left;
+        }
+        .already {
+            width: 52px;
+            line-height: 26px;
+            padding-left: 5px;
+            float: left;
+            color: red;
+            display: none;
+        }
+        .info_list {
+            margin-bottom: 5px;
+            cleat: both;
+            cursor: pointer;
+        }
+        #txt_pannel {
+            height: 500px;
+        }
+        #cur_city {
+            margin-right: 5px;
+        }
+        #bside_rgiht {
+            width: 700px;
+            height: 530px;
+            font-size: 12px;
+        }
+        #container {
+            width: 690px;
+            height: 520px;
+            border: 5px solid #fff;
+        }
+        #no_value {
+            color: red;
+            position: relative;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+<div style="position:relative;">
+    <div style="height:53px;">
+        <div class="poi">
+            <div class="poi_note">当前坐标：</div>
+            <input type="text" id="poi_cur"/>
+        </div>
+    </div>
+    <div id="main">
+        <div id="tooles">
+            <div id="cur_city">
+                <strong>{$location['shop_name']?:'我的门店'}</strong>
+                <span id="level">当前缩放等级：15</span>
+            </div>
+        </div>
+        <div id="bside_rgiht">
+            <div id="container"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var lat = <?= $location['location']['lat']?>;
+    var lng = <?=$location['location']['lng']?>;
+    var coordinate = lat + "," + lng;
+    var container = document.getElementById("container");
+    var center = new qq.maps.LatLng(lat,lng);
+    var map = new qq.maps.Map(container, {
+            center: center,
+            zoom: 15
+        });
+    
+    var label = new qq.maps.Label({
+            map: map,
+            offset: new qq.maps.Size(15, -12),
+            draggable: false,
+            clickable: false
+        });
+
+    var marker = new qq.maps.Marker({
+        map: map,
+        position: center
+    });
+    document.getElementById("poi_cur").value = coordinate;
+    parent.setCoordinate(coordinate);//坐标同步到表单框
+    //--------------- 下列为操作事件与方法-------------------------
+    //地图上的鼠标变成十字
+    map.setOptions({
+        draggableCursor: "crosshair"
+    });
+    //当鼠标放在地图上
+    $(container).mouseenter(function () {
+        label.setMap(map);
+    });
+    //当鼠标离开地图
+    $(container).mouseleave(function () {
+        label.setMap(null);
+    });
+    //当鼠标在地图上移动
+    qq.maps.event.addListener(map, "mousemove", function (e) {
+        var latlng = e.latLng;
+        label.setPosition(latlng);
+        label.setContent(latlng.getLat().toFixed(6) + "," + latlng.getLng().toFixed(6));
+    });
+    // 设置坐标
+    qq.maps.event.addListener(map, "click", function (e) {
+        coordinate = e.latLng.getLat().toFixed(6) + "," + e.latLng.getLng().toFixed(6);
+        document.getElementById("poi_cur").value = coordinate;
+        parent.setCoordinate(coordinate);//坐标同步到表单框
+        marker.setMap(null);//清除原来的 marker
+        //指定新的坐标位置
+        center = new qq.maps.LatLng(e.latLng.getLat().toFixed(6),e.latLng.getLng().toFixed(6));
+        //根据新的坐标位置，生成新的 marker
+        marker = new qq.maps.Marker({
+            map: map,
+            position: center
+        });
+    });
+    //当地图进行缩放操作
+    qq.maps.event.addListener(map, "zoom_changed", function () {
+        document.getElementById("level").innerHTML = "当前缩放等级：" + map.getZoom();
+    });
+    
+</script>
+</body>
+</html>

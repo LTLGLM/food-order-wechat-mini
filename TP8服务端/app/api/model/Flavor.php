@@ -1,0 +1,1 @@
+<?phpnamespace app\api\model;use app\common\model\Flavor as FlavorModel;/** * 口味选项模型 */class Flavor extends FlavorModel{    /**     * 隐藏字段     */    protected $hidden = [];}

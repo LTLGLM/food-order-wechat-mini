@@ -1,0 +1,1 @@
+<?phpnamespace app\common\model;use think\model\Pivot;/** * 商品规格关系模型 */class GoodsSpecRel extends Pivot{    // 定义表名    protected $name = 'goods_spec_rel';    // 定义主键    protected $pk = 'id';    // 追加字段    protected $append = [];    /**     * 关联规格组     */    public function spec()    {        return $this->belongsTo('app\\common\\model\\Spec');    }}

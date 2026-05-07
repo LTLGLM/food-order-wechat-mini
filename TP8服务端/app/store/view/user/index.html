@@ -1,0 +1,157 @@
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <div class="widget-head am-cf">
+                    <div class="widget-title am-cf">用户列表</div>
+                </div>
+                <div class="widget-body am-fr">
+                    <!-- 工具栏 -->
+                    <div class="page_toolbar am-margin-bottom am-cf">
+                        <form class="toolbar-form">
+                            <div class="am-u-sm-12">
+                                <div class="am-btn-group am-btn-group-xs">
+                                    <a class="hema-syncFans am-btn am-btn-primary am-radius"
+                                       href="javascript:;">
+                                        <i class="am-icon-refresh"></i> 同步公众号
+                                    </a>
+                                </div>
+                                <div class="am fr">
+                                    <div class="am-form-group am-fl">
+                                        <select name="gender" data-am-selected="{btnSize: 'sm', placeholder: '性别不限'}">
+                                            <option value="all" {$gender == 'all' ?'selected':''}>性别不限</option>
+                                            <option value="1" {$gender == '1' ?'selected':''}>先生</option>
+                                            <option value="2" {$gender == '2' ?'selected':''}>女士</option>
+                                            <option value="0" {$gender == '0' ?'selected':''}>未知</option>
+                                        </select>
+                                    </div>
+                                    <div class="am-form-group am-fl">
+                                        <div class="am-input-group am-input-group-sm tpl-form-border-form">
+                                            <input type="text" class="am-form-field" name="search" placeholder="请输入昵称、用户ID、手机号" value="{$search}">
+                                            <div class="am-input-group-btn">
+                                                <button class="am-btn am-btn-default am-icon-search" type="submit"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="am-scrollable-horizontal am-u-sm-12">
+                        <table width="100%" class="am-table am-table-hover tpl-table-black">
+                            <thead>
+                            <tr>
+                                <th>编号</th>
+                                <th>头像</th>
+                                <th>昵称</th>
+                                <th>性别</th>
+                                <th>手机</th>
+								<th>余额</th>
+                                <th>消费</th>
+                                <th>积分</th>
+                                <th>省份</th>
+                                <th>城市</th>
+								<th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {if !$list->isEmpty()}
+                                {foreach $list as $item}
+                                <tr>
+                                    <td class="am-text-middle">{$item['user_id']}</td>
+                                    <td class="am-text-middle">
+                                        <img src="{$item['avatar']['url']}" width="72" height="72" alt="">
+                                    </td>
+                                    <td class="am-text-middle">{$item['nickname']|default='--'}</td>
+                                    <td class="am-text-middle">{$item['gender']['text']}</td>
+                                    <td class="am-text-middle">{$item['phone']|default='--'}</td>
+									<td class="am-text-middle">{$item['money']}</td>
+                                    <td class="am-text-middle">{$item['pay']}</td>
+									<td class="am-text-middle">{$item['score']}</td>
+                                    <td class="am-text-middle">{$item['province']|default='--'}</td>
+                                    <td class="am-text-middle">{$item['city']|default='--'}</td>
+									<td class="am-text-middle">
+										<div class="tpl-table-black-operation">
+                                            <a class="hema-recharge tpl-table-black-operation-default"
+                                                href="javascript:void(0);"
+                                                data-user_id="{$item['user_id']}"
+                                                data-money="{$item['money']}">
+												钱包
+                                            </a>
+                                            <a class="hema-score tpl-table-black-operation-default"
+                                                href="javascript:void(0);"
+                                                data-user_id="{$item['user_id']}"
+                                                data-score="{$item['score']}">
+												积分
+                                            </a>
+                                        </div>
+									</td>
+                                </tr>
+                                {/foreach}
+                            {else /}
+                                <tr>
+                                    <td colspan="11" class="am-text-center">暂无记录</td>
+                                </tr>
+                            {/if}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="am-u-lg-12 am-cf">
+                        <div class="am-fr">{:$list->render()} </div>
+                        <div class="am-fr pagination-total am-margin-right">
+                            <div class="am-vertical-align-middle">总记录：{:$list->total()}</div>
+                        </div>
+                    </div>
+                    <div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="my-modal-loading"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="user/recharge" /}
+{include file="user/score" /}
+<script>
+    $(function () {
+        /**
+         * 账户充值
+         */
+        $('.hema-recharge').on('click', function () {
+            var data = $(this).data();
+            $.showAction({
+                title: '余额充值', 
+                area: '460px', 
+                content: template('tpl-recharge', data), 
+                uCheck: true, 
+                success: function ($content) {
+                    $('#my-form').formPost({
+                        url: "{:url('user/recharge')}"
+                    });
+                }, 
+                btn2: function ($content) {
+                    return true;
+                }
+            });
+        });
+        /**
+         * 积分充值
+         */
+        $('.hema-score').on('click', function () {
+            var data = $(this).data();
+            $.showAction({
+                title: '积分充值', 
+                area: '460px', 
+                content: template('tpl-score', data), 
+                uCheck: true, 
+                success: function ($content) {
+                    $('#my-form').formPost({
+                        url: "{:url('user/score')}"
+                    });
+                }, 
+                btn2: function ($content) {
+                    return true;
+                }
+            });
+        });
+        $('.hema-syncFans').del('id', "{:url('user/syncFans')}",'确定将公众号粉丝同步到该用户列表内？');// 同步公众号粉丝
+    });
+</script>

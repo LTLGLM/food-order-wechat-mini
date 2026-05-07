@@ -1,0 +1,274 @@
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <div class="widget-head am-cf">
+                    <div class="widget-title am-cf">群发消息列表</div>
+                </div>
+				<div class="tips am-margin-bottom-sm am-u-sm-12">
+					<div class="pre-info">
+						<p> 每日可群发100次，但是用户每月只能接收4条。</p>
+					</div>
+				</div>
+                <div class="widget-body am-fr">
+                    <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
+                        <div class="am-form-group">
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-sm">
+                                    <a href="javascript:void(0);" class="hema-add am-btn am-btn-primary am-radius">
+                                        <span class="am-icon-plus"></span> 添加
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-scrollable-horizontal am-u-sm-12">
+                        <table width="100%" class="am-table am-table-hover tpl-table-black">
+                            <thead>
+                            <tr>
+                                <th>消息编号</th>
+                                <th>任务ID</th>
+                                <th>消息标题</th>
+                                <th>消息类型</th>
+                                <th>群发状态</th>
+                                <th>群发人数</th>
+                                <th>成功人数</th>
+                                <th>添加时间</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {if !$list->isEmpty()}
+                                {foreach $list as $item}
+                                <tr>
+                                    <td class="am-text-middle">{$item['wechat_batch_send_id']}</td>
+                                    <td class="am-text-middle">{$item['msg_id']?$item['msg_id']:'--'}</td>
+                                    <td class="am-text-middle">
+                                        <p class="item-title">{$item['title']}</p>
+                                    </td>
+                                    <td class="am-text-middle">{$item['msg_type']['text']}</td>
+                                    <td class="am-text-middle">
+                                            <span class="{$item['status']['value']<40?'x-color-green':'x-color-red'}">
+                                            {$item['status']['text']}
+                                            </span>
+                                    </td>
+                                    <td class="am-text-middle">{$item['fans_count']>0?$item['fans_count']:'--'}</td>
+                                    <td class="am-text-middle">{$item['send_count']>0?$item['send_count']:'--'}</td>
+                                    <td class="am-text-middle">{$item['create_time']}</td>
+                                    <td class="am-text-middle">
+                                        <div class="tpl-table-black-operation">
+											<a href="javascript:;" class="hema-send tpl-table-black-operation-green"
+                                               data-id="{$item['wechat_batch_send_id']}">
+                                                <i class="am-icon-send"></i> 群发
+                                            </a>
+                                            <a href="javascript:;" class="hema-edit" data-id="{$item['wechat_batch_send_id']}">
+                                                <i class="am-icon-pencil"></i> 编辑
+                                            </a>
+                                            <a href="javascript:;" class="hema-del tpl-table-black-operation-del"
+                                               data-id="{$item['wechat_batch_send_id']}">
+                                                <i class="am-icon-trash"></i> 删除
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {/foreach}
+                            {else /}
+                                <tr>
+                                    <td colspan="9" class="am-text-center">暂无记录</td>
+                                </tr>
+                            {/if}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="am-u-lg-12 am-cf">
+                        <div class="am-fr">{:$list->render()} </div>
+                        <div class="am-fr pagination-total am-margin-right">
+                            <div class="am-vertical-align-middle">总记录：{:$list->total()}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="plat/weixin/wechat/send/add" /}
+{include file="plat/weixin/wechat/send/edit" /}
+<script>
+    $(function () {
+         //添加
+        $('.hema-add').on('click', function () {
+            $.showAction({
+                title: '添加', 
+                area: '750px', 
+                content: template('tpl-add', {}), 
+                uCheck: true, 
+                success: function ($content) {
+                    var $image = $('.material-image'), $news = $('.material-news'), $text = $('.material-text'), $video = $('.material-video'), $voice = $('.material-voice'), $music = $('.material-music'), $wxcard = $('.material-wxcard'), $contt = $('.material-content'), $text_no = $('.text-no'), $media_id = $('.media-id');
+                    $image.hide();
+                    $news.hide();
+                    $text.hide();
+                    $video.hide();
+                    $voice.hide();
+                    $music.hide();
+                    $wxcard.hide();
+                    $contt.hide();
+                    $text_no.hide();
+                    $media_id.hide();
+                    $('.msg_type').change(() => {
+                        $image.hide();
+                        $news.hide();
+                        $text.hide();
+                        $video.hide();
+                        $voice.hide();
+                        $music.hide();
+                        $wxcard.hide();
+                        $contt.hide();
+                        $text_no.hide();
+                        $media_id.hide();
+        				var msg_type = $('.msg_type').val();
+        				if(msg_type != ''){
+        				    $contt.show();
+        				}
+        				if(msg_type == "text"){
+        				    $text.show();
+        				}else{
+        				   $text_no.show(); 
+        				}
+        				if(msg_type == "wxcard"){
+        				    $wxcard.show();
+        				}else{
+        				   $media_id.show(); 
+        				}
+        				if(msg_type == "image"){
+        				    $image.show();
+        				}
+        				if(msg_type == "news"){
+        				    $news.show();
+        				}
+        				if(msg_type == "video"){
+        				    $video.show();
+        				}
+        				if(msg_type == "voice"){
+        				    $voice.show();
+        				}
+        				if(msg_type == "music"){
+        				    $music.show();
+        				}
+            		});
+                    $('#my-form').formPost({
+                        url: "{:url('plat.weixin.wechat.send/add')}"
+                    });
+                }, 
+                btn2: function ($content) {
+                    return true;
+                }
+            });
+        });
+        //编辑
+        $('.hema-edit').on('click', function () {
+            var data = $(this).data();
+            $.get("{:url('plat.weixin.wechat.send/edit')}?id=" + data.id, function (result) {
+				if(result.code == 0){
+				    $.show_error(result.msg);
+				    return false;
+				}
+				$.showAction({
+                    title: '编辑', 
+                    area: '750px', 
+                    content: template('tpl-edit', {model:result.data.model}), 
+                    uCheck: true, 
+                    success: function ($content) {
+                        var $image = $('.material-image'), $news = $('.material-news'), $text = $('.material-text'), $video = $('.material-video'), $voice = $('.material-voice'), $music = $('.material-music'), $wxcard = $('.material-wxcard'), $contt = $('.material-content'), $text_no = $('.text-no'), $media_id = $('.media-id');
+                        $image.hide();
+                        $news.hide();
+                        $text.hide();
+                        $video.hide();
+                        $voice.hide();
+                        $music.hide();
+                        $wxcard.hide();
+                        $text_no.hide();
+                        $media_id.hide();
+                        $contt.show();
+                        if(result.data.model.msg_type.value == "text"){
+        				    $text.show();
+        				}else{
+        				   $text_no.show(); 
+        				}
+        				if(result.data.model.msg_type.value == "wxcard"){
+        				    $wxcard.show();
+        				}else{
+        				   $media_id.show(); 
+        				}
+        				if(result.data.model.msg_type.value == "image"){
+        				    $image.show();
+        				}
+        				if(result.data.model.msg_type.value == "news"){
+        				    $news.show();
+        				}
+        				if(result.data.model.msg_type.value == "video"){
+        				    $video.show();
+        				}
+        				if(result.data.model.msg_type.value == "voice"){
+        				    $voice.show();
+        				}
+        				if(result.data.model.msg_type.value == "music"){
+        				    $music.show();
+        				}
+                        $('.msg_type').change(() => {
+                            $image.hide();
+                            $news.hide();
+                            $text.hide();
+                            $video.hide();
+                            $voice.hide();
+                            $music.hide();
+                            $wxcard.hide();
+                            $contt.hide();
+                            $text_no.hide();
+                            $media_id.hide();
+            				var msg_type = $('.msg_type').val();
+            				if(msg_type != ''){
+            				    $contt.show();
+            				}
+            				if(msg_type == "text"){
+            				    $text.show();
+            				}else{
+            				   $text_no.show(); 
+            				}
+            				if(msg_type == "wxcard"){
+            				    $wxcard.show();
+            				}else{
+            				   $media_id.show(); 
+            				}
+            				if(msg_type == "image"){
+            				    $image.show();
+            				}
+            				if(msg_type == "news"){
+            				    $news.show();
+            				}
+            				if(msg_type == "video"){
+            				    $video.show();
+            				}
+            				if(msg_type == "voice"){
+            				    $voice.show();
+            				}
+            				if(msg_type == "music"){
+            				    $music.show();
+            				}
+                		});
+                        $('#my-form').formPost({
+                            url: "{:url('plat.weixin.wechat.send/edit')}?id=" + data.id
+                        });
+                    }, 
+                    btn2: function ($content) {
+                        return true;
+                    }
+                });
+            });
+        });
+        // 删除
+        $('.hema-del').del('id', "{:url('plat.weixin.wechat.send/delete')}");
+		
+		// 群发
+        $('.hema-send').del('id', "{:url('plat.weixin.wechat.send/status')}",'确定要进行群发？');
+    });
+</script>

@@ -1,0 +1,897 @@
+[Thu May  7 10:39:51 2026] PHP Warning:  Module "gd" is already loaded in Unknown on line 0
+[Thu May  7 10:39:51 2026] PHP Warning:  Module "pdo_mysql" is already loaded in Unknown on line 0
+[Thu May  7 10:39:51 2026] PHP 8.5.6 Development Server (http://127.0.0.1:8080) started
+[Thu May  7 10:39:53 2026] 127.0.0.1:53678 Accepted
+[Thu May  7 10:39:53 2026] 127.0.0.1:53678 [200]: GET /install
+[Thu May  7 10:39:53 2026] 127.0.0.1:53678 Closing
+[Thu May  7 10:40:08 2026] 127.0.0.1:51412 Accepted
+[Thu May  7 10:40:08 2026] 127.0.0.1:51412 [200]: GET /install
+[Thu May  7 10:40:08 2026] 127.0.0.1:51412 Closing
+[Thu May  7 10:40:35 2026] 127.0.0.1:51294 Accepted
+[Thu May  7 10:40:35 2026] 127.0.0.1:51294 [302]: GET /
+[Thu May  7 10:40:35 2026] 127.0.0.1:51294 Closing
+[Thu May  7 10:40:35 2026] 127.0.0.1:60239 Accepted
+[Thu May  7 10:40:35 2026] 127.0.0.1:60239 [200]: GET /install
+[Thu May  7 10:40:35 2026] 127.0.0.1:60239 Closing
+[Thu May  7 10:40:35 2026] 127.0.0.1:63652 Accepted
+[Thu May  7 10:40:35 2026] 127.0.0.1:63652 [302]: GET /templates/style/install.css
+[Thu May  7 10:40:35 2026] 127.0.0.1:63652 Closing
+[Thu May  7 10:40:35 2026] 127.0.0.1:62433 Accepted
+[Thu May  7 10:40:35 2026] 127.0.0.1:62433 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:40:35 2026] 127.0.0.1:49520 Accepted
+[Thu May  7 10:40:35 2026] 127.0.0.1:49520 [200]: GET /install
+[Thu May  7 10:40:35 2026] 127.0.0.1:49520 Closing
+[Thu May  7 10:40:35 2026] 127.0.0.1:62433 Closing
+[Thu May  7 10:40:35 2026] 127.0.0.1:52442 Accepted
+[Thu May  7 10:40:35 2026] 127.0.0.1:52442 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:40:35 2026] 127.0.0.1:52442 Closing
+[Thu May  7 10:40:35 2026] 127.0.0.1:57452 Accepted
+[Thu May  7 10:40:35 2026] 127.0.0.1:57452 [200]: GET /favicon.png
+[Thu May  7 10:40:35 2026] 127.0.0.1:57452 Closing
+[Thu May  7 10:41:06 2026] 127.0.0.1:54760 Accepted
+[Thu May  7 10:41:06 2026] 127.0.0.1:54053 Accepted
+[Thu May  7 10:41:06 2026] 127.0.0.1:54760 [200]: GET /install?s=1
+[Thu May  7 10:41:06 2026] 127.0.0.1:54760 Closing
+[Thu May  7 10:41:06 2026] 127.0.0.1:54053 [302]: GET /templates/style/install.css
+[Thu May  7 10:41:06 2026] 127.0.0.1:54053 Closing
+[Thu May  7 10:41:06 2026] 127.0.0.1:62799 Accepted
+[Thu May  7 10:41:06 2026] 127.0.0.1:62589 Accepted
+[Thu May  7 10:41:06 2026] 127.0.0.1:62799 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:41:06 2026] 127.0.0.1:62589 [200]: GET /install
+[Thu May  7 10:41:06 2026] 127.0.0.1:62589 Closing
+[Thu May  7 10:41:06 2026] 127.0.0.1:62799 Closing
+[Thu May  7 10:41:06 2026] 127.0.0.1:63020 Accepted
+[Thu May  7 10:41:06 2026] 127.0.0.1:63020 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:41:06 2026] 127.0.0.1:63020 Closing
+[Thu May  7 10:41:10 2026] 127.0.0.1:52988 Accepted
+[Thu May  7 10:41:10 2026] 127.0.0.1:52988 [302]: POST /index.php
+[Thu May  7 10:41:10 2026] 127.0.0.1:52988 Closing
+[Thu May  7 10:41:10 2026] 127.0.0.1:58722 Accepted
+[Thu May  7 10:41:10 2026] 127.0.0.1:58722 [200]: GET /install
+[Thu May  7 10:41:10 2026] 127.0.0.1:58722 Closing
+[Thu May  7 10:41:10 2026] 127.0.0.1:61527 Accepted
+[Thu May  7 10:41:10 2026] 127.0.0.1:61527 [302]: GET /templates/style/install.css
+[Thu May  7 10:41:10 2026] 127.0.0.1:61527 Closing
+[Thu May  7 10:41:10 2026] 127.0.0.1:52135 Accepted
+[Thu May  7 10:41:10 2026] 127.0.0.1:52135 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:41:10 2026] 127.0.0.1:52135 Closing
+[Thu May  7 10:41:10 2026] 127.0.0.1:58967 Accepted
+[Thu May  7 10:41:10 2026] 127.0.0.1:58967 [200]: GET /install
+[Thu May  7 10:41:10 2026] 127.0.0.1:58967 Closing
+[Thu May  7 10:41:10 2026] 127.0.0.1:64091 Accepted
+[Thu May  7 10:41:10 2026] 127.0.0.1:64091 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:41:10 2026] 127.0.0.1:64091 Closing
+[Thu May  7 10:41:11 2026] 127.0.0.1:52042 Accepted
+[Thu May  7 10:41:12 2026] 127.0.0.1:62818 Accepted
+[Thu May  7 10:41:12 2026] 127.0.0.1:52042 [200]: GET /install?s=1
+[Thu May  7 10:41:12 2026] 127.0.0.1:52042 Closing
+[Thu May  7 10:41:12 2026] 127.0.0.1:62818 [302]: GET /templates/style/install.css
+[Thu May  7 10:41:12 2026] 127.0.0.1:62818 Closing
+[Thu May  7 10:41:12 2026] 127.0.0.1:64128 Accepted
+[Thu May  7 10:41:12 2026] 127.0.0.1:64128 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:41:12 2026] 127.0.0.1:64128 Closing
+[Thu May  7 10:41:12 2026] 127.0.0.1:61760 Accepted
+[Thu May  7 10:41:12 2026] 127.0.0.1:61760 [200]: GET /install
+[Thu May  7 10:41:12 2026] 127.0.0.1:61760 Closing
+[Thu May  7 10:41:12 2026] 127.0.0.1:49215 Accepted
+[Thu May  7 10:41:12 2026] 127.0.0.1:49215 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:41:12 2026] 127.0.0.1:49215 Closing
+[Thu May  7 10:41:18 2026] 127.0.0.1:51932 Accepted
+[Thu May  7 10:41:18 2026] 127.0.0.1:56482 Accepted
+[Thu May  7 10:41:18 2026] 127.0.0.1:51932 [200]: GET /install?s=1
+[Thu May  7 10:41:18 2026] 127.0.0.1:51932 Closing
+[Thu May  7 10:41:18 2026] 127.0.0.1:56482 [302]: GET /templates/style/install.css
+[Thu May  7 10:41:18 2026] 127.0.0.1:56482 Closing
+[Thu May  7 10:41:18 2026] 127.0.0.1:62975 Accepted
+[Thu May  7 10:41:18 2026] 127.0.0.1:62975 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:41:18 2026] 127.0.0.1:62975 Closing
+[Thu May  7 10:41:18 2026] 127.0.0.1:62369 Accepted
+[Thu May  7 10:41:18 2026] 127.0.0.1:62369 [200]: GET /install
+[Thu May  7 10:41:18 2026] 127.0.0.1:62369 Closing
+[Thu May  7 10:41:18 2026] 127.0.0.1:65076 Accepted
+[Thu May  7 10:41:18 2026] 127.0.0.1:65076 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:41:18 2026] 127.0.0.1:65076 Closing
+[Thu May  7 10:41:25 2026] 127.0.0.1:51718 Accepted
+[Thu May  7 10:41:25 2026] 127.0.0.1:51718 [302]: POST /index.php
+[Thu May  7 10:41:25 2026] 127.0.0.1:51718 Closing
+[Thu May  7 10:41:25 2026] 127.0.0.1:57375 Accepted
+[Thu May  7 10:41:25 2026] 127.0.0.1:57375 [200]: GET /install
+[Thu May  7 10:41:25 2026] 127.0.0.1:57375 Closing
+[Thu May  7 10:41:25 2026] 127.0.0.1:57864 Accepted
+[Thu May  7 10:41:25 2026] 127.0.0.1:57864 [302]: GET /templates/style/install.css
+[Thu May  7 10:41:25 2026] 127.0.0.1:57864 Closing
+[Thu May  7 10:41:25 2026] 127.0.0.1:55336 Accepted
+[Thu May  7 10:41:25 2026] 127.0.0.1:55336 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:41:25 2026] 127.0.0.1:55336 Closing
+[Thu May  7 10:41:25 2026] 127.0.0.1:56601 Accepted
+[Thu May  7 10:41:25 2026] 127.0.0.1:56601 [200]: GET /install
+[Thu May  7 10:41:25 2026] 127.0.0.1:56601 Closing
+[Thu May  7 10:41:25 2026] 127.0.0.1:64371 Accepted
+[Thu May  7 10:41:25 2026] 127.0.0.1:64371 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:41:25 2026] 127.0.0.1:64371 Closing
+[Thu May  7 10:41:26 2026] 127.0.0.1:63101 Accepted
+[Thu May  7 10:41:26 2026] 127.0.0.1:63455 Accepted
+[Thu May  7 10:41:26 2026] 127.0.0.1:63101 [200]: GET /install?s=1
+[Thu May  7 10:41:26 2026] 127.0.0.1:63101 Closing
+[Thu May  7 10:41:26 2026] 127.0.0.1:63455 [302]: GET /templates/style/install.css
+[Thu May  7 10:41:26 2026] 127.0.0.1:63455 Closing
+[Thu May  7 10:41:26 2026] 127.0.0.1:64836 Accepted
+[Thu May  7 10:41:26 2026] 127.0.0.1:64836 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:41:26 2026] 127.0.0.1:64836 Closing
+[Thu May  7 10:41:26 2026] 127.0.0.1:59319 Accepted
+[Thu May  7 10:41:26 2026] 127.0.0.1:59319 [200]: GET /install
+[Thu May  7 10:41:26 2026] 127.0.0.1:59319 Closing
+[Thu May  7 10:41:26 2026] 127.0.0.1:64510 Accepted
+[Thu May  7 10:41:26 2026] 127.0.0.1:64510 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:41:26 2026] 127.0.0.1:64510 Closing
+[Thu May  7 10:41:44 2026] 127.0.0.1:61841 Accepted
+[Thu May  7 10:41:44 2026] 127.0.0.1:61841 [302]: POST /index.php
+[Thu May  7 10:41:44 2026] 127.0.0.1:61841 Closing
+[Thu May  7 10:41:44 2026] 127.0.0.1:56046 Accepted
+[Thu May  7 10:41:44 2026] 127.0.0.1:56046 [200]: GET /install
+[Thu May  7 10:41:44 2026] 127.0.0.1:56046 Closing
+[Thu May  7 10:41:44 2026] 127.0.0.1:52685 Accepted
+[Thu May  7 10:41:44 2026] 127.0.0.1:52685 [302]: GET /templates/style/install.css
+[Thu May  7 10:41:44 2026] 127.0.0.1:52685 Closing
+[Thu May  7 10:41:44 2026] 127.0.0.1:55907 Accepted
+[Thu May  7 10:41:44 2026] 127.0.0.1:55907 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:41:44 2026] 127.0.0.1:55907 Closing
+[Thu May  7 10:41:44 2026] 127.0.0.1:59707 Accepted
+[Thu May  7 10:41:44 2026] 127.0.0.1:59707 [200]: GET /install
+[Thu May  7 10:41:44 2026] 127.0.0.1:59707 Closing
+[Thu May  7 10:41:44 2026] 127.0.0.1:64091 Accepted
+[Thu May  7 10:41:44 2026] 127.0.0.1:64091 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:41:44 2026] 127.0.0.1:64091 Closing
+[Thu May  7 10:41:45 2026] 127.0.0.1:57778 Accepted
+[Thu May  7 10:41:45 2026] 127.0.0.1:64645 Accepted
+[Thu May  7 10:41:45 2026] 127.0.0.1:57778 [200]: GET /install?s=1
+[Thu May  7 10:41:45 2026] 127.0.0.1:57778 Closing
+[Thu May  7 10:41:45 2026] 127.0.0.1:64645 [302]: GET /templates/style/install.css
+[Thu May  7 10:41:45 2026] 127.0.0.1:64645 Closing
+[Thu May  7 10:41:45 2026] 127.0.0.1:61403 Accepted
+[Thu May  7 10:41:45 2026] 127.0.0.1:61403 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:41:45 2026] 127.0.0.1:61403 Closing
+[Thu May  7 10:41:45 2026] 127.0.0.1:59710 Accepted
+[Thu May  7 10:41:45 2026] 127.0.0.1:59710 [200]: GET /install
+[Thu May  7 10:41:45 2026] 127.0.0.1:59710 Closing
+[Thu May  7 10:41:45 2026] 127.0.0.1:59311 Accepted
+[Thu May  7 10:41:45 2026] 127.0.0.1:59311 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:41:45 2026] 127.0.0.1:59311 Closing
+[Thu May  7 10:41:47 2026] 127.0.0.1:49588 Accepted
+[Thu May  7 10:41:47 2026] 127.0.0.1:56251 Accepted
+[Thu May  7 10:41:47 2026] 127.0.0.1:49588 [302]: POST /index.php
+[Thu May  7 10:41:47 2026] 127.0.0.1:49588 Closing
+[Thu May  7 10:41:47 2026] 127.0.0.1:56251 [200]: GET /install
+[Thu May  7 10:41:47 2026] 127.0.0.1:56251 Closing
+[Thu May  7 10:41:47 2026] 127.0.0.1:64411 Accepted
+[Thu May  7 10:41:47 2026] 127.0.0.1:64411 [302]: GET /templates/style/install.css
+[Thu May  7 10:41:47 2026] 127.0.0.1:64411 Closing
+[Thu May  7 10:41:47 2026] 127.0.0.1:60948 Accepted
+[Thu May  7 10:41:47 2026] 127.0.0.1:60948 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:41:47 2026] 127.0.0.1:60948 Closing
+[Thu May  7 10:41:47 2026] 127.0.0.1:57345 Accepted
+[Thu May  7 10:41:47 2026] 127.0.0.1:57345 [200]: GET /install
+[Thu May  7 10:41:47 2026] 127.0.0.1:57345 Closing
+[Thu May  7 10:41:47 2026] 127.0.0.1:60282 Accepted
+[Thu May  7 10:41:47 2026] 127.0.0.1:60282 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:41:47 2026] 127.0.0.1:60282 Closing
+[Thu May  7 10:41:48 2026] 127.0.0.1:64942 Accepted
+[Thu May  7 10:41:48 2026] 127.0.0.1:49274 Accepted
+[Thu May  7 10:41:48 2026] 127.0.0.1:64942 [200]: GET /install?s=1
+[Thu May  7 10:41:48 2026] 127.0.0.1:64942 Closing
+[Thu May  7 10:41:48 2026] 127.0.0.1:49274 [302]: GET /templates/style/install.css
+[Thu May  7 10:41:48 2026] 127.0.0.1:49274 Closing
+[Thu May  7 10:41:48 2026] 127.0.0.1:60324 Accepted
+[Thu May  7 10:41:48 2026] 127.0.0.1:60324 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:41:48 2026] 127.0.0.1:60324 Closing
+[Thu May  7 10:41:48 2026] 127.0.0.1:51032 Accepted
+[Thu May  7 10:41:48 2026] 127.0.0.1:51032 [200]: GET /install
+[Thu May  7 10:41:48 2026] 127.0.0.1:51032 Closing
+[Thu May  7 10:41:48 2026] 127.0.0.1:63299 Accepted
+[Thu May  7 10:41:48 2026] 127.0.0.1:63299 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:41:48 2026] 127.0.0.1:63299 Closing
+[Thu May  7 10:43:27 2026] 127.0.0.1:58041 Accepted
+[Thu May  7 10:43:27 2026] 127.0.0.1:58041 [302]: POST /index.php
+[Thu May  7 10:43:27 2026] 127.0.0.1:58041 Closing
+[Thu May  7 10:43:27 2026] 127.0.0.1:62737 Accepted
+[Thu May  7 10:43:27 2026] 127.0.0.1:62737 [200]: GET /install
+[Thu May  7 10:43:27 2026] 127.0.0.1:62737 Closing
+[Thu May  7 10:43:27 2026] 127.0.0.1:57629 Accepted
+[Thu May  7 10:43:27 2026] 127.0.0.1:55837 Accepted
+[Thu May  7 10:43:27 2026] 127.0.0.1:57629 [302]: GET /templates/style/install.css
+[Thu May  7 10:43:27 2026] 127.0.0.1:57629 Closing
+[Thu May  7 10:43:27 2026] 127.0.0.1:55837 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:43:27 2026] 127.0.0.1:55837 Closing
+[Thu May  7 10:43:27 2026] 127.0.0.1:51590 Accepted
+[Thu May  7 10:43:27 2026] 127.0.0.1:51590 [200]: GET /install
+[Thu May  7 10:43:27 2026] 127.0.0.1:51590 Closing
+[Thu May  7 10:43:27 2026] 127.0.0.1:50185 Accepted
+[Thu May  7 10:43:27 2026] 127.0.0.1:50185 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:43:27 2026] 127.0.0.1:50185 Closing
+[Thu May  7 10:43:28 2026] 127.0.0.1:53676 Accepted
+[Thu May  7 10:43:28 2026] 127.0.0.1:55088 Accepted
+[Thu May  7 10:43:28 2026] 127.0.0.1:53676 [200]: GET /install
+[Thu May  7 10:43:28 2026] 127.0.0.1:53676 Closing
+[Thu May  7 10:43:28 2026] 127.0.0.1:55088 [302]: GET /templates/style/install.css
+[Thu May  7 10:43:28 2026] 127.0.0.1:55088 Closing
+[Thu May  7 10:43:28 2026] 127.0.0.1:62030 Accepted
+[Thu May  7 10:43:28 2026] 127.0.0.1:62030 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:43:28 2026] 127.0.0.1:62030 Closing
+[Thu May  7 10:43:28 2026] 127.0.0.1:54440 Accepted
+[Thu May  7 10:43:28 2026] 127.0.0.1:54440 [200]: GET /install
+[Thu May  7 10:43:28 2026] 127.0.0.1:54440 Closing
+[Thu May  7 10:43:28 2026] 127.0.0.1:55284 Accepted
+[Thu May  7 10:43:28 2026] 127.0.0.1:55284 [200]: GET /favicon.png
+[Thu May  7 10:43:28 2026] 127.0.0.1:55284 Closing
+[Thu May  7 10:43:28 2026] 127.0.0.1:64662 Accepted
+[Thu May  7 10:43:28 2026] 127.0.0.1:64662 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:43:28 2026] 127.0.0.1:64662 Closing
+[Thu May  7 10:43:30 2026] 127.0.0.1:50127 Accepted
+[Thu May  7 10:43:30 2026] 127.0.0.1:54502 Accepted
+[Thu May  7 10:43:30 2026] 127.0.0.1:50127 [200]: GET /install
+[Thu May  7 10:43:30 2026] 127.0.0.1:50127 Closing
+[Thu May  7 10:43:30 2026] 127.0.0.1:54502 [302]: GET /templates/style/install.css
+[Thu May  7 10:43:30 2026] 127.0.0.1:54502 Closing
+[Thu May  7 10:43:30 2026] 127.0.0.1:65522 Accepted
+[Thu May  7 10:43:30 2026] 127.0.0.1:65522 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:43:30 2026] 127.0.0.1:65522 Closing
+[Thu May  7 10:43:30 2026] 127.0.0.1:58328 Accepted
+[Thu May  7 10:43:30 2026] 127.0.0.1:58328 [200]: GET /install
+[Thu May  7 10:43:30 2026] 127.0.0.1:58328 Closing
+[Thu May  7 10:43:30 2026] 127.0.0.1:62665 Accepted
+[Thu May  7 10:43:30 2026] 127.0.0.1:62665 [200]: GET /favicon.png
+[Thu May  7 10:43:30 2026] 127.0.0.1:62665 Closing
+[Thu May  7 10:43:30 2026] 127.0.0.1:49231 Accepted
+[Thu May  7 10:43:30 2026] 127.0.0.1:49231 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:43:30 2026] 127.0.0.1:49231 Closing
+[Thu May  7 10:43:30 2026] 127.0.0.1:50578 Accepted
+[Thu May  7 10:43:30 2026] 127.0.0.1:52917 Accepted
+[Thu May  7 10:43:30 2026] 127.0.0.1:50578 [200]: GET /install
+[Thu May  7 10:43:30 2026] 127.0.0.1:50578 Closing
+[Thu May  7 10:43:30 2026] 127.0.0.1:52917 [302]: GET /templates/style/install.css
+[Thu May  7 10:43:30 2026] 127.0.0.1:52917 Closing
+[Thu May  7 10:43:30 2026] 127.0.0.1:60238 Accepted
+[Thu May  7 10:43:30 2026] 127.0.0.1:60238 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:43:30 2026] 127.0.0.1:60238 Closing
+[Thu May  7 10:43:30 2026] 127.0.0.1:60465 Accepted
+[Thu May  7 10:43:30 2026] 127.0.0.1:60465 [200]: GET /install
+[Thu May  7 10:43:30 2026] 127.0.0.1:60465 Closing
+[Thu May  7 10:43:30 2026] 127.0.0.1:50409 Accepted
+[Thu May  7 10:43:30 2026] 127.0.0.1:50409 [200]: GET /favicon.png
+[Thu May  7 10:43:30 2026] 127.0.0.1:50409 Closing
+[Thu May  7 10:43:30 2026] 127.0.0.1:65137 Accepted
+[Thu May  7 10:43:30 2026] 127.0.0.1:57604 Accepted
+[Thu May  7 10:43:30 2026] 127.0.0.1:65137 [200]: GET /install
+[Thu May  7 10:43:30 2026] 127.0.0.1:65137 Closing
+[Thu May  7 10:43:30 2026] 127.0.0.1:57604 [302]: GET /templates/style/install.css
+[Thu May  7 10:43:30 2026] 127.0.0.1:57604 Closing
+[Thu May  7 10:43:30 2026] 127.0.0.1:49225 Accepted
+[Thu May  7 10:43:30 2026] 127.0.0.1:49225 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:43:30 2026] 127.0.0.1:63325 Accepted
+[Thu May  7 10:43:30 2026] 127.0.0.1:63325 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:43:30 2026] 127.0.0.1:49225 Closing
+[Thu May  7 10:43:30 2026] 127.0.0.1:63325 Closing
+[Thu May  7 10:43:30 2026] 127.0.0.1:56239 Accepted
+[Thu May  7 10:43:30 2026] 127.0.0.1:56239 [200]: GET /install
+[Thu May  7 10:43:30 2026] 127.0.0.1:56239 Closing
+[Thu May  7 10:43:30 2026] 127.0.0.1:51198 Accepted
+[Thu May  7 10:43:31 2026] 127.0.0.1:51198 [200]: GET /favicon.png
+[Thu May  7 10:43:31 2026] 127.0.0.1:57573 Accepted
+[Thu May  7 10:43:31 2026] 127.0.0.1:57573 [200]: GET /install
+[Thu May  7 10:43:31 2026] 127.0.0.1:57573 Closing
+[Thu May  7 10:43:31 2026] 127.0.0.1:62121 Accepted
+[Thu May  7 10:43:31 2026] 127.0.0.1:51198 Closing
+[Thu May  7 10:43:31 2026] 127.0.0.1:59813 Accepted
+[Thu May  7 10:43:31 2026] 127.0.0.1:62121 [302]: GET /templates/style/install.css
+[Thu May  7 10:43:31 2026] 127.0.0.1:62121 Closing
+[Thu May  7 10:43:31 2026] 127.0.0.1:50189 Accepted
+[Thu May  7 10:43:31 2026] 127.0.0.1:59813 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:43:31 2026] 127.0.0.1:52029 Accepted
+[Thu May  7 10:43:31 2026] 127.0.0.1:50189 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:43:31 2026] 127.0.0.1:52029 [200]: GET /install
+[Thu May  7 10:43:31 2026] 127.0.0.1:52029 Closing
+[Thu May  7 10:43:31 2026] 127.0.0.1:59813 Closing
+[Thu May  7 10:43:31 2026] 127.0.0.1:50189 Closing
+[Thu May  7 10:43:31 2026] 127.0.0.1:63522 Accepted
+[Thu May  7 10:43:31 2026] 127.0.0.1:63522 [200]: GET /favicon.png
+[Thu May  7 10:43:31 2026] 127.0.0.1:63522 Closing
+[Thu May  7 10:43:31 2026] 127.0.0.1:62126 Accepted
+[Thu May  7 10:43:31 2026] 127.0.0.1:51636 Accepted
+[Thu May  7 10:43:31 2026] 127.0.0.1:62126 [200]: GET /install
+[Thu May  7 10:43:31 2026] 127.0.0.1:62126 Closing
+[Thu May  7 10:43:31 2026] 127.0.0.1:51636 [302]: GET /templates/style/install.css
+[Thu May  7 10:43:31 2026] 127.0.0.1:51636 Closing
+[Thu May  7 10:43:31 2026] 127.0.0.1:50927 Accepted
+[Thu May  7 10:43:31 2026] 127.0.0.1:50927 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:43:31 2026] 127.0.0.1:50927 Closing
+[Thu May  7 10:43:31 2026] 127.0.0.1:59433 Accepted
+[Thu May  7 10:43:31 2026] 127.0.0.1:59433 [200]: GET /install
+[Thu May  7 10:43:31 2026] 127.0.0.1:59433 Closing
+[Thu May  7 10:43:31 2026] 127.0.0.1:60516 Accepted
+[Thu May  7 10:43:31 2026] 127.0.0.1:60516 [200]: GET /favicon.png
+[Thu May  7 10:43:31 2026] 127.0.0.1:60516 Closing
+[Thu May  7 10:43:32 2026] 127.0.0.1:51641 Accepted
+[Thu May  7 10:43:32 2026] 127.0.0.1:51641 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:43:32 2026] 127.0.0.1:51641 Closing
+[Thu May  7 10:43:32 2026] 127.0.0.1:56623 Accepted
+[Thu May  7 10:43:32 2026] 127.0.0.1:56623 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:43:32 2026] 127.0.0.1:56623 Closing
+[Thu May  7 10:43:34 2026] 127.0.0.1:50537 Accepted
+[Thu May  7 10:43:34 2026] 127.0.0.1:63163 Accepted
+[Thu May  7 10:43:34 2026] 127.0.0.1:50537 [200]: GET /install?s=1
+[Thu May  7 10:43:34 2026] 127.0.0.1:50537 Closing
+[Thu May  7 10:43:34 2026] 127.0.0.1:63163 [302]: GET /templates/style/install.css
+[Thu May  7 10:43:34 2026] 127.0.0.1:63163 Closing
+[Thu May  7 10:43:34 2026] 127.0.0.1:62689 Accepted
+[Thu May  7 10:43:34 2026] 127.0.0.1:62689 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:43:34 2026] 127.0.0.1:62689 Closing
+[Thu May  7 10:43:34 2026] 127.0.0.1:49945 Accepted
+[Thu May  7 10:43:34 2026] 127.0.0.1:49945 [200]: GET /install
+[Thu May  7 10:43:34 2026] 127.0.0.1:49945 Closing
+[Thu May  7 10:43:34 2026] 127.0.0.1:54070 Accepted
+[Thu May  7 10:43:34 2026] 127.0.0.1:54070 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:43:34 2026] 127.0.0.1:54070 Closing
+[Thu May  7 10:43:36 2026] 127.0.0.1:51151 Accepted
+[Thu May  7 10:43:36 2026] 127.0.0.1:51151 [302]: POST /index.php
+[Thu May  7 10:43:36 2026] 127.0.0.1:51151 Closing
+[Thu May  7 10:43:36 2026] 127.0.0.1:50657 Accepted
+[Thu May  7 10:43:36 2026] 127.0.0.1:50657 [200]: GET /install
+[Thu May  7 10:43:36 2026] 127.0.0.1:50657 Closing
+[Thu May  7 10:43:36 2026] 127.0.0.1:59724 Accepted
+[Thu May  7 10:43:36 2026] 127.0.0.1:59724 [302]: GET /templates/style/install.css
+[Thu May  7 10:43:36 2026] 127.0.0.1:59724 Closing
+[Thu May  7 10:43:36 2026] 127.0.0.1:59880 Accepted
+[Thu May  7 10:43:36 2026] 127.0.0.1:59880 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:43:36 2026] 127.0.0.1:59880 Closing
+[Thu May  7 10:43:36 2026] 127.0.0.1:51329 Accepted
+[Thu May  7 10:43:36 2026] 127.0.0.1:51329 [200]: GET /install
+[Thu May  7 10:43:36 2026] 127.0.0.1:51329 Closing
+[Thu May  7 10:43:36 2026] 127.0.0.1:60692 Accepted
+[Thu May  7 10:43:36 2026] 127.0.0.1:60692 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:43:36 2026] 127.0.0.1:60692 Closing
+[Thu May  7 10:43:38 2026] 127.0.0.1:60548 Accepted
+[Thu May  7 10:43:38 2026] 127.0.0.1:51389 Accepted
+[Thu May  7 10:43:38 2026] 127.0.0.1:60548 [200]: GET /install?s=1
+[Thu May  7 10:43:38 2026] 127.0.0.1:60548 Closing
+[Thu May  7 10:43:38 2026] 127.0.0.1:51389 [302]: GET /templates/style/install.css
+[Thu May  7 10:43:38 2026] 127.0.0.1:51389 Closing
+[Thu May  7 10:43:38 2026] 127.0.0.1:50065 Accepted
+[Thu May  7 10:43:38 2026] 127.0.0.1:50065 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:43:38 2026] 127.0.0.1:50065 Closing
+[Thu May  7 10:43:38 2026] 127.0.0.1:50703 Accepted
+[Thu May  7 10:43:38 2026] 127.0.0.1:50703 [200]: GET /install
+[Thu May  7 10:43:38 2026] 127.0.0.1:50703 Closing
+[Thu May  7 10:43:38 2026] 127.0.0.1:57846 Accepted
+[Thu May  7 10:43:38 2026] 127.0.0.1:57846 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:43:38 2026] 127.0.0.1:57846 Closing
+[Thu May  7 10:43:39 2026] 127.0.0.1:51349 Accepted
+[Thu May  7 10:43:39 2026] 127.0.0.1:61105 Accepted
+[Thu May  7 10:43:39 2026] 127.0.0.1:51349 [302]: POST /index.php
+[Thu May  7 10:43:39 2026] 127.0.0.1:51349 Closing
+[Thu May  7 10:43:39 2026] 127.0.0.1:61105 [200]: GET /install
+[Thu May  7 10:43:39 2026] 127.0.0.1:61105 Closing
+[Thu May  7 10:43:39 2026] 127.0.0.1:54444 Accepted
+[Thu May  7 10:43:39 2026] 127.0.0.1:54444 [302]: GET /templates/style/install.css
+[Thu May  7 10:43:39 2026] 127.0.0.1:54444 Closing
+[Thu May  7 10:43:39 2026] 127.0.0.1:61380 Accepted
+[Thu May  7 10:43:39 2026] 127.0.0.1:61380 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:43:39 2026] 127.0.0.1:61380 Closing
+[Thu May  7 10:43:39 2026] 127.0.0.1:64378 Accepted
+[Thu May  7 10:43:39 2026] 127.0.0.1:64378 [200]: GET /install
+[Thu May  7 10:43:39 2026] 127.0.0.1:64378 Closing
+[Thu May  7 10:43:40 2026] 127.0.0.1:59347 Accepted
+[Thu May  7 10:43:40 2026] 127.0.0.1:59347 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:43:40 2026] 127.0.0.1:59347 Closing
+[Thu May  7 10:45:32 2026] 127.0.0.1:52986 Accepted
+[Thu May  7 10:45:32 2026] 127.0.0.1:61366 Accepted
+[Thu May  7 10:45:32 2026] 127.0.0.1:52986 [200]: GET /install
+[Thu May  7 10:45:32 2026] 127.0.0.1:52986 Closing
+[Thu May  7 10:45:32 2026] 127.0.0.1:61366 [302]: GET /templates/style/install.css
+[Thu May  7 10:45:32 2026] 127.0.0.1:61366 Closing
+[Thu May  7 10:45:32 2026] 127.0.0.1:58925 Accepted
+[Thu May  7 10:45:32 2026] 127.0.0.1:58925 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:45:32 2026] 127.0.0.1:58925 Closing
+[Thu May  7 10:45:32 2026] 127.0.0.1:50123 Accepted
+[Thu May  7 10:45:32 2026] 127.0.0.1:50123 [200]: GET /install
+[Thu May  7 10:45:32 2026] 127.0.0.1:50123 Closing
+[Thu May  7 10:45:32 2026] 127.0.0.1:58074 Accepted
+[Thu May  7 10:45:32 2026] 127.0.0.1:58074 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:45:32 2026] 127.0.0.1:58074 Closing
+[Thu May  7 10:45:34 2026] 127.0.0.1:50891 Accepted
+[Thu May  7 10:45:34 2026] 127.0.0.1:49214 Accepted
+[Thu May  7 10:45:34 2026] 127.0.0.1:50891 [200]: GET /install?s=1
+[Thu May  7 10:45:34 2026] 127.0.0.1:50891 Closing
+[Thu May  7 10:45:34 2026] 127.0.0.1:49214 [302]: GET /templates/style/install.css
+[Thu May  7 10:45:34 2026] 127.0.0.1:49214 Closing
+[Thu May  7 10:45:34 2026] 127.0.0.1:51773 Accepted
+[Thu May  7 10:45:34 2026] 127.0.0.1:51773 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:45:34 2026] 127.0.0.1:51773 Closing
+[Thu May  7 10:45:34 2026] 127.0.0.1:56524 Accepted
+[Thu May  7 10:45:34 2026] 127.0.0.1:56524 [200]: GET /install
+[Thu May  7 10:45:34 2026] 127.0.0.1:56524 Closing
+[Thu May  7 10:45:34 2026] 127.0.0.1:56794 Accepted
+[Thu May  7 10:45:34 2026] 127.0.0.1:56794 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:45:34 2026] 127.0.0.1:56794 Closing
+[Thu May  7 10:45:35 2026] 127.0.0.1:50404 Accepted
+[Thu May  7 10:45:35 2026] 127.0.0.1:50404 [302]: POST /index.php
+[Thu May  7 10:45:35 2026] 127.0.0.1:50404 Closing
+[Thu May  7 10:45:35 2026] 127.0.0.1:54978 Accepted
+[Thu May  7 10:45:35 2026] 127.0.0.1:54978 [200]: GET /install
+[Thu May  7 10:45:35 2026] 127.0.0.1:54978 Closing
+[Thu May  7 10:45:35 2026] 127.0.0.1:55215 Accepted
+[Thu May  7 10:45:35 2026] 127.0.0.1:55215 [302]: GET /templates/style/install.css
+[Thu May  7 10:45:35 2026] 127.0.0.1:55215 Closing
+[Thu May  7 10:45:35 2026] 127.0.0.1:50823 Accepted
+[Thu May  7 10:45:35 2026] 127.0.0.1:50823 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:45:35 2026] 127.0.0.1:50823 Closing
+[Thu May  7 10:45:35 2026] 127.0.0.1:60616 Accepted
+[Thu May  7 10:45:35 2026] 127.0.0.1:60616 [200]: GET /install
+[Thu May  7 10:45:35 2026] 127.0.0.1:60616 Closing
+[Thu May  7 10:45:35 2026] 127.0.0.1:63540 Accepted
+[Thu May  7 10:45:35 2026] 127.0.0.1:63540 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:45:35 2026] 127.0.0.1:63540 Closing
+[Thu May  7 10:48:24 2026] 127.0.0.1:52407 Accepted
+[Thu May  7 10:48:24 2026] 127.0.0.1:52407 [200]: GET /install
+[Thu May  7 10:48:24 2026] 127.0.0.1:52407 Closing
+[Thu May  7 10:48:24 2026] 127.0.0.1:64091 Accepted
+[Thu May  7 10:48:24 2026] 127.0.0.1:64091 [302]: GET /templates/style/install.css
+[Thu May  7 10:48:24 2026] 127.0.0.1:64091 Closing
+[Thu May  7 10:48:24 2026] 127.0.0.1:63175 Accepted
+[Thu May  7 10:48:24 2026] 127.0.0.1:63175 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:48:24 2026] 127.0.0.1:63175 Closing
+[Thu May  7 10:48:24 2026] 127.0.0.1:59076 Accepted
+[Thu May  7 10:48:24 2026] 127.0.0.1:59076 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:48:24 2026] 127.0.0.1:59076 Closing
+[Thu May  7 10:48:24 2026] 127.0.0.1:57153 Accepted
+[Thu May  7 10:48:24 2026] 127.0.0.1:57153 [200]: GET /install
+[Thu May  7 10:48:24 2026] 127.0.0.1:57153 Closing
+[Thu May  7 10:48:28 2026] 127.0.0.1:55962 Accepted
+[Thu May  7 10:48:28 2026] 127.0.0.1:55962 [302]: GET /templates/style/install.css
+[Thu May  7 10:48:28 2026] 127.0.0.1:55962 Closing
+[Thu May  7 10:48:28 2026] 127.0.0.1:58505 Accepted
+[Thu May  7 10:48:28 2026] 127.0.0.1:58505 [302]: GET /.well-known/appspecific/com.chrome.devtools.json
+[Thu May  7 10:48:28 2026] 127.0.0.1:58505 Closing
+[Thu May  7 10:48:28 2026] 127.0.0.1:59620 Accepted
+[Thu May  7 10:48:28 2026] 127.0.0.1:59620 [200]: GET /install
+[Thu May  7 10:48:28 2026] 127.0.0.1:59620 Closing
+[Thu May  7 10:48:28 2026] 127.0.0.1:60909 Accepted
+[Thu May  7 10:48:28 2026] 127.0.0.1:60909 [200]: GET /install
+[Thu May  7 10:48:28 2026] 127.0.0.1:60909 Closing
+[Thu May  7 10:48:32 2026] 127.0.0.1:50755 Accepted
+[Thu May  7 10:48:32 2026] 127.0.0.1:50711 Accepted
+[Thu May  7 10:48:32 2026] 127.0.0.1:50755 [200]: GET /install?s=1
+[Thu May  7 10:48:32 2026] 127.0.0.1:50755 Closing
+[Thu May  7 10:48:32 2026] 127.0.0.1:50711 [302]: GET /.well-known/appspecific/com.chrome.devtools.json
+[Thu May  7 10:48:32 2026] 127.0.0.1:50711 Closing
+[Thu May  7 10:48:32 2026] 127.0.0.1:63693 Accepted
+[Thu May  7 10:48:32 2026] 127.0.0.1:63693 [200]: GET /install
+[Thu May  7 10:48:32 2026] 127.0.0.1:63693 Closing
+[Thu May  7 10:48:32 2026] 127.0.0.1:57422 Accepted
+[Thu May  7 10:48:32 2026] 127.0.0.1:57422 [302]: GET /templates/style/install.css
+[Thu May  7 10:48:32 2026] 127.0.0.1:57422 Closing
+[Thu May  7 10:48:32 2026] 127.0.0.1:52051 Accepted
+[Thu May  7 10:48:32 2026] 127.0.0.1:52051 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:48:32 2026] 127.0.0.1:58969 Accepted
+[Thu May  7 10:48:32 2026] 127.0.0.1:52051 Closing
+[Thu May  7 10:48:32 2026] 127.0.0.1:58969 [200]: GET /install
+[Thu May  7 10:48:32 2026] 127.0.0.1:58969 Closing
+[Thu May  7 10:48:32 2026] 127.0.0.1:64959 Accepted
+[Thu May  7 10:48:32 2026] 127.0.0.1:64959 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:48:32 2026] 127.0.0.1:64959 Closing
+[Thu May  7 10:48:39 2026] 127.0.0.1:64282 Accepted
+[Thu May  7 10:48:39 2026] 127.0.0.1:64282 [302]: POST /index.php
+[Thu May  7 10:48:39 2026] 127.0.0.1:64282 Closing
+[Thu May  7 10:48:39 2026] 127.0.0.1:59048 Accepted
+[Thu May  7 10:48:39 2026] 127.0.0.1:59048 [200]: GET /install
+[Thu May  7 10:48:39 2026] 127.0.0.1:59048 Closing
+[Thu May  7 10:48:39 2026] 127.0.0.1:65170 Accepted
+[Thu May  7 10:48:39 2026] 127.0.0.1:65170 [302]: GET /.well-known/appspecific/com.chrome.devtools.json
+[Thu May  7 10:48:39 2026] 127.0.0.1:65170 Closing
+[Thu May  7 10:48:39 2026] 127.0.0.1:50083 Accepted
+[Thu May  7 10:48:39 2026] 127.0.0.1:50083 [302]: GET /templates/style/install.css
+[Thu May  7 10:48:39 2026] 127.0.0.1:50083 Closing
+[Thu May  7 10:48:39 2026] 127.0.0.1:61382 Accepted
+[Thu May  7 10:48:39 2026] 127.0.0.1:55366 Accepted
+[Thu May  7 10:48:39 2026] 127.0.0.1:61382 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:48:39 2026] 127.0.0.1:55366 [200]: GET /install
+[Thu May  7 10:48:39 2026] 127.0.0.1:55366 Closing
+[Thu May  7 10:48:39 2026] 127.0.0.1:50282 Accepted
+[Thu May  7 10:48:39 2026] 127.0.0.1:50282 [200]: GET /install
+[Thu May  7 10:48:39 2026] 127.0.0.1:50282 Closing
+[Thu May  7 10:48:39 2026] 127.0.0.1:61382 Closing
+[Thu May  7 10:48:39 2026] 127.0.0.1:56034 Accepted
+[Thu May  7 10:48:39 2026] 127.0.0.1:56034 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:48:39 2026] 127.0.0.1:56034 Closing
+[Thu May  7 10:48:42 2026] 127.0.0.1:65272 Accepted
+[Thu May  7 10:48:42 2026] 127.0.0.1:65272 [302]: GET /.well-known/appspecific/com.chrome.devtools.json
+[Thu May  7 10:48:42 2026] 127.0.0.1:65272 Closing
+[Thu May  7 10:48:42 2026] 127.0.0.1:49433 Accepted
+[Thu May  7 10:48:42 2026] 127.0.0.1:49433 [200]: GET /install
+[Thu May  7 10:48:42 2026] 127.0.0.1:49433 Closing
+[Thu May  7 10:48:42 2026] 127.0.0.1:61409 Accepted
+[Thu May  7 10:48:42 2026] 127.0.0.1:61409 [302]: GET /templates/style/install.css
+[Thu May  7 10:48:42 2026] 127.0.0.1:61409 Closing
+[Thu May  7 10:48:42 2026] 127.0.0.1:50455 Accepted
+[Thu May  7 10:48:42 2026] 127.0.0.1:49540 Accepted
+[Thu May  7 10:48:42 2026] 127.0.0.1:50455 [200]: GET /install
+[Thu May  7 10:48:42 2026] 127.0.0.1:50455 Closing
+[Thu May  7 10:48:42 2026] 127.0.0.1:49540 [302]: GET /.well-known/appspecific/com.chrome.devtools.json
+[Thu May  7 10:48:42 2026] 127.0.0.1:49540 Closing
+[Thu May  7 10:48:42 2026] 127.0.0.1:58819 Accepted
+[Thu May  7 10:48:42 2026] 127.0.0.1:58819 [200]: GET /install
+[Thu May  7 10:48:42 2026] 127.0.0.1:58819 Closing
+[Thu May  7 10:49:56 2026] 127.0.0.1:60959 Accepted
+[Thu May  7 10:49:56 2026] 127.0.0.1:60959 [200]: POST /install/index.php
+[Thu May  7 10:49:56 2026] 127.0.0.1:60959 Closing
+[Thu May  7 10:51:33 2026] 127.0.0.1:53880 Accepted
+[Thu May  7 10:51:33 2026] 127.0.0.1:64128 Accepted
+[Thu May  7 10:51:33 2026] 127.0.0.1:53880 [200]: GET /install?s=1
+[Thu May  7 10:51:33 2026] 127.0.0.1:53880 Closing
+[Thu May  7 10:51:33 2026] 127.0.0.1:64128 [302]: GET /.well-known/appspecific/com.chrome.devtools.json
+[Thu May  7 10:51:33 2026] 127.0.0.1:64128 Closing
+[Thu May  7 10:51:33 2026] 127.0.0.1:65409 Accepted
+[Thu May  7 10:51:33 2026] 127.0.0.1:65409 [200]: GET /install
+[Thu May  7 10:51:33 2026] 127.0.0.1:65409 Closing
+[Thu May  7 10:51:33 2026] 127.0.0.1:54437 Accepted
+[Thu May  7 10:51:33 2026] 127.0.0.1:64091 Accepted
+[Thu May  7 10:51:33 2026] 127.0.0.1:54437 [302]: GET /templates/style/install.css
+[Thu May  7 10:51:33 2026] 127.0.0.1:54437 Closing
+[Thu May  7 10:51:33 2026] 127.0.0.1:64091 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:51:33 2026] 127.0.0.1:64091 Closing
+[Thu May  7 10:51:33 2026] 127.0.0.1:56722 Accepted
+[Thu May  7 10:51:33 2026] 127.0.0.1:56722 [200]: GET /install
+[Thu May  7 10:51:33 2026] 127.0.0.1:56722 Closing
+[Thu May  7 10:51:33 2026] 127.0.0.1:54678 Accepted
+[Thu May  7 10:51:33 2026] 127.0.0.1:54678 [200]: GET /favicon.png
+[Thu May  7 10:51:33 2026] 127.0.0.1:54678 Closing
+[Thu May  7 10:51:33 2026] 127.0.0.1:65520 Accepted
+[Thu May  7 10:51:33 2026] 127.0.0.1:65520 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:51:33 2026] 127.0.0.1:65520 Closing
+[Thu May  7 10:51:35 2026] 127.0.0.1:56111 Accepted
+[Thu May  7 10:51:35 2026] 127.0.0.1:64091 Accepted
+[Thu May  7 10:51:35 2026] 127.0.0.1:56111 [302]: POST /index.php
+[Thu May  7 10:51:35 2026] 127.0.0.1:56111 Closing
+[Thu May  7 10:51:35 2026] 127.0.0.1:64091 [200]: GET /install
+[Thu May  7 10:51:35 2026] 127.0.0.1:64091 Closing
+[Thu May  7 10:51:35 2026] 127.0.0.1:61584 Accepted
+[Thu May  7 10:51:35 2026] 127.0.0.1:61584 [302]: GET /.well-known/appspecific/com.chrome.devtools.json
+[Thu May  7 10:51:35 2026] 127.0.0.1:61584 Closing
+[Thu May  7 10:51:35 2026] 127.0.0.1:53152 Accepted
+[Thu May  7 10:51:35 2026] 127.0.0.1:53152 [200]: GET /install
+[Thu May  7 10:51:35 2026] 127.0.0.1:53152 Closing
+[Thu May  7 10:51:35 2026] 127.0.0.1:55105 Accepted
+[Thu May  7 10:51:35 2026] 127.0.0.1:55105 [302]: GET /templates/style/install.css
+[Thu May  7 10:51:35 2026] 127.0.0.1:55105 Closing
+[Thu May  7 10:51:35 2026] 127.0.0.1:64489 Accepted
+[Thu May  7 10:51:35 2026] 127.0.0.1:64489 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:51:35 2026] 127.0.0.1:64489 Closing
+[Thu May  7 10:51:35 2026] 127.0.0.1:51719 Accepted
+[Thu May  7 10:51:35 2026] 127.0.0.1:51719 [200]: GET /install
+[Thu May  7 10:51:35 2026] 127.0.0.1:51719 Closing
+[Thu May  7 10:51:35 2026] 127.0.0.1:58539 Accepted
+[Thu May  7 10:51:35 2026] 127.0.0.1:58539 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:51:35 2026] 127.0.0.1:58539 Closing
+[Thu May  7 10:51:37 2026] 127.0.0.1:58615 Accepted
+[Thu May  7 10:51:37 2026] 127.0.0.1:64091 Accepted
+[Thu May  7 10:51:37 2026] 127.0.0.1:58615 [200]: GET /install?s=1
+[Thu May  7 10:51:37 2026] 127.0.0.1:58615 Closing
+[Thu May  7 10:51:37 2026] 127.0.0.1:64091 [302]: GET /.well-known/appspecific/com.chrome.devtools.json
+[Thu May  7 10:51:37 2026] 127.0.0.1:64091 Closing
+[Thu May  7 10:51:37 2026] 127.0.0.1:49307 Accepted
+[Thu May  7 10:51:37 2026] 127.0.0.1:49307 [200]: GET /install
+[Thu May  7 10:51:37 2026] 127.0.0.1:49307 Closing
+[Thu May  7 10:51:37 2026] 127.0.0.1:52952 Accepted
+[Thu May  7 10:51:37 2026] 127.0.0.1:52952 [302]: GET /templates/style/install.css
+[Thu May  7 10:51:37 2026] 127.0.0.1:52952 Closing
+[Thu May  7 10:51:37 2026] 127.0.0.1:54587 Accepted
+[Thu May  7 10:51:37 2026] 127.0.0.1:54587 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:51:37 2026] 127.0.0.1:54587 Closing
+[Thu May  7 10:51:37 2026] 127.0.0.1:59818 Accepted
+[Thu May  7 10:51:37 2026] 127.0.0.1:59818 [200]: GET /install
+[Thu May  7 10:51:37 2026] 127.0.0.1:59818 Closing
+[Thu May  7 10:51:37 2026] 127.0.0.1:54309 Accepted
+[Thu May  7 10:51:37 2026] 127.0.0.1:54309 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:51:37 2026] 127.0.0.1:54309 Closing
+[Thu May  7 10:51:38 2026] 127.0.0.1:65410 Accepted
+[Thu May  7 10:51:38 2026] 127.0.0.1:65410 [302]: POST /index.php
+[Thu May  7 10:51:38 2026] 127.0.0.1:65410 Closing
+[Thu May  7 10:51:39 2026] 127.0.0.1:59722 Accepted
+[Thu May  7 10:51:39 2026] 127.0.0.1:59722 [200]: GET /install
+[Thu May  7 10:51:39 2026] 127.0.0.1:59722 Closing
+[Thu May  7 10:51:39 2026] 127.0.0.1:53676 Accepted
+[Thu May  7 10:51:39 2026] 127.0.0.1:53676 [302]: GET /.well-known/appspecific/com.chrome.devtools.json
+[Thu May  7 10:51:39 2026] 127.0.0.1:53676 Closing
+[Thu May  7 10:51:39 2026] 127.0.0.1:53958 Accepted
+[Thu May  7 10:51:39 2026] 127.0.0.1:53958 [200]: GET /install
+[Thu May  7 10:51:39 2026] 127.0.0.1:53958 Closing
+[Thu May  7 10:51:39 2026] 127.0.0.1:60275 Accepted
+[Thu May  7 10:51:39 2026] 127.0.0.1:60275 [302]: GET /templates/style/install.css
+[Thu May  7 10:51:39 2026] 127.0.0.1:60275 Closing
+[Thu May  7 10:51:39 2026] 127.0.0.1:58926 Accepted
+[Thu May  7 10:51:39 2026] 127.0.0.1:58926 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:51:39 2026] 127.0.0.1:58926 Closing
+[Thu May  7 10:51:39 2026] 127.0.0.1:61720 Accepted
+[Thu May  7 10:51:39 2026] 127.0.0.1:61720 [200]: GET /install
+[Thu May  7 10:51:39 2026] 127.0.0.1:61720 Closing
+[Thu May  7 10:51:39 2026] 127.0.0.1:60557 Accepted
+[Thu May  7 10:51:39 2026] 127.0.0.1:60557 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:51:39 2026] 127.0.0.1:60557 Closing
+[Thu May  7 10:52:34 2026] 127.0.0.1:59386 Accepted
+[Thu May  7 10:52:34 2026] 127.0.0.1:58943 Accepted
+[Thu May  7 10:52:34 2026] 127.0.0.1:59386 [200]: GET /install
+[Thu May  7 10:52:34 2026] 127.0.0.1:59386 Closing
+[Thu May  7 10:52:34 2026] 127.0.0.1:58943 [302]: GET /templates/style/install.css
+[Thu May  7 10:52:34 2026] 127.0.0.1:58943 Closing
+[Thu May  7 10:52:34 2026] 127.0.0.1:65518 Accepted
+[Thu May  7 10:52:34 2026] 127.0.0.1:65518 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:52:34 2026] 127.0.0.1:65518 Closing
+[Thu May  7 10:52:34 2026] 127.0.0.1:63636 Accepted
+[Thu May  7 10:52:34 2026] 127.0.0.1:63636 [200]: GET /install
+[Thu May  7 10:52:34 2026] 127.0.0.1:63636 Closing
+[Thu May  7 10:52:34 2026] 127.0.0.1:57455 Accepted
+[Thu May  7 10:52:34 2026] 127.0.0.1:57455 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:52:34 2026] 127.0.0.1:57455 Closing
+[Thu May  7 10:52:35 2026] 127.0.0.1:60312 Accepted
+[Thu May  7 10:52:35 2026] 127.0.0.1:50315 Accepted
+[Thu May  7 10:52:35 2026] 127.0.0.1:60312 [200]: GET /install?s=1
+[Thu May  7 10:52:35 2026] 127.0.0.1:60312 Closing
+[Thu May  7 10:52:35 2026] 127.0.0.1:50315 [302]: GET /templates/style/install.css
+[Thu May  7 10:52:35 2026] 127.0.0.1:50315 Closing
+[Thu May  7 10:52:35 2026] 127.0.0.1:64818 Accepted
+[Thu May  7 10:52:35 2026] 127.0.0.1:64818 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:52:35 2026] 127.0.0.1:60186 Accepted
+[Thu May  7 10:52:35 2026] 127.0.0.1:64818 Closing
+[Thu May  7 10:52:35 2026] 127.0.0.1:60186 [200]: GET /install
+[Thu May  7 10:52:35 2026] 127.0.0.1:60186 Closing
+[Thu May  7 10:52:35 2026] 127.0.0.1:61618 Accepted
+[Thu May  7 10:52:35 2026] 127.0.0.1:61618 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:52:35 2026] 127.0.0.1:61618 Closing
+[Thu May  7 10:52:36 2026] 127.0.0.1:63044 Accepted
+[Thu May  7 10:52:36 2026] 127.0.0.1:60525 Accepted
+[Thu May  7 10:52:36 2026] 127.0.0.1:63044 [302]: POST /index.php
+[Thu May  7 10:52:36 2026] 127.0.0.1:63044 Closing
+[Thu May  7 10:52:36 2026] 127.0.0.1:60525 [200]: GET /install
+[Thu May  7 10:52:36 2026] 127.0.0.1:60525 Closing
+[Thu May  7 10:52:36 2026] 127.0.0.1:64145 Accepted
+[Thu May  7 10:52:36 2026] 127.0.0.1:64145 [302]: GET /templates/style/install.css
+[Thu May  7 10:52:36 2026] 127.0.0.1:64145 Closing
+[Thu May  7 10:52:36 2026] 127.0.0.1:62866 Accepted
+[Thu May  7 10:52:36 2026] 127.0.0.1:62866 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:52:36 2026] 127.0.0.1:62866 Closing
+[Thu May  7 10:52:36 2026] 127.0.0.1:52769 Accepted
+[Thu May  7 10:52:36 2026] 127.0.0.1:52769 [200]: GET /install
+[Thu May  7 10:52:36 2026] 127.0.0.1:52769 Closing
+[Thu May  7 10:52:37 2026] 127.0.0.1:61131 Accepted
+[Thu May  7 10:52:37 2026] 127.0.0.1:61131 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:52:37 2026] 127.0.0.1:61131 Closing
+[Thu May  7 10:52:37 2026] 127.0.0.1:49787 Accepted
+[Thu May  7 10:52:38 2026] 127.0.0.1:62774 Accepted
+[Thu May  7 10:52:38 2026] 127.0.0.1:49787 [200]: GET /install?s=1
+[Thu May  7 10:52:38 2026] 127.0.0.1:49787 Closing
+[Thu May  7 10:52:38 2026] 127.0.0.1:62774 [302]: GET /templates/style/install.css
+[Thu May  7 10:52:38 2026] 127.0.0.1:62774 Closing
+[Thu May  7 10:52:38 2026] 127.0.0.1:58456 Accepted
+[Thu May  7 10:52:38 2026] 127.0.0.1:58456 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:52:38 2026] 127.0.0.1:58456 Closing
+[Thu May  7 10:52:38 2026] 127.0.0.1:58292 Accepted
+[Thu May  7 10:52:38 2026] 127.0.0.1:58292 [200]: GET /install
+[Thu May  7 10:52:38 2026] 127.0.0.1:58292 Closing
+[Thu May  7 10:52:38 2026] 127.0.0.1:62328 Accepted
+[Thu May  7 10:52:38 2026] 127.0.0.1:62328 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:52:38 2026] 127.0.0.1:62328 Closing
+[Thu May  7 10:52:39 2026] 127.0.0.1:58312 Accepted
+[Thu May  7 10:52:39 2026] 127.0.0.1:58312 [302]: POST /index.php
+[Thu May  7 10:52:39 2026] 127.0.0.1:58312 Closing
+[Thu May  7 10:52:39 2026] 127.0.0.1:62945 Accepted
+[Thu May  7 10:52:39 2026] 127.0.0.1:62945 [200]: GET /install
+[Thu May  7 10:52:39 2026] 127.0.0.1:62945 Closing
+[Thu May  7 10:52:39 2026] 127.0.0.1:56286 Accepted
+[Thu May  7 10:52:39 2026] 127.0.0.1:56286 [302]: GET /templates/style/install.css
+[Thu May  7 10:52:39 2026] 127.0.0.1:56286 Closing
+[Thu May  7 10:52:39 2026] 127.0.0.1:57045 Accepted
+[Thu May  7 10:52:39 2026] 127.0.0.1:57045 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:52:39 2026] 127.0.0.1:57045 Closing
+[Thu May  7 10:52:39 2026] 127.0.0.1:60217 Accepted
+[Thu May  7 10:52:39 2026] 127.0.0.1:60217 [200]: GET /install
+[Thu May  7 10:52:39 2026] 127.0.0.1:60217 Closing
+[Thu May  7 10:52:39 2026] 127.0.0.1:50060 Accepted
+[Thu May  7 10:52:39 2026] 127.0.0.1:50060 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:52:39 2026] 127.0.0.1:50060 Closing
+[Thu May  7 10:53:38 2026] 127.0.0.1:51976 Accepted
+[Thu May  7 10:53:38 2026] 127.0.0.1:51977 Accepted
+[Thu May  7 10:53:38 2026] 127.0.0.1:51977 [200]: GET /install/index.php?s=1
+[Thu May  7 10:53:38 2026] 127.0.0.1:51977 Closing
+[Thu May  7 10:53:39 2026] 127.0.0.1:51976 [200]: POST /install/index.php
+[Thu May  7 10:53:39 2026] 127.0.0.1:51976 Closing
+[Thu May  7 10:54:27 2026] 127.0.0.1:50094 Accepted
+[Thu May  7 10:54:27 2026] 127.0.0.1:53676 Accepted
+[Thu May  7 10:54:27 2026] 127.0.0.1:50094 [200]: GET /install
+[Thu May  7 10:54:27 2026] 127.0.0.1:50094 Closing
+[Thu May  7 10:54:27 2026] 127.0.0.1:53676 [200]: GET /install/templates/style/install.css
+[Thu May  7 10:54:27 2026] 127.0.0.1:64970 Accepted
+[Thu May  7 10:54:27 2026] 127.0.0.1:64970 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:54:27 2026] 127.0.0.1:53676 Closing
+[Thu May  7 10:54:27 2026] 127.0.0.1:64970 Closing
+[Thu May  7 10:54:27 2026] 127.0.0.1:53678 Accepted
+[Thu May  7 10:54:27 2026] 127.0.0.1:53678 [200]: GET /install/templates/images/logo.png
+[Thu May  7 10:54:27 2026] 127.0.0.1:53678 Closing
+[Thu May  7 10:54:28 2026] 127.0.0.1:51173 Accepted
+[Thu May  7 10:54:28 2026] 127.0.0.1:51173 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:54:28 2026] 127.0.0.1:51173 Closing
+[Thu May  7 10:54:31 2026] 127.0.0.1:54252 Accepted
+[Thu May  7 10:54:31 2026] 127.0.0.1:54252 [200]: GET /install
+[Thu May  7 10:54:31 2026] 127.0.0.1:54252 Closing
+[Thu May  7 10:54:31 2026] 127.0.0.1:60063 Accepted
+[Thu May  7 10:54:31 2026] 127.0.0.1:60063 [200]: GET /install/templates/style/install.css
+[Thu May  7 10:54:31 2026] 127.0.0.1:60063 Closing
+[Thu May  7 10:54:31 2026] 127.0.0.1:54316 Accepted
+[Thu May  7 10:54:31 2026] 127.0.0.1:54316 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:54:31 2026] 127.0.0.1:54316 Closing
+[Thu May  7 10:54:31 2026] 127.0.0.1:61122 Accepted
+[Thu May  7 10:54:31 2026] 127.0.0.1:61122 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:54:31 2026] 127.0.0.1:61122 Closing
+[Thu May  7 10:54:31 2026] 127.0.0.1:53900 Accepted
+[Thu May  7 10:54:31 2026] 127.0.0.1:53900 [200]: GET /install/templates/images/logo.png
+[Thu May  7 10:54:31 2026] 127.0.0.1:53900 Closing
+[Thu May  7 10:54:31 2026] 127.0.0.1:49600 Accepted
+[Thu May  7 10:54:31 2026] 127.0.0.1:49600 [200]: GET /favicon.png
+[Thu May  7 10:54:31 2026] 127.0.0.1:49600 Closing
+[Thu May  7 10:54:32 2026] 127.0.0.1:50197 Accepted
+[Thu May  7 10:54:32 2026] 127.0.0.1:58231 Accepted
+[Thu May  7 10:54:32 2026] 127.0.0.1:50197 [200]: GET /install
+[Thu May  7 10:54:32 2026] 127.0.0.1:50197 Closing
+[Thu May  7 10:54:32 2026] 127.0.0.1:58231 [200]: GET /install/templates/style/install.css
+[Thu May  7 10:54:32 2026] 127.0.0.1:58231 Closing
+[Thu May  7 10:54:32 2026] 127.0.0.1:58747 Accepted
+[Thu May  7 10:54:32 2026] 127.0.0.1:58747 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:54:32 2026] 127.0.0.1:58747 Closing
+[Thu May  7 10:54:32 2026] 127.0.0.1:54099 Accepted
+[Thu May  7 10:54:32 2026] 127.0.0.1:54099 [200]: GET /install/templates/images/logo.png
+[Thu May  7 10:54:32 2026] 127.0.0.1:54099 Closing
+[Thu May  7 10:54:32 2026] 127.0.0.1:54514 Accepted
+[Thu May  7 10:54:32 2026] 127.0.0.1:54514 [200]: GET /favicon.png
+[Thu May  7 10:54:32 2026] 127.0.0.1:54514 Closing
+[Thu May  7 10:54:32 2026] 127.0.0.1:52028 Accepted
+[Thu May  7 10:54:32 2026] 127.0.0.1:52028 [200]: GET /install
+[Thu May  7 10:54:32 2026] 127.0.0.1:52028 Closing
+[Thu May  7 10:54:32 2026] 127.0.0.1:49843 Accepted
+[Thu May  7 10:54:32 2026] 127.0.0.1:49843 [200]: GET /install/templates/style/install.css
+[Thu May  7 10:54:32 2026] 127.0.0.1:49843 Closing
+[Thu May  7 10:54:32 2026] 127.0.0.1:49688 Accepted
+[Thu May  7 10:54:32 2026] 127.0.0.1:49688 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:54:32 2026] 127.0.0.1:49688 Closing
+[Thu May  7 10:54:32 2026] 127.0.0.1:64092 Accepted
+[Thu May  7 10:54:32 2026] 127.0.0.1:64092 [200]: GET /install/templates/images/logo.png
+[Thu May  7 10:54:32 2026] 127.0.0.1:64092 Closing
+[Thu May  7 10:54:32 2026] 127.0.0.1:53908 Accepted
+[Thu May  7 10:54:32 2026] 127.0.0.1:53908 [200]: GET /favicon.png
+[Thu May  7 10:54:32 2026] 127.0.0.1:53908 Closing
+[Thu May  7 10:54:32 2026] 127.0.0.1:56017 Accepted
+[Thu May  7 10:54:32 2026] 127.0.0.1:56017 [200]: GET /install
+[Thu May  7 10:54:32 2026] 127.0.0.1:56017 Closing
+[Thu May  7 10:54:32 2026] 127.0.0.1:53808 Accepted
+[Thu May  7 10:54:32 2026] 127.0.0.1:64092 Accepted
+[Thu May  7 10:54:32 2026] 127.0.0.1:64092 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:54:32 2026] 127.0.0.1:64092 Closing
+[Thu May  7 10:54:32 2026] 127.0.0.1:55739 Accepted
+[Thu May  7 10:54:32 2026] 127.0.0.1:55739 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:54:32 2026] 127.0.0.1:55739 Closing
+[Thu May  7 10:54:32 2026] 127.0.0.1:53808 [200]: GET /install/templates/style/install.css
+[Thu May  7 10:54:32 2026] 127.0.0.1:64335 Accepted
+[Thu May  7 10:54:32 2026] 127.0.0.1:64335 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:54:32 2026] 127.0.0.1:53808 Closing
+[Thu May  7 10:54:32 2026] 127.0.0.1:64335 Closing
+[Thu May  7 10:54:32 2026] 127.0.0.1:50060 Accepted
+[Thu May  7 10:54:32 2026] 127.0.0.1:50060 [200]: GET /install/templates/images/logo.png
+[Thu May  7 10:54:32 2026] 127.0.0.1:50060 Closing
+[Thu May  7 10:54:32 2026] 127.0.0.1:51458 Accepted
+[Thu May  7 10:54:32 2026] 127.0.0.1:51458 [200]: GET /favicon.png
+[Thu May  7 10:54:32 2026] 127.0.0.1:51458 Closing
+[Thu May  7 10:54:32 2026] 127.0.0.1:59062 Accepted
+[Thu May  7 10:54:32 2026] 127.0.0.1:59119 Accepted
+[Thu May  7 10:54:32 2026] 127.0.0.1:59062 [200]: GET /install
+[Thu May  7 10:54:32 2026] 127.0.0.1:59062 Closing
+[Thu May  7 10:54:33 2026] 127.0.0.1:59119 [200]: GET /install/templates/style/install.css
+[Thu May  7 10:54:33 2026] 127.0.0.1:59119 Closing
+[Thu May  7 10:54:33 2026] 127.0.0.1:51551 Accepted
+[Thu May  7 10:54:33 2026] 127.0.0.1:51551 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:54:33 2026] 127.0.0.1:51551 Closing
+[Thu May  7 10:54:33 2026] 127.0.0.1:51837 Accepted
+[Thu May  7 10:54:33 2026] 127.0.0.1:51837 [200]: GET /install/templates/images/logo.png
+[Thu May  7 10:54:33 2026] 127.0.0.1:51837 Closing
+[Thu May  7 10:54:33 2026] 127.0.0.1:56229 Accepted
+[Thu May  7 10:54:33 2026] 127.0.0.1:56229 [200]: GET /favicon.png
+[Thu May  7 10:54:33 2026] 127.0.0.1:56229 Closing
+[Thu May  7 10:54:33 2026] 127.0.0.1:64092 Accepted
+[Thu May  7 10:54:33 2026] 127.0.0.1:51275 Accepted
+[Thu May  7 10:54:33 2026] 127.0.0.1:64092 [200]: GET /install
+[Thu May  7 10:54:33 2026] 127.0.0.1:64092 Closing
+[Thu May  7 10:54:33 2026] 127.0.0.1:51275 [200]: GET /install/templates/style/install.css
+[Thu May  7 10:54:33 2026] 127.0.0.1:51275 Closing
+[Thu May  7 10:54:33 2026] 127.0.0.1:55262 Accepted
+[Thu May  7 10:54:33 2026] 127.0.0.1:55262 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:54:33 2026] 127.0.0.1:55262 Closing
+[Thu May  7 10:54:33 2026] 127.0.0.1:55102 Accepted
+[Thu May  7 10:54:33 2026] 127.0.0.1:55102 [200]: GET /install/templates/images/logo.png
+[Thu May  7 10:54:33 2026] 127.0.0.1:55102 Closing
+[Thu May  7 10:54:33 2026] 127.0.0.1:64092 Accepted
+[Thu May  7 10:54:33 2026] 127.0.0.1:64092 [200]: GET /favicon.png
+[Thu May  7 10:54:33 2026] 127.0.0.1:64092 Closing
+[Thu May  7 10:54:33 2026] 127.0.0.1:59953 Accepted
+[Thu May  7 10:54:33 2026] 127.0.0.1:60758 Accepted
+[Thu May  7 10:54:33 2026] 127.0.0.1:59953 [200]: GET /install
+[Thu May  7 10:54:33 2026] 127.0.0.1:59953 Closing
+[Thu May  7 10:54:33 2026] 127.0.0.1:60758 [200]: GET /install/templates/style/install.css
+[Thu May  7 10:54:33 2026] 127.0.0.1:60758 Closing
+[Thu May  7 10:54:33 2026] 127.0.0.1:52157 Accepted
+[Thu May  7 10:54:33 2026] 127.0.0.1:52157 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:54:33 2026] 127.0.0.1:52157 Closing
+[Thu May  7 10:54:33 2026] 127.0.0.1:65385 Accepted
+[Thu May  7 10:54:33 2026] 127.0.0.1:65385 [200]: GET /install/templates/images/logo.png
+[Thu May  7 10:54:33 2026] 127.0.0.1:65385 Closing
+[Thu May  7 10:54:33 2026] 127.0.0.1:52917 Accepted
+[Thu May  7 10:54:33 2026] 127.0.0.1:52917 [200]: GET /favicon.png
+[Thu May  7 10:54:33 2026] 127.0.0.1:52917 Closing
+[Thu May  7 10:54:33 2026] 127.0.0.1:55938 Accepted
+[Thu May  7 10:54:33 2026] 127.0.0.1:55938 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:54:33 2026] 127.0.0.1:55938 Closing
+[Thu May  7 10:54:34 2026] 127.0.0.1:53678 Accepted
+[Thu May  7 10:54:34 2026] 127.0.0.1:60539 Accepted
+[Thu May  7 10:54:34 2026] 127.0.0.1:53678 [200]: GET /install/index.php?s=1
+[Thu May  7 10:54:34 2026] 127.0.0.1:53678 Closing
+[Thu May  7 10:54:34 2026] 127.0.0.1:60539 [200]: GET /install/templates/style/install.css
+[Thu May  7 10:54:34 2026] 127.0.0.1:60539 Closing
+[Thu May  7 10:54:34 2026] 127.0.0.1:64727 Accepted
+[Thu May  7 10:54:34 2026] 127.0.0.1:64727 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:54:34 2026] 127.0.0.1:64727 Closing
+[Thu May  7 10:54:34 2026] 127.0.0.1:59310 Accepted
+[Thu May  7 10:54:34 2026] 127.0.0.1:59310 [200]: GET /install/templates/images/logo.png
+[Thu May  7 10:54:34 2026] 127.0.0.1:59310 Closing
+[Thu May  7 10:54:34 2026] 127.0.0.1:50684 Accepted
+[Thu May  7 10:54:34 2026] 127.0.0.1:50684 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:54:34 2026] 127.0.0.1:50684 Closing
+[Thu May  7 10:54:34 2026] 127.0.0.1:65393 Accepted
+[Thu May  7 10:54:34 2026] 127.0.0.1:65393 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:54:34 2026] 127.0.0.1:65393 Closing
+[Thu May  7 10:54:34 2026] 127.0.0.1:59232 Accepted
+[Thu May  7 10:54:34 2026] 127.0.0.1:59232 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:54:34 2026] 127.0.0.1:59232 Closing
+[Thu May  7 10:54:34 2026] 127.0.0.1:52574 Accepted
+[Thu May  7 10:54:34 2026] 127.0.0.1:52574 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:54:34 2026] 127.0.0.1:52574 Closing
+[Thu May  7 10:54:35 2026] 127.0.0.1:53678 Accepted
+[Thu May  7 10:54:35 2026] 127.0.0.1:53678 [200]: POST /install/index.php
+[Thu May  7 10:54:35 2026] 127.0.0.1:53678 Closing
+[Thu May  7 10:54:35 2026] 127.0.0.1:59697 Accepted
+[Thu May  7 10:54:35 2026] 127.0.0.1:59697 [200]: GET /install/templates/style/install.css
+[Thu May  7 10:54:35 2026] 127.0.0.1:59697 Closing
+[Thu May  7 10:54:35 2026] 127.0.0.1:62235 Accepted
+[Thu May  7 10:54:35 2026] 127.0.0.1:62423 Accepted
+[Thu May  7 10:54:35 2026] 127.0.0.1:62235 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:54:35 2026] 127.0.0.1:62423 [200]: GET /install/templates/js/forms.js
+[Thu May  7 10:54:35 2026] 127.0.0.1:62235 Closing
+[Thu May  7 10:54:35 2026] 127.0.0.1:62423 Closing
+[Thu May  7 10:54:35 2026] 127.0.0.1:57220 Accepted
+[Thu May  7 10:54:35 2026] 127.0.0.1:57220 [200]: GET /install/templates/images/logo.png
+[Thu May  7 10:54:35 2026] 127.0.0.1:57220 Closing
+[Thu May  7 10:54:35 2026] 127.0.0.1:57510 Accepted
+[Thu May  7 10:54:35 2026] 127.0.0.1:57510 [200]: GET /install/templates/images/inputOnBg.png
+[Thu May  7 10:54:35 2026] 127.0.0.1:57510 Closing
+[Thu May  7 10:54:35 2026] 127.0.0.1:52917 Accepted
+[Thu May  7 10:54:35 2026] 127.0.0.1:52727 Accepted
+[Thu May  7 10:54:35 2026] 127.0.0.1:52917 [200]: GET /install/templates/js/forms.js
+[Thu May  7 10:54:35 2026] 127.0.0.1:52727 [200]: GET /assets/plugins/jquery/jquery.min.js
+[Thu May  7 10:54:35 2026] 127.0.0.1:52917 Closing
+[Thu May  7 10:54:35 2026] 127.0.0.1:52727 Closing
+[Thu May  7 10:54:46 2026] 127.0.0.1:55619 Accepted
+[Thu May  7 10:54:46 2026] 127.0.0.1:55619 [200]: GET /install/index.php?s=63832&dbhost=localhost&dbuser=root&dbpwd=123456
+[Thu May  7 10:54:46 2026] 127.0.0.1:55619 Closing
+[Thu May  7 10:54:54 2026] 127.0.0.1:58945 Accepted
+[Thu May  7 10:54:54 2026] 127.0.0.1:58945 [200]: GET /install/templates/images/correctBg.png
+[Thu May  7 10:54:54 2026] 127.0.0.1:58945 Closing
+[Thu May  7 10:54:59 2026] 127.0.0.1:63281 Accepted
+[Thu May  7 10:54:59 2026] 127.0.0.1:63281 [200]: GET /install/index.php?s=63832&dbhost=localhost&dbuser=root&dbpwd=123456
+[Thu May  7 10:54:59 2026] 127.0.0.1:63281 Closing
+[Thu May  7 10:55:53 2026] 127.0.0.1:62670 Accepted
+[Thu May  7 10:55:53 2026] 127.0.0.1:62670 [200]: GET /install/index.php?s=63832&dbhost=localhost&dbuser=root&dbpwd=123456
+[Thu May  7 10:55:53 2026] 127.0.0.1:62670 Closing

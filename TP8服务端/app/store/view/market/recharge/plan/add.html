@@ -1,0 +1,103 @@
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <form id="my-form" class="am-form tpl-form-line-form" method="post">
+                    <div class="widget-body">
+                        <fieldset>
+                            <div class="widget-head am-cf">
+                                <div class="widget-title am-fl">添加充值套餐</div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require"> 充值金额 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <input type="number" min="1" class="tpl-form-input" name="data[money]"
+                                           value="" placeholder="请输入充值金额" required>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label">赠品类型</label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <label class="am-radio-inline">
+                                        <input type="radio" v-model="type" name="data[gift_type]" value="20" data-am-ucheck> 余额
+                                    </label>
+                                    <label class="am-radio-inline">
+                                        <input type="radio" v-model="type" name="data[gift_type]" value="10" data-am-ucheck> 优惠券
+                                    </label>
+                                    <div class="help-block am-margin-top-sm">
+                                        <small>余额：直接到账用户钱包余额</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-show="type == 10" class="am-form-group">
+                                <label class="am-u-sm-3  am-u-lg-2 am-form-label form-require"> 选择赠品 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <div class="widget-become-goods am-form-file am-margin-top-xs">
+                                        <button type="button"
+                                                class="hema-coupon upload-file am-btn am-btn-secondary am-radius">
+                                            <i class="am-icon-cloud-upload"></i> 选择优惠券
+                                        </button>
+                                        <div class="coupon-list uploader-list am-cf">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-show="type == 20" class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require"> 赠送金额 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <input type="number" class="tpl-form-input" name="data[gift_money]"
+                                           value="" placeholder="请输入赠送金额" required>
+                                    <small>赠送金额（元）,设置为0则不赠送</small>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require"> 显示排序 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <input type="number" class="tpl-form-input" name="data[sort]"
+                                           value="100" required>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <div class="am-u-sm-9 am-u-sm-push-3 am-margin-top-lg">
+                                    <button type="submit" class="j-submit am-btn am-btn-secondary"> 提交
+                                    </button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="market/recharge/plan/tpl_gift" /}
+<script src="/assets/plugins/vue/vue.min.js?v={$version}"></script>
+<script src="/assets/js/select.data.js?v={$version}"></script>
+<script>
+    // 渲染页面
+    new Vue({
+        el: '#my-form',
+        data: {
+            type: 20
+        }
+    });
+    $(function () {
+        // 选择优惠券
+        $('.hema-coupon').click(function () {
+            var $userList = $('.coupon-list');
+            $.selectData({
+                title: '选择优惠券',
+                uri: 'coupon/lists',
+                dataIndex: 'id',
+                done: function (data) {
+                    var coupon = [data[0]];
+                    $userList.html(template('tpl-coupon-item', coupon));
+                }
+            });
+        });
+        /**
+         * 表单验证提交
+         */
+        $('#my-form').formPost();
+    });
+</script>

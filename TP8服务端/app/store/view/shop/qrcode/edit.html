@@ -1,0 +1,95 @@
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <div class="widget-head am-cf">
+                    <div class="widget-title am-cf">编辑聚合二维码参数</div>
+                </div>
+                <form id="my-form" class="am-form tpl-form-line-form" method="post">
+                    <div class="widget-body">
+                        <fieldset>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">类型关联</label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <label class="am-radio-inline">
+                                        <input v-model="type" type="radio" name="data[type]" value="10" data-am-ucheck 
+                                        {$model['type']['value'] == 10?'checked':''}> 小程序码
+                                    </label>
+                                    <!--
+                                    <label class="am-radio-inline">
+                                        <input v-model="type" type="radio" name="data[type]" value="20" data-am-ucheck 
+                                        {$model['type']['value'] == 20?'checked':''}> 门店码
+                                    </label>
+                                    -->
+                                    <label class="am-radio-inline">
+                                        <input v-model="type" type="radio" name="data[type]" value="30" data-am-ucheck 
+                                        {$model['type']['value'] == 30?'checked':''}> 餐桌码
+                                    </label>
+                                    <label class="am-radio-inline">
+                                        <input v-model="type" type="radio" name="data[type]" value="40" data-am-ucheck 
+                                        {$model['type']['value'] == 40?'checked':''}> WIFI码
+                                    </label>
+                                    <label class="am-radio-inline">
+                                        <input v-model="type" type="radio" name="data[type]" value="50" data-am-ucheck 
+                                        {$model['type']['value'] == 50?'checked':''}> 买单码
+                                    </label>
+                                    <label class="am-radio-inline">
+                                        <input v-model="type" type="radio" name="data[type]" value="60" data-am-ucheck 
+                                        {$model['type']['value'] == 60?'checked':''}> 自定义
+                                    </label>
+                                    <div class="help-block am-margin-top-sm">
+                                        <small>
+                                            小程序码：用于直接打开小程序<br>
+                                            <!--门店码：用于直接打开门店点单页面<br>-->
+                                            餐桌码：用于打开点单页面，并携带餐桌数据<br>
+                                            WIFI码：用于打开一键链接WIFI页面<br>
+                                            买单码：门店在线买单收款<br>
+                                            自定义：跳转至指定位置
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-show="type == 30" class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require"> 关联餐桌 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <select v-model="table_id" name="data[table_id]" style="width:200px" required>
+                                        <option value="0">请选择餐桌</option>
+                                        <template v-for="item in table">
+                                            <option :value="item.table_id"> {{ item.table_name }}</option>
+                                        </template>
+                                    </select>
+                                </div>
+                            </div>
+                            <div v-show="type == 60" class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require"> 跳转位置 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <input type="text" class="tpl-form-input" name="data[url]" value="{$model['url']|default='index/index'}" required>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <div class="am-u-sm-9 am-u-sm-push-3 am-margin-top-lg">
+                                    <button type="submit" class="j-submit am-btn am-btn-secondary">提交
+                                    </button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/assets/plugins/vue/vue.min.js?v={$version}"></script>
+<script>
+    $(function () {
+		new Vue({
+		  el: '#my-form',
+		  data: {
+		    table: <?= json_encode($table) ?>,
+			type:"{$model['type']['value']}",
+			table_id:"{$model['table_id']}"
+		  }
+		});
+        $('#my-form').formPost();
+    });
+</script>

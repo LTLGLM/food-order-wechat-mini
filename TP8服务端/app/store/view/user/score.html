@@ -1,0 +1,25 @@
+<!-- 模板：积分充值 -->
+<script id="tpl-score" type="text/template">
+    <div class="am-padding-xs am-padding-top-sm">
+        <div class="am-form-group">
+            <label class="am-u-sm-3 am-form-label">当前积分</label>
+            <div class="am-u-sm-8 am-u-end">
+                <input type="hidden" name="data[user_id]" value="{{ user_id }}">
+                <div class="am-form--static">{{ score }}</div>
+            </div>
+        </div>
+        <div class="am-form-group">
+            <label class="am-u-sm-3 am-form-label form-require">充值数量</label>
+            <div class="am-u-sm-8 am-u-end">
+                <input type="number" min="1" class="tpl-form-input" placeholder="请输入充值数量" name="data[money]" value="" required>
+                <small>最小值1</small>
+            </div>
+        </div>
+        <div class="am-form-group">
+            <label class="am-u-sm-3 am-form-label">操作备注</label>
+            <div class="am-u-sm-8 am-u-end">
+                <textarea rows="2" name="data[remark]" placeholder="请输入操作备注" class="am-field-valid"></textarea>
+            </div>
+        </div>
+    </div> 
+</script>

@@ -1,0 +1,1 @@
+<?phpnamespace app\api\model;use app\common\model\CouponUser as CouponUserModel;/** * 用户优惠券模型 */class CouponUser extends CouponUserModel{    /**     * 隐藏字段     */    protected $hidden = [];}

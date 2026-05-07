@@ -1,0 +1,30 @@
+<!-- 编辑 -->
+<script id="tpl-status" type="text/template">
+    <div class="am-padding-xs am-padding-top-sm">
+        <div class="am-form-group">
+            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">预约状态 </label>
+            <div class="am-u-sm-9 am-u-end">
+                <label class="am-radio-inline">
+                    <input type="radio" name="data[status]" value="10" data-am-ucheck {{ status == 10?'checked':'' }}>
+                    预约中
+                </label>
+                <label class="am-radio-inline">
+                    <input type="radio" name="data[status]" value="20" data-am-ucheck {{ status == 20?'checked':'' }}>
+                    已过期
+                </label>
+                <label class="am-radio-inline">
+                    <input type="radio" name="data[status]" value="30" data-am-ucheck {{ status == 30?'checked':'' }}>
+                    已完成
+                </label>
+                <label class="am-radio-inline">
+                    <input type="radio" name="data[status]" value="40" data-am-ucheck {{ status == 40?'checked':'' }}>
+                    已取消
+                </label>
+                <label class="am-radio-inline">
+                    <input type="radio" name="data[status]" value="50" data-am-ucheck {{ status == 50?'checked':'' }}>
+                    已同意
+                </label>
+            </div>
+        </div>
+    </div>   
+</script>

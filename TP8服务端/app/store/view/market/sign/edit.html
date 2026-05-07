@@ -1,0 +1,32 @@
+<!-- 编辑 -->
+<script id="tpl-edit" type="text/template">
+    <div class="am-padding-xs am-padding-top-sm">
+        <div class="am-form-group">
+            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">连续天数 </label>
+            <div class="am-u-sm-9 am-u-end">
+                <input type="number" min="1" class="tpl-form-input" name="data[days]" value="{{ model.days }}" required>
+                <small>连续签到的天数，参数必须大于0</small>
+            </div>
+        </div>
+        <div class="am-form-group">
+            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">奖励类型 </label>
+            <div class="am-u-sm-9 am-u-end">
+            	<label class="am-radio-inline">
+                    <input type="radio" name="data[type]" value="score" {{ model.type == 'score'?'checked':'' }} data-am-ucheck>
+                    积分
+                </label>
+                <label class="am-radio-inline">
+                    <input type="radio" name="data[type]" value="money" {{ model.type == 'money'?'checked':'' }} data-am-ucheck>
+                    余额
+                </label>
+            </div>
+        </div>
+        <div class="am-form-group">
+            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">奖励数额</label>
+            <div class="am-u-sm-9 am-u-end">
+                <input type="number" min="1" class="tpl-form-input" name="data[number]" value="{{ model.number }}" required>
+                <small>参数必须大于0</small>
+            </div>
+        </div>
+    </div>  
+</script>

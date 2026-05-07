@@ -1,0 +1,380 @@
+<div class="page-home row-content am-cf">
+    <!-- 店铺统计 -->
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12 am-margin-bottom">
+            <div class="widget am-cf">
+                <div class="widget-head am-cf">
+                    <div class="widget-title">店铺统计</div>
+                </div>
+                <div class="widget-body am-cf">
+                    <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
+                        <div class="widget-card card__violet hm-dh-move-amplify">
+                            <span class="card-icon iconfont icondingdanguanli"></span>
+                            <div class="card-header">订单总量</div>
+                            <div class="card-value">{$count['order']['all']['all']}</div>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
+                        <div class="widget-card card__red hm-dh-move-amplify">
+                            <span class="card-icon iconfont iconyonghuguanli"></span>
+                            <div class="card-header">用户总量</div>
+                            <div class="card-value">{$count['user']['all']['all']}</div>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
+                        <div class="widget-card card__primary hm-dh-move-amplify">
+                            <span class="card-icon iconfont iconhaoping"></span>
+                            <div class="card-header">门店评分</div>
+                            <div class="card-value">{$count['score']['all']}</div>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
+                        <div class="widget-card card__blue hm-dh-move-amplify">
+                            <span class="card-icon iconfont iconshangpinguanli"></span>
+                            <div class="card-header">商品总量</div>
+                            <div class="card-value">{$count['goods']}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 待处理 -->
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12 am-margin-bottom">
+            <div class="widget am-cf">
+                <div class="widget-head">
+                    <div class="widget-title">待处理订单</div>
+                </div>
+                <div class="widget-body am-cf">
+                    <div class="am-u-sm-2">
+                        <a href="{:url('order.pact/index')}" target="_blank">
+                        <div class="widget-outline dis-flex flex-y-center hm-dh-move-amplify">
+                            <div class="outline-right dis-flex flex-dir-column flex-x-between">
+                                <div class="title">预约订桌</div>
+                                <div class="{$count['pact']['now']?'max':'min'}">{$count['pact']['now']}</div>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="am-u-sm-2">
+                        <a href="{:url('order/collection_list')}" target="_blank">
+                        <div class="widget-outline dis-flex flex-y-center hm-dh-move-amplify">
+                            <div class="outline-right dis-flex flex-dir-column flex-x-between">
+                                <div class="title">待收款</div>
+                                <div class="{$count['order']['all']['collection']?'max':'min'}">{$count['order']['all']['collection']}</div>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="am-u-sm-2">
+                        <a href="{:url('order/refund10_list')}" target="_blank">
+                        <div class="widget-outline dis-flex flex-y-center hm-dh-move-amplify">
+                            <div class="outline-right dis-flex flex-dir-column flex-x-between">
+                                <div class="title">待退款</div>
+                                <div class="{$count['order']['all']['refund10']?'max':'min'}">{$count['order']['all']['refund10']}</div>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="am-u-sm-2">
+                        <a href="{:url('order/shop_list')}" target="_blank">
+                        <div class="widget-outline dis-flex flex-y-center hm-dh-move-amplify">
+                            <div class="outline-right dis-flex flex-dir-column flex-x-between">
+                                <div class="title">待接单</div>
+                                <div class="{$count['order']['all']['shop']?'max':'min'}">{$count['order']['all']['shop']}</div>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="am-u-sm-2 am-u-end">
+                        <a href="{:url('order/delivery_list')}" target="_blank">
+                        <div class="widget-outline dis-flex flex-y-center hm-dh-move-amplify">
+                            <div class="outline-right dis-flex flex-dir-column flex-x-between">
+                                <div class="title">待发货</div>
+                                <div class="{$count['order']['all']['delivery']?'max':'min'}">{$count['order']['all']['delivery']}</div>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<!-- 订单数量统计 -->
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12 am-margin-bottom">
+            <div class="widget am-cf">
+                <div class="widget-head">
+                    <div class="widget-title">订单数量</div>
+                </div>
+                <div class="widget-body am-cf">
+                    <div class="am-u-sm-2">
+                        <div class="widget-outline dis-flex flex-y-center hm-dh-move-amplify">
+                            <div class="outline-right dis-flex flex-dir-column flex-x-between">
+                                <div class="title">今日订单</div>
+                                <div class="{$count['order']['today']['all']?'max':'min'}">{$count['order']['today']['all']}</div>
+                                <div class="hm-col-tips">
+                                    昨日：{$count['order']['today2']['all']}</div>
+								<div class="title">本月订单</div>
+                                <div class="min">{$count['order']['month']['all']}</div>
+                                <div class="hm-col-tips">
+                                    上月：{$count['order']['month2']['all']}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-2">
+                        <div class="widget-outline dis-flex flex-y-center hm-dh-move-amplify">
+                            <div class="outline-right dis-flex flex-dir-column flex-x-between">
+                                <div class="title">今日堂食</div>
+                                <div class="{$count['order']['today']['tang']?'max':'min'}">{$count['order']['today']['tang']}</div>
+                                <div class="hm-col-tips">
+                                    昨日：{$count['order']['today2']['tang']}</div>
+								<div class="title">本月堂食</div>
+                                <div class="min">{$count['order']['month']['tang']}</div>
+                                <div class="hm-col-tips">
+                                    上月：{$count['order']['month2']['tang']}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-2">
+                        <div class="widget-outline dis-flex flex-y-center hm-dh-move-amplify">
+                            <div class="outline-right dis-flex flex-dir-column flex-x-between">
+                                <div class="title">今日外卖</div>
+                                <div class="{$count['order']['today']['wai']?'max':'min'}">{$count['order']['today']['wai']}</div>
+                                <div class="hm-col-tips">
+                                    昨日：{$count['order']['today2']['wai']}</div>
+								<div class="title">本月外卖</div>
+                                <div class="min">{$count['order']['month']['wai']}</div>
+                                <div class="hm-col-tips">
+                                    上月：{$count['order']['month2']['wai']}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-2">
+                        <div class="widget-outline dis-flex flex-y-center hm-dh-move-amplify">
+                            <div class="outline-right dis-flex flex-dir-column flex-x-between">
+                                <div class="title">今日打包</div>
+                                <div class="{$count['order']['today']['bao']?'max':'min'}">{$count['order']['today']['bao']}</div>
+                                <div class="hm-col-tips">
+                                    昨日：{$count['order']['today2']['bao']}</div>
+								<div class="title">本月打包</div>
+                                <div class="min">{$count['order']['month']['bao']}</div>
+                                <div class="hm-col-tips">
+                                    上月：{$count['order']['month2']['bao']}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-2">
+                        <div class="widget-outline dis-flex flex-y-center hm-dh-move-amplify">
+                            <div class="outline-right dis-flex flex-dir-column flex-x-between">
+                                <div class="title">今日退单</div>
+                                <div class="{$count['order']['today']['refund']?'max':'min'}">{$count['order']['today']['refund']}</div>
+                                <div class="hm-col-tips">
+                                    昨日：{$count['order']['today2']['refund']}</div>
+                                <div class="title">本月退单</div>
+                                <div class="min">{$count['order']['month']['refund']}</div>
+                                <div class="hm-col-tips">
+                                    上月：{$count['order']['month2']['refund']}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-2 am-u-end">
+                        <div class="widget-outline dis-flex flex-y-center hm-dh-move-amplify">
+                            <div class="outline-right dis-flex flex-dir-column flex-x-between">
+                                <div class="title">今日订桌</div>
+                                <div class="{$count['pact']['today']?'max':'min'}">{$count['pact']['today']}</div>
+                                <div class="hm-col-tips">
+                                    昨日：{$count['pact']['today2']}</div>
+								<div class="title">本月订桌</div>
+                                <div class="min">{$count['pact']['month']}</div>
+                                <div class="hm-col-tips">
+                                    上月：{$count['pact']['month2']}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 订单金额统计 -->
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12 am-margin-bottom">
+            <div class="widget am-cf">
+                <div class="widget-head">
+                    <div class="widget-title">订单金额</div>
+                </div>
+				<div class="widget-body am-cf">
+				    <div class="am-u-sm-2">
+                        <div class="widget-outline dis-flex flex-y-center hm-dh-move-amplify">
+                            <div class="outline-right dis-flex flex-dir-column flex-x-between">
+                                <div class="title">今日成交</div>
+                                <div class="{$count['order']['today']['money']['order']?'max':'min'}">
+                                    <text class="hm-font-14">￥</text>{$count['order']['today']['money']['order']}
+                                </div>
+                                <div class="hm-col-tips">
+                                    昨日：￥{$count['order']['today2']['money']['order']}</div>
+								<div class="title">本月成交</div>
+                                <div class="min">
+                                    <text class="hm-font-14">￥</text>{$count['order']['month']['money']['order']}
+                                </div>
+                                <div class="hm-col-tips">
+                                    上月：￥{$count['order']['month2']['money']['order']}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-2">
+                        <div class="widget-outline dis-flex flex-y-center hm-dh-move-amplify">
+                            <div class="outline-right dis-flex flex-dir-column flex-x-between">
+                                <div class="title">今日退款</div>
+                                <div class="{$count['order']['today']['money']['refund']?'max':'min'}">
+                                    <text class="hm-font-14">￥</text>{$count['order']['today']['money']['refund']}
+                                </div>
+                                <div class="hm-col-tips">
+                                    昨日：￥{$count['order']['today2']['money']['refund']}</div>
+								<div class="title">本月退款</div>
+                                <div class="min">
+                                    <text class="hm-font-14">￥</text>{$count['order']['month']['money']['refund']}
+                                </div>
+                                <div class="hm-col-tips">
+                                    上月：￥{$count['order']['month2']['money']['refund']}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-2 am-u-end">
+                        <div class="widget-outline dis-flex flex-y-center hm-dh-move-amplify">
+                            <div class="outline-right dis-flex flex-dir-column flex-x-between">
+                                <div class="title">今日充值</div>
+                                <div class="{$count['recharge']['today']?'max':'min'}">
+                                    <text class="hm-font-14">￥</text>{$count['recharge']['today']}
+                                </div>
+                                <div class="hm-col-tips">
+                                    昨日：￥{$count['recharge']['today2']}</div>
+								<div  class="title">本月充值</div>
+                                <div class="min">
+                                    <text class="hm-font-14">￥</text>{$count['recharge']['month']}
+                                </div>
+                                <div class="hm-col-tips">
+                                    上月：￥{$count['recharge']['month2']}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 近七日走势 -->
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12 am-margin-bottom">
+            <div class="widget am-cf">
+                <div class="widget-head">
+                    <div class="widget-title">近七日走势</div>
+                </div>
+                <div class="widget-body am-cf">
+                    <div id="echarts-trade" class="widget-echarts"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="help-block am-text-center">
+                <small>{$base['name']}&nbsp;&nbsp;版权所有</small>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/assets/plugins/echarts/echarts.min.js?v={$version}"></script>
+<script src="/assets/plugins/echarts/echarts-walden.js?v={$version}"></script> 
+<script type="text/javascript">
+    
+    $(function() {
+        var is_new = <?=json_encode($is_new)?>;
+        is_new = JSON.parse(is_new);
+		if(is_new){
+		    layer.open({
+                title: 'V' + is_new.version + ' 升级提醒',
+                type: 0,
+                closeBtn: 1,
+                btn: ['取消','升级'],
+                area: ['500px'],
+                shadeClose: false,
+                skin: 'layui-layer-hema',
+                content: is_new.content,
+                success: function(layero, index){
+                    // 层弹出后的成功回调方法：layero前层DOM，index当前层索引
+                },
+                cancel : function(){
+    				// 你点击右上角 X 回调
+    			},
+    			btn1:function(index,layero){
+    				layer.close(index);//第一个按钮
+    			},
+    			btn2:function(index){
+    			    //第二个按钮
+    				$("#addons-loading").html('<div class="am-modal-dialog"><div class="am-modal-hd">系统升级中，请等待...</div><div class="am-modal-bd"><span class="am-icon-spinner am-icon-spin"></span></div></div>');
+    				$("#addons-loading").modal('open');
+    				$.post('/store/addon/hemaphpUpgrade', {}, function (result) { 
+                        $("#addons-loading").modal('close');
+                        if(typeof(result) == 'string'){
+    						result = JSON.parse(result);
+    					}
+    					result.code === 1 ? $.show_success(result.msg, result.url) : $.show_error(result.msg); 
+    				});
+    				layer.close(index);
+    			},
+    			end:function() {
+    				// 层销毁后触发的回调：无论是确认还是取消，只要层被销毁了，end都会执行，不携带任何参数。
+    			}
+            });
+		}
+	}); 
+	
+    /**
+     * 近七日交易走势
+     * @type {HTMLElement}
+     */
+    var dom = document.getElementById('echarts-trade');
+    echarts.init(dom, 'walden').setOption({
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: ['订单量', '成交额', '用户量']
+        },
+        toolbox: {
+            show: true,
+            showTitle: false,
+            feature: {
+                mark: {show: true},
+                magicType: {show: true, type: ['line', 'bar']}
+            }
+        },
+        calculable: true,
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ["<?= date("Y-m-d")?>","<?= date("Y-m-d",strtotime("-1 day"))?>","<?= date("Y-m-d",strtotime("-2 day"))?>","<?= date("Y-m-d",strtotime("-3 day"))?>","<?= date("Y-m-d",strtotime("-4 day"))?>","<?= date("Y-m-d",strtotime("-5 day"))?>","<?= date("Y-m-d",strtotime("-6 day"))?>"]        
+		},
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                name: '订单量',
+                type: 'line',
+                data: [<?= $count['order']['today']['all'] ?>,<?= $count['order']['today2']['all'] ?>,<?= $count['order']['today3']['all'] ?>,<?= $count['order']['today4']['all'] ?>,<?= $count['order']['today5']['all'] ?>,<?= $count['order']['today6']['all'] ?>,<?= $count['order']['today7']['all'] ?>]
+			},
+            {
+                name: '成交额',
+                type: 'line',
+                data: [<?= $count['order']['today']['money']['order'] ?>,<?= $count['order']['today2']['money']['order'] ?>,<?= $count['order']['today3']['money']['order'] ?>,<?= $count['order']['today4']['money']['order'] ?>,<?= $count['order']['today5']['money']['order'] ?>,<?= $count['order']['today6']['money']['order'] ?>,<?= $count['order']['today7']['money']['order'] ?>]
+            },
+            {
+                name: '用户量',
+                type: 'line',
+                data: [<?= $count['user']['today'] ?>,<?= $count['user']['today2'] ?>,<?= $count['user']['today3'] ?>,<?= $count['user']['today4'] ?>,<?= $count['user']['today5'] ?>,<?= $count['user']['today6'] ?>,<?= $count['user']['today7'] ?>]
+			}
+        ]
+    }, true);
+</script>

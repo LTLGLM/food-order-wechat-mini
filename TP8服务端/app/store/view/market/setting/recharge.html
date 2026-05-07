@@ -1,0 +1,67 @@
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <form id="my-form" class="am-form tpl-form-line-form" method="post">
+                    <div class="widget-body">
+                        <fieldset>
+                            <div class="widget-head am-cf">
+                                <div class="widget-title am-fl">充值设置</div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3  am-u-lg-2 am-form-label form-require"> 用户充值 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <label class="am-radio-inline">
+                                        <input type="radio" name="data[is_open]" value="1" data-am-ucheck
+                                            {$model['is_open'] == 1 ? 'checked':''} required> 开启
+                                    </label>
+                                    <label class="am-radio-inline">
+                                        <input type="radio" name="data[is_open]" value="0" data-am-ucheck
+                                            {$model['is_open'] == 0 ? 'checked':''} required> 关闭
+                                    </label>
+                                    <div class="help-block">
+                                        <small>是否允许用户自助充值钱包余额</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3  am-u-lg-2 am-form-label form-require"> 自定义金额 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <label class="am-radio-inline">
+                                        <input type="radio" name="data[is_custom]" value="1" data-am-ucheck
+                                            {$model['is_custom'] == 1 ? 'checked':''} required> 开启
+                                    </label>
+                                    <label class="am-radio-inline">
+                                        <input type="radio" name="data[is_custom]" value="0" data-am-ucheck
+                                            {$model['is_custom'] == 0 ? 'checked':''} required> 关闭
+                                    </label>
+                                    <div class="help-block">
+                                        <small>开启后用户可以自定义充值金额，否则只能按照充值套餐进行充值</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3  am-u-lg-2 am-form-label"> 充值规则 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <textarea rows="5" name="data[describe]"
+                                              placeholder="请输入充值规则">{$model['describe']}</textarea>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <div class="am-u-sm-9 am-u-sm-push-3 am-margin-top-lg">
+                                    <button type="submit" class="j-submit am-btn am-btn-secondary">提交
+                                    </button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('#my-form').formPost();
+    });
+</script>

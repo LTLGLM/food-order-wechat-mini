@@ -1,0 +1,331 @@
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <div class="widget-body  am-margin-bottom-lg">
+                    <div class="widget__order-detail am-u-sm-12">
+                        <?php
+                        // 计算当前步骤位置
+                        $progress = 1;
+                        $detail['pay_status']['value'] == 20 && $progress += 1;
+                        $detail['delivery_status']['value'] == 30 && $progress += 1;
+                        $detail['receipt_status']['value'] == 20 && $progress += 1;
+                        $detail['order_status']['value'] == 30 && $progress += 1;
+                        ?>
+                        <ul class="order-detail-progress progress-{$progress}">
+                            <li>
+                                <span>下单时间</span>
+                                <div class="tip">{$detail['create_time']}</div>
+                            </li>
+                            <li>
+                                <span>付款时间</span>
+                                {if $detail['pay_status']['value'] == 20}
+                                    <div class="tip">
+                                        {$detail['pay_time']|date='Y-m-d H:i'}
+                                    </div>
+                                {/if}
+                            </li>
+                            <li>
+                                <span>配送时间</span>
+                                {if $detail['delivery_status']['value'] == 30}
+                                    <div class="tip">
+                                        {$detail['delivery_time']|date='Y-m-d H:i'}
+                                    </div>
+                                {/if}
+                            </li>
+                            <li>
+                                <span>收货时间</span>
+                                {if $detail['receipt_status']['value'] == 20}
+                                    <div class="tip">
+                                        {$detail['receipt_time']|date='Y-m-d H:i'}
+                                    </div>
+                                {/if}
+                            </li>
+                            <li>
+                                <span>{$detail['order_status']['value'] == 40 ? '退款时间' : '完成时间'}</span>
+                               {if $detail['order_status']['value'] == 30}
+                                    <div class="tip">
+                                        {$detail['receipt_time']|date='Y-m-d H:i'}
+                                    </div>
+                                {elseif $detail['refund_status']['value'] == 20 /}
+									<div class="tip">
+                                        {$detail['refund_time']|date='Y-m-d H:i'}
+                                    </div>
+								{/if}
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="widget-head am-cf">
+                        <div class="widget-title am-fl">基本信息</div>
+                    </div>
+                    <div class="am-scrollable-horizontal">
+                        <table class="am-table-hover regional-table am-table am-table-bordered am-table-centered
+                            am-text-nowrap am-margin-bottom-xs">
+                            <tbody>
+                            <tr>
+                                <th>订单号</th>
+                                <th>付款信息</th>
+                                <th>顾客信息</th>
+                                <th>口味偏好</th>
+                                <th>留言备注</th>
+                                <th>交易状态</th>
+                            </tr>
+                            <tr>
+                                <td>{$detail['order_no']}</td>
+                                <td>
+                                    <p>￥{$detail['pay_price']}</p>
+                                    {if $detail['activity_price']>0}
+                                    <p class="am-link-muted">(优惠额：-￥{$detail['activity_price']})</p>
+                                    {/if}
+                                    {if $detail['pack_price']>0}
+                                        <p class="am-link-muted">(包装费：+￥{$detail['pack_price']})</p>
+                                    {/if}
+                                    {if $detail['delivery_price']>0}
+                                        <p class="am-link-muted">(配送费：+￥{$detail['delivery_price']})</p>
+                                    {/if}
+                                    {if $detail['order_status']['value']==40}
+                                        <p>退款：-￥{$detail['refund_price']}</p>
+                                    {/if}
+                                </td>
+                                <td>
+                                    <p>{$detail['user']['nickname']|default="--"}</p>
+                                    <p class="am-link-muted">(用户id：{$detail['user']['user_id']|default="--"})</p>
+                                </td>
+                                <td>
+                                    <p>{$detail['flavor']|default='--'}</p> 
+                                </td>
+                                <td>
+                                    <p>{$detail['message']|default='--'}</p> 
+                                </td>
+                                <td>
+                                     <p>付款状态：
+                                        <span class="am-badge
+                                    {$detail['pay_status']['value'] == 20 ? 'am-badge-success' : ''}">
+                                            {$detail['pay_status']['text']}
+                                        </span>
+                                    </p>
+                                    <p>接单状态：
+                                        <span class="am-badge
+                                    {$detail['shop_status']['value'] == 20 ? 'am-badge-success' : ''}">
+                                            {$detail['shop_status']['text']}
+                                        </span>
+                                    </p>
+                                    <p>配送状态：
+                                        <span class="am-badge
+                                    {$detail['delivery_status']['value'] == 20 ? 'am-badge-danger' : ''}
+                                    {$detail['delivery_status']['value'] == 30 ? 'am-badge-success' : ''}">
+                                            {$detail['delivery_status']['text']}</span>
+                                    </p>
+                                    <p>收货状态：
+                                        <span class="am-badge
+                                    {$detail['receipt_status']['value'] == 20 ? 'am-badge-success' : ''}">
+                                            {$detail['receipt_status']['text']}</span>
+                                    </p>
+                                    <p>订单状态：
+                                        <span class="am-badge
+                                    {$detail['order_status']['value'] == 10 ? 'am-badge-warning' : ''}
+                                    {$detail['order_status']['value'] == 20 ? 'am-badge-danger' : ''}
+                                    {$detail['order_status']['value'] == 30 ? 'am-badge-success' : ''}
+                                    {$detail['order_status']['value'] == 40 ? 'am-badge-danger' : ''}">
+                                    {$detail['order_status']['value'] == 40 ? $detail['refund_status']['text'] : $detail['order_status']['text']}
+                                        </span>
+                                    </p>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="widget-head am-cf">
+                        <div class="widget-title am-fl">商品信息</div>
+                    </div>
+                    <div class="am-scrollable-horizontal">
+                        <table class="am-table-hover regional-table am-table am-table-bordered am-table-centered
+                            am-text-nowrap am-margin-bottom-xs">
+                            <tbody>
+                            <tr>
+                                <th>商品名称</th>
+                                <th>销售价格</th>
+                                <th>购买数量</th>
+								<th>售后数量</th>
+                                <th>商品总价</th>
+                            </tr>
+                            {foreach $detail['goods'] as $goods}
+                                <tr>
+                                    <td class="goods-detail am-text-middle">
+                                        <div class="goods-image">
+                                            <img src="{$goods['image']['url']}" alt="">
+                                        </div>
+                                        <div class="goods-info">
+                                            <p class="goods-title">{$goods['goods_name']}</p>
+                                            <p class="goods-spec am-link-muted">
+                                                {$goods['goods_attr']}
+                                            </p>
+                                        </div>
+                                    </td>
+                                    <td>￥{$goods['goods_price']}</td>
+                                    <td>×{$goods['total_num']}</td>
+									<td>{$goods['refund_num']?' - ' . $goods['refund_num'] : '--'}</td>
+                                    <td>￥{$goods['total_price']}</td>
+                                </tr>
+                            {/foreach}
+                            <tr>
+                                <td colspan="5" class="am-text-right">总计金额：￥{$detail['total_price']}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="widget-head am-cf">
+                        <div class="widget-title am-fl">付款信息</div>
+                    </div>
+                    <div class="am-scrollable-horizontal">
+                        <table class="am-table-hover regional-table am-table am-table-bordered am-table-centered
+                            am-text-nowrap am-margin-bottom-xs">
+                            <tbody>
+                            <tr>
+                                <th>应付款金额</th>
+                                <th>支付方式</th>
+                                <th>支付流水号</th>
+                                <th>付款状态</th>
+                                <th>付款时间</th>
+                            </tr>
+                            <tr>
+                                <td>￥{$detail['pay_price']}</td>
+                                <td>
+                                {$detail['pay_mode']['text']}
+                                </td>
+                                <td>{$detail['transaction_id']|default='--'}</td>
+                                <td>
+                                    <span class="am-badge
+                                    {$detail['pay_status']['value'] == 20 ? 'am-badge-success' : ''}">
+                                    {$detail['pay_status']['text']}
+                                    </span>
+                                </td>
+                                <td>
+                                    {$detail['pay_time'] ? datetime($detail['pay_time']) : '--'}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--收货信息-->
+					{if $detail['order_mode']['value']==20}
+                    <div class="widget-head am-cf">
+                        <div class="widget-title am-fl">收货信息</div>
+                    </div>
+                    <div class="am-scrollable-horizontal">
+                        <table class="am-table-hover regional-table am-table am-table-bordered am-table-centered
+                            am-text-nowrap am-margin-bottom-xs">
+                            <tbody>
+                            <tr>
+                                <th>姓名</th>
+                                <th>电话</th>
+                                <th>地址</th>
+                            </tr>
+                            <tr>
+                                <td>{$detail['address']['name']}</td>
+                                <td>{$detail['address']['phone']}</td>
+                                <td>
+                                    {$detail['address']['province']}
+                                    {$detail['address']['city']}
+                                    {$detail['address']['district']}
+                                    {$detail['address']['detail']}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+					{/if}
+                    <!-- 外卖已配送 -->
+                    {if $detail['order_mode']['value'] == 20 AND $detail['delivery']}
+                    <div class="widget-head am-cf">
+                        <div class="widget-title am-fl">骑手信息</div>
+                    </div>
+                    <div class="am-scrollable-horizontal">
+                        <table class="am-table-hover regional-table am-table am-table-bordered am-table-centered
+                        am-text-nowrap am-margin-bottom-xs">
+                            <tbody>
+                            <tr>
+                                <th>配送公司</th>
+                                <th>骑手姓名</th>
+                                <th>联系电话</th>
+                                <th>骑手状态</th>
+                                <th>配送距离</th>
+                                <th>配送费用</th>
+                                <th>配送状态</th>
+                                <th>状态时间</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    {$detail['delivery']['company']['text']}
+                                </td>
+                                <td>{$detail['delivery']['linkman']|default="--"}</td>
+                                <td>{$detail['delivery']['phone']|default="--"}</td>
+                                <td>
+                                     <span class="am-badge
+                                    {$detail['delivery']['delivery_status']['value'] == 20 ? 'am-badge-warning' : ''}
+                                    {$detail['delivery']['delivery_status']['value'] == 30 ? 'am-badge-warning' : ''}
+                                    {$detail['delivery']['delivery_status']['value'] == 40 ? 'am-badge-warning' : ''}
+                                    {$detail['delivery']['delivery_status']['value'] == 50 ? 'am-badge-success' : ''}">
+                                        {$detail['delivery']['delivery_status']['text']}</span>
+                                </td>
+                                <td>
+                                    {$detail['delivery']['distance']['text']}
+                                </td>
+                                <td>
+                                    ￥{$detail['delivery']['price']}
+                                </td>
+                                <td>
+                                    <span class="am-badge
+                                    {$detail['delivery']['status']['value'] == 10 ? 'am-badge-warning' : ''}
+                                    {$detail['delivery']['status']['value'] == 20 ? 'am-badge-danger' : ''}
+                                    {$detail['delivery']['status']['value'] == 30 ? 'am-badge-success' : ''}">
+                                        {$detail['delivery']['status']['text']}</span>
+                                </td>
+                                <td>
+                                    {$detail['delivery']['delivery_time'] ? datetime($detail['delivery']['delivery_time']) : '--'}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    {/if}
+                    <!-- 退款信息 -->
+					{if $detail['order_status']['value'] == 40}
+					<div class="my-form refund am-form tpl-form-line-form">
+						<div class="widget-head am-cf">
+                            <div class="widget-title am-fl">退款信息</div>
+                        </div>
+                        <div class="am-scrollable-horizontal">
+                            <table class="am-table-hover regional-table am-table am-table-bordered am-table-centered
+                                am-text-nowrap am-margin-bottom-xs">
+                                <tbody>
+                                <tr>
+                                    <th>退款金额</th>
+                                    <th>返回账户</th>
+                                    <th>退款理由</th>
+                                    <th>退款状态</th>
+                                    <th>退款时间</th>
+                                </tr>
+                                <tr>
+                                    <td>￥{$detail['refund_price']}</td>
+                                    <td>{$detail['pay_mode']['text']}</td>
+                                    <td>{$detail['refund_desc']}</td>
+                                    <td>
+                                        <span class="am-badge
+                                        {$detail['refund_status']['value'] == 20 ? 'am-badge-success' : 'am-badge-warning'}">
+                                            {$detail['refund_status']['text']}</span>
+                                    </td>
+                                    <td>
+                                        {$detail['refund_time'] ? datetime($detail['refund_time']) : '--'}
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+					</div>
+					{/if}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

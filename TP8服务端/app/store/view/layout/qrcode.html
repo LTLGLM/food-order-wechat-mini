@@ -1,0 +1,36 @@
+<script id="tpl-qrcode" type="text/template">
+    <div class="am-padding-xs am-padding-top-sm">
+ 		<div class="user-qrcode">
+ 		    {{ if qrcode.qrcode }}
+ 	        <img src="{{ qrcode.qrcode}}">
+ 	        {{ else / }}
+ 	        <div class="online">等待上线</div>
+ 	        {{ /if }}
+ 	        <div class="text">聚合码</div>
+ 		</div>
+ 		<div class="user-qrcode">
+ 		    {{ if qrcode.weixin }}
+ 	        <img src="{{ qrcode.weixin}}">
+ 	        {{ else / }}
+ 	        <div class="online">等待上线</div>
+ 	        {{ /if }}
+ 	        <div class="text">微信小程序</div>
+ 		</div>
+ 		<div class="user-qrcode">
+ 		    {{ if qrcode.alipay }}
+ 	        <img src="{{ qrcode.alipay}}">
+ 	        {{ else / }}
+ 	        <div class="online">等待上线</div>
+ 	        {{ /if }}
+ 	        <div class="text">支付宝小程序</div>
+ 		</div>
+        <div class="user-qrcode">
+ 		    {{ if qrcode.h5 }}
+ 	        <img src="{{ qrcode.h5}}">
+ 	        {{ else / }}
+ 	        <div class="online">等待上线</div>
+ 	        {{ /if }}
+ 	        <div class="text">H5端</div>
+ 		</div>
+    </div>
+</script>

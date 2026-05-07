@@ -1,0 +1,25 @@
+<!-- 添加 -->
+<script id="tpl-add" type="text/template">
+    <div class="am-padding-xs am-padding-top-sm">
+        <div class="am-form-group">
+            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">餐桌名称 </label>
+            <div class="am-u-sm-9 am-u-end">
+                <input type="text" class="tpl-form-input" name="data[table_name]" value="" placeholder="请输入餐桌名称" required>
+            </div>
+        </div>
+        <div class="am-form-group">
+            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">自定编号 </label>
+            <div class="am-u-sm-9 am-u-end">
+                <input type="number" class="tpl-form-input" name="data[row_no]" value="" placeholder="请输入自定编号" required>
+                <small>用于叫号器调用</small>
+            </div>
+        </div>
+        <div class="am-form-group">
+            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">排序 </label>
+            <div class="am-u-sm-9 am-u-end">
+                <input type="number" class="tpl-form-input" name="data[sort]" value="100" required>
+                <small>数字越小越靠前</small>
+            </div>
+        </div>
+    </div>  
+</script>

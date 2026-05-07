@@ -1,0 +1,12 @@
+<!-- 优惠券 -->
+<script id="tpl-coupon-item" type="text/template">
+    {{ each $data }}
+    <div class="file-item">
+        <div><img src="{{ $value.image }}"></div>
+        <div style="text-align: center;"><small>{{ $value.name }}</small></div>
+        <input type="hidden" name="data[coupon_id]" value="{{ $value.coupon_id }}">
+    </div>
+    {{ /each }}
+</script>
+
+

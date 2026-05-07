@@ -1,0 +1,119 @@
+<!-- 内容区域 start -->
+<link rel="stylesheet" href="/assets/plugins/umeditor/themes/default/css/umeditor.css?v={$version}">
+<link rel="stylesheet" href="/assets/css/hema.diy.css?v={$version}">
+
+<div class="row-content am-cf">
+    <div class="widget am-cf">
+        <div class="widget-body">
+            <!-- diy 工作区 -->
+            <div id="app" class="work-diy dis-flex flex-x-between">
+                <!-- 工具栏 -->
+                <div id="diy-menu" class="diy-menu">
+                    <div class="menu-title"><span>组件库</span></div>
+                    <div class="navs">
+                        <div class="navs-group">
+                            <div class="title">媒体组件</div>
+                            <div class="navs-components am-cf">
+                                <nav class="special" @click="onAddItem('banner')">
+                                    <p class="item-icon"><i class="iconfont iconlunbotupian"></i></p>
+                                    <p>图片轮播</p>
+                                </nav>
+                                <nav class="special" @click="onAddItem('imageSingle')">
+                                    <p class="item-icon"><i class="iconfont icontupian"></i></p>
+                                    <p>单图组</p>
+                                </nav>
+                                <nav class="special" @click="onAddItem('window')">
+                                    <p class="item-icon"><i class="iconfont iconduotu"></i></p>
+                                    <p>图片橱窗</p>
+                                </nav>
+                                <nav class="special" @click="onAddItem('video')">
+                                    <p class="item-icon"><i class="iconfont iconshipin"></i></p>
+                                    <p>视频组</p>
+                                </nav>
+                            </div>
+                            <div class="title">店铺组件</div>
+                            <div class="navs-components am-cf">
+                                <nav class="special" @click="onAddItem('notice')">
+                                    <p class="item-icon"><i class="iconfont icongonggao"></i></p>
+                                    <p>公告组</p>
+                                </nav>
+                                <nav class="special" @click="onAddItem('order')">
+                                    <p class="item-icon"><i class="iconfont iconshangpin"></i></p>
+                                    <p>点单组</p>
+                                </nav>
+                                <nav class="special" @click="onAddItem('goods')">
+                                    <p class="item-icon"><i class="iconfont iconshangpin"></i></p>
+                                    <p>商品组</p>
+                                </nav>
+                                <nav class="special" @click="onAddItem('navBar')">
+                                    <p class="item-icon"><i class="iconfont icondaohangzu"></i></p>
+                                    <p>导航组</p>
+                                </nav>
+                            </div>
+                            <div class="title">工具组件</div>
+                            <div class="navs-components am-cf">
+                                <nav class="special" @click="onAddItem('service')">
+                                    <p class="item-icon"><i class="iconfont iconkefu"></i></p>
+                                    <p>在线客服</p>
+                                </nav>
+								<nav class="special" @click="onAddItem('officialAccount')">
+                                    <p class="item-icon"><i class="iconfont icongongzhonghao2"></i></p>
+                                    <p>关注公众号</p>
+                                </nav>
+                                <nav class="special" @click="onAddItem('richText')">
+                                    <p class="item-icon"><i class="iconfont iconfuwenben"></i></p>
+                                    <p>富文本</p>
+                                </nav>
+                                <nav class="special" @click="onAddItem('blank')">
+                                    <p class="item-icon"><i class="iconfont iconfuzhukongbai"></i></p>
+                                    <p>辅助空白</p>
+                                </nav>
+                                <nav class="special" @click="onAddItem('guide')">
+                                    <p class="item-icon"><i class="iconfont iconfuzhuxian"></i></p>
+                                    <p>辅助线</p>
+                                </nav>
+                                <nav class="special" @click="onAddItem('columnTitle')">
+                                    <p class="item-icon"><i class="iconfont iconlanmubiaoti"></i></p>
+                                    <p>栏目标题</p>
+                                </nav>
+                            </div>	
+                        </div>
+                    </div>
+                    <div class="action">
+                        <button @click.stop="onSubmit" type="button" class="am-btn am-btn-xs am-btn-secondary">
+                            保存页面
+                        </button>
+                    </div>
+                </div>
+                <!--手机diy容器-->
+                {include file="applet/page/tpl/diy" /}
+                <!-- 编辑器容器 -->
+                {include file="applet/page/tpl/editor" /}
+				
+            </div>
+            <!-- 提示 -->
+            <div class="tips am-margin-top-lg am-margin-bottom-sm">
+                <div class="pre-warning">
+                    <p>1. 设计完成后点击"保存页面"，在小程序端页面下拉刷新即可看到效果。</p>
+                    <p>2. 如需填写链接地址请参考<a href="{:url('applet.page/links')}" target="_blank">页面链接</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 文件库弹窗 -->
+{include file="../addons/upload/view/template/file_library.html" /}
+<script src="/assets/plugins/vue/vue.min.js?v={$version}"></script>
+<script src="/assets/plugins/umeditor/umeditor.config.js?v={$version}"></script>
+<script src="/assets/plugins/umeditor/umeditor.min.js?v={$version}"></script>
+<script src="/assets/js/hema.diy.js?v={$version}"></script>
+<script src="/assets/js/select.data.js?v={$version}"></script>
+<script src="/assets/plugins/sortable/Sortable.min.js?v={$version}"></script>
+<script src="/assets/plugins/vuedraggable/vuedraggable.min.js?v={$version}"></script>
+<script>
+    $(function () {
+        // 渲染diy页面
+		new diyPhone(<?= $temp.','.$jsonData.','.$opts ?>);
+    });
+</script>
+<!-- 内容区域 end -->

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "u-rate": "/uni_modules/uview-ui/components/u-rate/u-rate",
+    "u--textarea": "/uni_modules/uview-ui/components/u--textarea/u--textarea",
+    "u-button": "/uni_modules/uview-ui/components/u-button/u-button"
+  }
+}

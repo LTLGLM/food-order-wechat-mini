@@ -1,0 +1,111 @@
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <div class="widget-head am-cf">
+                    <div class="widget-title am-cf">聚合二维码列表</div>
+                </div>
+                <div class="widget-body am-fr">
+                    <!-- 工具栏 -->
+                    <div class="am-u-sm-12 am-u-md-6 am-u-lg-6 am-cf">
+                        <div class="am-form-group">
+                            <div class="am-btn-group am-btn-group-sm">
+                                <a href="javascript:void(0);" class="hema-add am-btn am-btn-primary am-radius">
+                                    <span class="am-icon-plus"></span> 添加
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-form-group am-fr">
+                        <a href="https://www.kancloud.cn/he_ma/hema_wechat/3169821" target="_blank">
+                            <i class="am-icon-question-circle am-warning"></i> 帮助文档
+                        </a>
+                    </div>
+                    <div class="am-scrollable-horizontal am-u-sm-12">
+                        <table width="100%" class="am-table am-table-hover tpl-table-black">
+                            <thead>
+                            <tr>
+                                <th>编号ID</th>
+                                <th>聚合二维码</th>
+                                <th>类型</th>
+                                <th>绑定餐桌</th>
+                                <th>跳转位置</th>
+                                <th>创建时间</th>
+                                <th>管理操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {if sizeof($list) > 0}
+                                {foreach $list as $item}
+                                <tr>
+                                    <td class="am-text-middle">{$item['qrcode_id']}</td>
+                                    <td class="am-text-middle">
+                                        <a href="{$item['qrcode']}" title="点击查看大图" target="_blank">
+                                            <img src="{$item['qrcode']}" width="50" height="50" alt="普通二维码图片">
+                                        </a>
+                                    </td>
+                                    <td class="am-text-middle">{$item['type']['text']}</td>
+									<td class="am-text-middle">
+									    {$item['table']['table_name']|default='--'}
+									</td>
+									<td class="am-text-middle">
+									    {$item['url']|default='--'}
+									</td>
+                                    <td class="am-text-middle">{$item['create_time']}</td>
+                                    <td class="am-text-middle">
+                                        <div class="tpl-table-black-operation">
+                                            <a href="{:url('shop.qrcode/edit',['id' => $item['qrcode_id']])}">
+                                                <i class="am-icon-pencil"></i> 编辑
+                                            </a>
+                                            <a href="javascript:;" class="hema-del tpl-table-black-operation-del"
+                                               data-id="{$item['qrcode_id']}">
+                                                <i class="am-icon-trash"></i> 删除
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {/foreach}
+                            {else /}
+                                <tr>
+                                    <td colspan="7" class="am-text-center">暂无记录</td>
+                                </tr>
+                            {/if}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="am-u-lg-12 am-cf">
+                        <div class="am-fr">{:$list->render()} </div>
+                        <div class="am-fr pagination-total am-margin-right">
+                            <div class="am-vertical-align-middle">总记录：{:$list->total()}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="shop/qrcode/add" /}
+<script>
+    $(function () {
+         //添加
+        $('.hema-add').on('click', function () {
+            $.showAction({
+                title: '批量生成聚合二维码', 
+                area: '750px', 
+                content: template('tpl-add', {}), 
+                uCheck: true, 
+                success: function ($content) {
+                    $('#my-form').formPost({
+                        url: "{:url('shop.qrcode/add')}"
+                    });
+                }, 
+                btn2: function ($content) {
+                    return true;
+                }
+            });
+        });
+        // 删除元素
+        var url = "{:url('shop.qrcode/delete')}";
+        $('.hema-del').del('id', url);
+    });
+</script>

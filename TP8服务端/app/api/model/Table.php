@@ -1,0 +1,1 @@
+<?phpnamespace app\api\model;use app\common\model\Table as TableModel;class Table extends TableModel{    /**     * 隐藏字段     * @var array     */    protected $hidden = [];}

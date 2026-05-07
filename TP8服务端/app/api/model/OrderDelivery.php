@@ -1,0 +1,1 @@
+<?phpnamespace app\api\model;use app\common\model\OrderDelivery as OrderDeliveryModel;/** * 订单配送模型 */class OrderDelivery extends OrderDeliveryModel{    /**     * 隐藏字段     */    protected $hidden = [];}

@@ -1,0 +1,76 @@
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <form id="my-form" class="am-form tpl-form-line-form" enctype="multipart/form-data" method="post">
+                    <div class="widget-head am-cf">
+                        <div class="widget-title am-fl">WiFi设置</div>
+                    </div>
+                    <fieldset>
+                    <div class="widget-body">
+                        <div class="am-form-group">
+                            <!-- 隐藏域 -->
+                            <input type="hidden" name="data[qrcode]['weixin']" value="{$model['qrcode']['weixin']}">
+                            <input type="hidden" name="data[qrcode]['qrcode']" value="{$model['qrcode']['qrcode']}">
+                            <label class="am-u-sm-3 am-u-lg-2 am-form-label"> 扫码链接WiFi </label>
+                            <div class="am-u-sm-9 am-u-end">
+                                <div class="am-padding-xs am-padding-top-sm">
+                                    <div class="user-qrcode">
+                             		    {if $model['qrcode']['qrcode']}
+                             	        <img src="{$model['qrcode']['qrcode']}">
+                             	        {else /}
+                             	        <div class="online">等待上线</div>
+                             	        {/if}
+                             	        <div class="text">小程序聚合码</div>
+                             		</div>
+                             		<div class="user-qrcode">
+                             		    {if $model['qrcode']['weixin']}
+                             	        <img src="{$model['qrcode']['weixin']}">
+                             	        {else /}
+                             	        <div class="online">等待上线</div>
+                             	        {/if}
+                             	        <div class="text">微信小程序</div>
+                             		</div>
+                             		<div class="user-qrcode">
+                             		    {if $model['qrcode']['alipay']}
+                             	        <img src="{$model['qrcode']['alipay']}">
+                             	        {else /}
+                             	        <div class="online">等待上线</div>
+                             	        {/if}
+                             	        <div class="text">支付宝小程序</div>
+                             		</div>
+                                </div>
+                            </div>
+                        </div>
+						<div class="am-form-group">
+                            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require"> WiFi名称 </label>
+                            <div class="am-u-sm-9 am-u-end">
+                                <input type="text" class="tpl-form-input" name="data[ss_id]"
+                                       placeholder="请输入WiFi名称" value="{$model['ss_id']}" required>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require"> WiFi密码 </label>
+                            <div class="am-u-sm-9 am-u-end">
+                                <input type="text" class="tpl-form-input" name="data[ss_key]"
+                                       placeholder="请输入WiFi密码" value="{$model['ss_key']}" required>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <div class="am-u-sm-9 am-u-sm-push-2 am-margin-top-lg">
+                                <button type="submit" class="j-submit am-btn am-btn-secondary">提交
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('#my-form').formPost();
+    });
+</script>

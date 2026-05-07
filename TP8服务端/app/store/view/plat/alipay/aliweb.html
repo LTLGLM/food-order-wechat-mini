@@ -1,0 +1,45 @@
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <form id="my-form" class="am-form tpl-form-line-form" method="post">
+                    <div class="widget-body">
+                        <fieldset>
+							<div class="widget-head am-cf">
+                                <div class="widget-title am-fl">支付宝网页/移动应用设置</div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require"> AppID </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <input type="text" class="tpl-form-input" name="data[app_id]"
+                                           value="{$model['app_id']}" placeholder="请输入应用ID" required>
+                                </div>
+                            </div>
+							<div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">应用私钥 </label>
+                                <div class="am-u-sm-9 am-u-end">
+									<textarea class="" rows="3" placeholder="请输入应用私钥"
+                                              name="data[app_private_key]" required>{$model['app_private_key']}</textarea>
+								</div>
+                            </div>
+                            <div class="am-form-group">
+                                <div class="am-u-sm-9 am-u-sm-push-3 am-margin-top-lg">
+                                    <button type="submit" class="j-submit am-btn am-btn-secondary">提交
+                                    </button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+
+        $('#my-form').formPost();
+
+    });
+</script>

@@ -1,0 +1,251 @@
+<link rel="stylesheet" href="/assets/plugins/layui/css/layui.css?v={$version}"/>
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <form id="my-form" class="am-form tpl-form-line-form">
+                <div class="widget-head am-cf">
+                    <div class="widget-title am-cf">门店设置</div>
+                </div>
+                <fieldset>
+                <div class="widget-body">
+                    <div class="am-form-group">
+                        <label class="am-u-sm-3 am-u-lg-2 am-form-label"> 门店码 </label>
+                        <div class="am-u-sm-9 am-u-end">
+                            <div class="am-padding-xs am-padding-top-sm">
+                                <div class="user-qrcode">
+                         		    {if $model['qrcode']['qrcode']}
+                         	        <img src="{$model['qrcode']['qrcode']}">
+                         	        {else /}
+                         	        <div class="online">等待上线</div>
+                         	        {/if}
+                         	        <div class="text">小程序聚合码</div>
+                         		</div>
+                         		<div class="user-qrcode">
+                         		    {if $model['qrcode']['weixin']}
+                         	        <img src="{$model['qrcode']['weixin']}">
+                         	        {else /}
+                         	        <div class="online">等待上线</div>
+                         	        {/if}
+                         	        <div class="text">微信小程序</div>
+                         		</div>
+                         		<div class="user-qrcode">
+                         		    {if $model['qrcode']['alipay']}
+                         	        <img src="{$model['qrcode']['alipay']}">
+                         	        {else /}
+                         	        <div class="online">等待上线</div>
+                         	        {/if}
+                         	        <div class="text">支付宝小程序</div>
+                         		</div>
+                         		<div class="user-qrcode">
+                         		    {if $model['qrcode']['h5']}
+                         	        <img src="{$model['qrcode']['h5']}">
+                         	        {else /}
+                         	        <div class="online">等待上线</div>
+                         	        {/if}
+                         	        <div class="text">H5码</div>
+                         		</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label class="am-u-sm-3 am-u-lg-2 am-form-label"> 买单码 </label>
+                        <div class="am-u-sm-9 am-u-end">
+                            <div class="am-padding-xs am-padding-top-sm">
+                                <div class="user-qrcode">
+                         		    {if $model['paybill']['qrcode']}
+                         	        <img src="{$model['paybill']['qrcode']}">
+                         	        {else /}
+                         	        <div class="online">等待上线</div>
+                         	        {/if}
+                         	        <div class="text">小程序聚合码</div>
+                         		</div>
+                         		<div class="user-qrcode">
+                         		    {if $model['paybill']['weixin']}
+                         	        <img src="{$model['paybill']['weixin']}">
+                         	        {else /}
+                         	        <div class="online">等待上线</div>
+                         	        {/if}
+                         	        <div class="text">微信小程序</div>
+                         		</div>
+                         		<div class="user-qrcode">
+                         		    {if $model['paybill']['alipay']}
+                         	        <img src="{$model['paybill']['alipay']}">
+                         	        {else /}
+                         	        <div class="online">等待上线</div>
+                         	        {/if}
+                         	        <div class="text">支付宝小程序</div>
+                         		</div>
+                         		<div class="user-qrcode">
+                         		    {if $model['paybill']['h5']}
+                         	        <img src="{$model['paybill']['h5']}">
+                         	        {else /}
+                         	        <div class="online">等待上线</div>
+                         	        {/if}
+                         	        <div class="text">H5码</div>
+                         		</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require"> 门店名称 </label>
+                        <div class="am-u-sm-9 am-u-end">
+                            <input type="text" class="tpl-form-input" name="data[shop_name]" placeholder="请输入门店名称" value="{$model['shop_name']}" required>
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label class="am-u-sm-3 am-u-lg-2 am-form-label"> 图标资质 </label>
+                        <div class="am-u-sm-9 am-u-end">
+                            <div class="am-form-file fl">
+                                <button type="button" class="upload-file am-btn am-btn-secondary am-radius">
+                                        <i class="am-icon-cloud-upload"></i> 门店图标
+                                </button>
+                                <div class="uploader-list am-cf">
+									<div class="file-item">
+										<img src="{$model['logo']}">
+										<input type="hidden" name="data[logo]" value="{$model['logo']}">
+										<i class="iconfont iconshanchu file-item-delete"></i>
+									</div>
+                                </div>
+                            </div>
+                            <div class="am-form-file fl">
+                                <button type="button"
+                                        class="upload-but hema-business am-btn am-btn-secondary am-radius" style="margin-left:10px;">
+                                    <i class="am-icon-cloud-upload"></i> 营业执照
+                                </button>
+                                <div class="uploader-list am-cf">
+									<div class="file-item">
+										<img src="{$model['business']}">
+										<input type="hidden" name="data[business]" value="{$model['business']}">
+										<i class="iconfont iconshanchu file-item-delete"></i>
+									</div>
+                                </div>
+                            </div>
+                            <div class="am-form-file fl">
+                                <button type="button"
+                                        class="upload-but hema-license am-btn am-btn-secondary am-radius" style="margin-left:10px;">
+                                    <i class="am-icon-cloud-upload"></i> 食品经营许可证
+                                </button>
+                                <div class="uploader-list am-cf">
+									<div class="file-item">
+										<img src="{$model['license']}">
+										<input type="hidden" name="data[license]" value="{$model['license']}">
+										<i class="iconfont iconshanchu file-item-delete"></i>
+									</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-form-group am-padding-top">
+                        <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require"> 联系人 </label>
+                        <div class="am-u-sm-9 am-u-end">
+                            <input type="text" class="tpl-form-input" name="data[linkman]"
+                                   placeholder="请输入门店联系人" value="{$model['linkman']}" required>
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require"> 联系电话 </label>
+                        <div class="am-u-sm-9 am-u-end">
+                            <input type="text" class="tpl-form-input" name="data[phone]"
+                                   placeholder="请输入门店联系电话" value="{$model['phone']}" required>
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require"> 营业时间 </label>
+                        <div class="am-u-sm-9 am-u-end">
+                            <input type="text" id="shop_hours" class="tpl-form-input" name="data[shop_hours]" 
+                                   placeholder="请选择营业时间" value="{$model['shop_hours']}" required>
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require"> 详细地址 </label>
+                        <div class="am-u-sm-9 am-u-end">
+                            <input type="hidden" name="data[province]" value="{$model['province']}">
+                            <input type="hidden" name="data[city]" value="{$model['city']}">
+                            <input type="hidden" name="data[district]" value="{$model['district']}">
+                            <input type="text" class="tpl-form-input" name="data[address]"
+                                   placeholder="请输入详细地址" value="{$model['address']}" required>
+							<small>不用填写省、市、区</small>
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require"> 门店坐标 </label>
+                        <div class="am-u-sm-9 am-u-end">
+                            <div class="am-block">
+                                <input type="text" style="background: none !important;" id="coordinate"
+                                       class="tpl-form-input" name="data[coordinate]" placeholder="请选择门店所在位置" 
+									   value="{$model['coordinate']}" readonly="" required>
+                            </div>
+                            <div class="am-block am-padding-top-xs">
+                                <iframe id="map" src="/store/shop/getpoint?location={$model['coordinate']}&shop_name={$model['shop_name']}" width="915" height="610"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require"> 营业状态 </label>
+                        <div class="am-u-sm-9 am-u-end">
+                            <label class="am-radio-inline">
+                                <input type="radio" name="data[status]" value="1" data-am-ucheck
+                                       {$model['status'] == 1?'checked':''}>
+                                营业中
+                            </label>
+                            <label class="am-radio-inline">
+                                <input type="radio" name="data[status]" value="0" data-am-ucheck 
+                                {$model['status'] == 0?'checked':''}>
+                                歇业中
+                            </label>
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <div class="am-u-sm-9 am-u-sm-push-3 am-margin-top-lg">
+                            <button type="submit" class="j-submit am-btn am-btn-secondary">提交
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 图片文件列表模板 -->
+{include file="../addons/upload/view/template/tpl_file_item_url.html" /}
+<!-- 文件库弹窗 -->
+{include file="../addons/upload/view/template/file_library.html" /}
+<script src="/assets/plugins/layui/layui.js?v={$version}" charset="utf-8"></script>
+<script>
+    layui.use('laydate', function(){
+      var laydate = layui.laydate;
+      //时间范围
+      laydate.render({
+        elem: '#shop_hours'
+        ,format: 'HH:mm'
+        ,type: 'time'
+        ,range: true
+      });
+    });
+    /**
+     * 设置坐标
+     */
+    function setCoordinate(value) {
+        var $coordinate = $('#coordinate');
+        $coordinate.val(value);
+        // 触发验证
+        $coordinate.trigger('change');
+    }
+	
+    $(function () {
+        // 选择图片
+        $('.upload-file').selectImages({
+            name: 'data[logo]'
+        });
+        $('.hema-business').selectImages({
+            name: 'data[business]'
+        });
+        $('.hema-license').selectImages({
+            name: 'data[license]'
+        });
+        $('#my-form').formPost();
+    });
+</script>

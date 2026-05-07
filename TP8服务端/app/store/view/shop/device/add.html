@@ -1,0 +1,130 @@
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <form id="my-form" class="am-form tpl-form-line-form" method="post">
+                    <div class="widget-body">
+                        <fieldset>
+                            <div class="widget-head am-cf">
+                                <div class="widget-title am-fl">添加智能设备</div>
+                            </div>
+							<div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">设备品牌</label>
+                                <div class="am-u-sm-9 am-u-end">
+									<select v-model="selected" name="data[dev_type]" style="width:200px;" required>
+                                        <option value="">请选择品牌</option>
+                                        {foreach $company as $item}
+										<option value="{$item['name']}">
+										    {$item['title']}
+										</option>
+                                        {/foreach}
+									</select>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">设备名称 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <input type="text" class="tpl-form-input" name="data[dev_name]" placeholder="请为设备自定义个名称" required>
+                                </div>
+                            </div>
+							<div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">设备编号 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <input type="text" class="tpl-form-input" name="data[dev_id]"
+                                         placeholder="请输入设备编号" required>
+                                </div>
+                            </div>
+							<div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">设备密钥 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <input type="text" class="tpl-form-input" name="data[dev_key]"
+                                         placeholder="请输入设备密钥" required>
+                                </div>
+                            </div>
+                            <div v-if="selected == 'hmcalling'">
+                                <input type="hidden" name="data[values][volume]" value="15">
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">微信到账提醒 </label>
+                                    <div class="am-u-sm-9 am-u-end">
+                                        <label class="am-radio-inline">
+                                            <input type="radio" name="data[values][is_pay]" value="1" data-am-ucheck
+                                                   checked>
+                                            开启
+                                        </label>
+                                        <label class="am-radio-inline">
+                                            <input type="radio" name="data[values][is_pay]" value="0" data-am-ucheck>
+                                            关闭
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">新订单提醒 </label>
+                                    <div class="am-u-sm-9 am-u-end">
+                                        <label class="am-radio-inline">
+                                            <input type="radio" name="data[values][is_new]" value="1" data-am-ucheck checked>
+                                            开启
+                                        </label>
+                                        <label class="am-radio-inline">
+                                            <input type="radio" name="data[values][is_new]" value="0" data-am-ucheck>
+                                            关闭
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-else>
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">打印份数 </label>
+                                    <div class="am-u-sm-9 am-u-end">
+                                        <input type="number" class="tpl-form-input" name="data[values][prt_num]" value="1" required>
+                                    </div>
+                                </div>
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">打印类目 </label>
+                                    <div class="am-u-sm-9 am-u-end">
+                                        <label  class="am-checkbox-inline" v-for="item in category">
+                                            <input type="checkbox" name="data[values][category][]" :value="item.category_id" data-am-ucheck checked required>
+                                            {{item.name}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">状态 </label>
+                                <div class="am-u-sm-9 am-u-end">
+                                    <label class="am-radio-inline">
+                                        <input type="radio" name="data[is_open]" value="1" data-am-ucheck checked>
+                                        开启
+                                    </label>
+                                    <label class="am-radio-inline">
+                                        <input type="radio" name="data[is_open]" value="0" data-am-ucheck>
+                                        关闭
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <div class="am-u-sm-9 am-u-sm-push-3 am-margin-top-lg">
+                                    <button type="submit" class="j-submit am-btn am-btn-secondary">提交
+                                    </button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/assets/plugins/vue/vue.min.js?v={$version}"></script>
+<script>
+    // 渲染页面
+    new Vue({
+        el: '#my-form',
+        data: {
+            category: <?= json_encode($category) ?>,
+            selected: ''
+        }
+    });
+    $(function () {
+        $('#my-form').formPost();
+    });
+</script>

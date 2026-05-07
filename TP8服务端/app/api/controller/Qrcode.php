@@ -1,0 +1,1 @@
+<?phpnamespace app\api\controller;use app\api\model\Qrcode as QrcodeModel;/** * 普通二维码控制器（小程序聚合） */class Qrcode extends Controller{    /**     * 详情     */    public function detail($id)    {		if($detail = QrcodeModel::get($id)){			return $this->renderSuccess($detail);		}		return $this->renderError('数据不存在');    }}

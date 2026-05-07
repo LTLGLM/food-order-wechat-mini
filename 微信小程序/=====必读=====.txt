@@ -1,0 +1,9 @@
+发布前要进行如下操作 
+
+1. 打开 /project.config.json
+找到："appid": "wx28fdf235ea5782f2"
+把微信appid的参数 修改成你自己的。
+
+2. 打开 /common/vendor.js
+搜索：https://single.hemaphp.com 
+找到后，把该域名替换成你服务端的域名。
